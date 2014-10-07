@@ -1,0 +1,55 @@
+unit Cidade;
+
+interface
+
+uses Base, Atributos;
+
+type
+  [NomeTabela('Cidade')]
+  TCidade = class (TTabela)
+  private
+    FIBGE: integer;
+    FUF: string;
+    FID: string;
+    FNome: string;
+    procedure SetIBGE(const Value: integer);
+    procedure SetID(const Value: string);
+    procedure SetNome(const Value: string);
+    procedure SetUF(const Value: string);
+  public
+    [CampoPK]
+    [NotNull('ID não informado.')]
+    property ID: string read FID write SetID;
+    [NotNull('Nome da cidade não informado.')]
+    property Nome: string read FNome write SetNome;
+    [NotNull('UF não informado.')]
+    property UF: string read FUF write SetUF;
+    [MinValue(1,'IBGE não informado.')]
+    property IBGE: integer read FIBGE write SetIBGE;
+  end;
+
+implementation
+
+{ TCidade }
+
+procedure TCidade.SetIBGE(const Value: integer);
+begin
+  FIBGE := Value;
+end;
+
+procedure TCidade.SetID(const Value: string);
+begin
+  FID := Value;
+end;
+
+procedure TCidade.SetNome(const Value: string);
+begin
+  FNome := Value;
+end;
+
+procedure TCidade.SetUF(const Value: string);
+begin
+  FUF := Value;
+end;
+
+end.

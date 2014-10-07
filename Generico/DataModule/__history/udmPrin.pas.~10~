@@ -1,0 +1,50 @@
+unit udmPrin;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Base, DaoIBX;
+
+type
+  TdmPrin = class(TDataModule)
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Conexao: IDaoBase;
+  end;
+
+var
+  dmPrin: TdmPrin;
+
+implementation
+
+{%CLASSGROUP 'System.Classes.TPersistent'}
+
+{$R *.dfm}
+
+procedure TdmPrin.DataModuleCreate(Sender: TObject);
+begin
+  // configuração da conexão - utilizando IBX
+  Conexao := TDaoIBX.Create;
+
+  // dao genérico
+  Conexao := TDaoGenerico<TDaoIBX>.Create;
+  Conexao.Dao := TDaoIBX(Dao);
+  with Conexao.Dao do
+  begin
+    LocalBD := 'F:\Programas\ProgsXe\Persistencia\Bd\BANCOTESTE.FDB';
+    Usuario := 'sysdba';
+    Senha   := '02025626';
+    Conecta;
+  end;
+end;
+
+procedure TdmPrin.DataModuleDestroy(Sender: TObject);
+begin
+  Conexao.Free;
+end;
+
+end.

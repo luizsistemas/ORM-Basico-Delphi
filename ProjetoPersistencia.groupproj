@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2685C9D5-77C0-4C07-A6B1-BBB3FEBC9DED}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Generico\ProjPersitGeneric.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjPersitGeneric">
+        <MSBuild Projects="Generico\ProjPersitGeneric.dproj"/>
+    </Target>
+    <Target Name="ProjPersitGeneric:Clean">
+        <MSBuild Projects="Generico\ProjPersitGeneric.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjPersitGeneric:Make">
+        <MSBuild Projects="Generico\ProjPersitGeneric.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjPersitGeneric"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjPersitGeneric:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjPersitGeneric:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

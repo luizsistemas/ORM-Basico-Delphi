@@ -1,0 +1,338 @@
+unit Base;
+
+interface
+
+uses DB, SysUtils, Classes, Rtti, System.TypInfo;
+
+type
+  TResultArray = array of string;
+
+  IBaseDados = interface
+    ['{9B0F9364-AB16-4C12-B4B7-4E2287840232}']
+  end;
+
+  ITransacao = interface
+    ['{2F1DCA7A-E7F4-4EC3-BDB2-22B99C8CA7DB}']
+  end;
+
+  TTabela = class(TObject)
+  end;
+
+  TRecParams = record
+    Prop: TRttiProperty;
+    Campo: string;
+    Tabela: TTabela;
+    Qry: TObject;
+  end;
+
+  IDaoBase = interface
+    ['{D06AAE8D-D5F7-47E7-BF11-E26687C11900}']
+  end;
+
+  TDaoBase = class abstract(TInterfacedObject, IDaoBase)
+  private
+    FSenha: string;
+    FPorta: string;
+    FUsuario: string;
+    FLocalBD: string;
+    FDataSet: TDataSet;
+    procedure SetPorta(const Value: string);
+    procedure SetSenha(const Value: string);
+    procedure SetUsuario(const Value: string);
+    procedure SetLocalBD(const Value: string);
+    procedure SetDataSet(const Value: TDataSet);
+  protected
+    //geração do sql padrao
+    function GerarSqlInsert (ATabela: TTabela; TipoRtti: TRttiType): string; virtual;
+    function GerarSqlUpdate (ATabela: TTabela; TipoRtti: TRttiType): string; virtual;
+    function GerarSqlDelete (ATabela: TTabela): string; virtual;
+    function GerarSqlSelect (ATabela: TTabela): string; virtual;
+
+    //métodos abstrados para os tipos de campos a serem utilizados nas classes filhas
+    procedure QryParamInteger(ARecParams: TRecParams); virtual; abstract;
+    procedure QryParamString(ARecParams: TRecParams); virtual; abstract;
+    procedure QryParamDate(ARecParams: TRecParams); virtual; abstract;
+    procedure QryParamCurrency(ARecParams: TRecParams); virtual; abstract;
+    procedure QryParamVariant(ARecParams: TRecParams); virtual; abstract;
+
+    //métodos para setar os variados tipos de campos
+    procedure SetaCamposInteger(ARecParams: TRecParams); virtual; abstract;
+    procedure SetaCamposString(ARecParams: TRecParams); virtual; abstract;
+    procedure SetaCamposDate(ARecParams: TRecParams); virtual; abstract;
+    procedure SetaCamposCurrency(ARecParams: TRecParams); virtual; abstract;
+
+
+    function ExecutaQuery: Integer; virtual; abstract;
+
+    //configura parâmetros da query
+    procedure ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
+      ATabela: TTabela; AQry: TObject); virtual;
+
+    //seta os dados da query em TTabela
+    procedure SetaDadosTabela(AProp: TRttiProperty; ACampo: string;
+      ATabela: TTabela; AQry: TObject);
+  public
+    //PKs
+    function CamposPK(ATabela: TTabela): TResultArray;
+
+    //dataset para as consultas
+    function ConsultaSql(ASql: string): TDataSet; virtual; abstract;
+
+    //pega campo autoincremento
+    function GetAutoIncremento (ATabela, ACampo: string): integer; virtual; abstract;
+
+    //crud
+    function Inserir(ATabela: TTabela): Integer; virtual; abstract;
+    function Salvar(ATabela: TTabela): Integer; virtual; abstract;
+    function Excluir(ATabela: TTabela): Integer; virtual; abstract;
+    function Buscar(ATabela:TTabela): Integer; virtual; abstract;
+
+    function Conectado: Boolean; virtual; abstract;
+    function InTransaction: Boolean; virtual; abstract;
+
+    procedure Conecta; virtual; abstract;
+    procedure StartTransaction; virtual; abstract;
+    procedure Commit; virtual; abstract;
+    procedure RollBack; virtual; abstract;
+
+    property DataSet: TDataSet read FDataSet write SetDataSet;
+    property LocalBD: string read FLocalBD write SetLocalBD;
+    property Usuario: string read FUsuario write SetUsuario;
+    property Senha: string read FSenha write SetSenha;
+    property Porta: string read FPorta write SetPorta;
+  end;
+
+  TDaoGenerico<T: IDaoBase> = class
+  private
+    FDao: T; // classe de conexao uib, ibx, ...
+    procedure SetCon(const Value: T);
+  public
+    property Dao: T read FDao write SetCon;
+  end;
+
+
+implementation
+
+uses Atributos;
+
+{ TDao }
+
+procedure TDaoGenerico<T>.SetCon(const Value: T);
+begin
+  FDao := Value;
+end;
+
+{ DaoBase }
+
+function TDaoBase.CamposPK(ATabela: TTabela): TResultArray;
+begin
+  Result := PegaPks(ATabela);
+end;
+
+procedure TDaoBase.ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
+  ATabela: TTabela; AQry: TObject);
+var
+  Params: TRecParams;
+begin
+  Params.Prop   := AProp;
+  Params.Campo  := ACampo;
+  Params.Tabela := ATabela;
+  Params.Qry    := AQry;
+
+  case AProp.PropertyType.TypeKind of
+    tkInt64, tkInteger:          QryParamInteger(Params);
+    tkChar, tkString, tkUString: QryParamString(Params);
+    tkFloat:
+      begin
+        if CompareText(AProp.PropertyType.Name, 'TDateTime') = 0 then
+          QryParamDate(Params)
+        else
+          QryParamCurrency(Params);
+      end;
+    tkVariant: QryParamVariant(Params);
+  else
+    raise Exception.Create('Tipo de campo não conhecido: ' +
+      AProp.PropertyType.ToString);
+  end;
+end;
+
+function TDaoBase.GerarSqlDelete(ATabela: TTabela): string;
+var
+  Campo, Separador: string;
+  ASql : TStringList;
+begin
+  ASql := TStringList.Create;
+  try
+    with ASql do
+    begin
+      Add('Delete from ' + PegaNomeTab(ATabela));
+      Add('Where');
+      Separador := '';
+      for Campo in PegaPks(ATabela) do
+      begin
+        Add(Separador + Campo + '= :' + Campo);
+        Separador := ' and ';
+      end;
+    end;
+    Result := ASql.Text;
+  finally
+    ASql.Free;
+  end;
+end;
+
+function TDaoBase.GerarSqlInsert(ATabela: TTabela; TipoRtti: TRttiType): string;
+var
+  Separador: string;
+  ASql : TStringList;
+  PropRtti: TRttiProperty;
+begin
+  ASql := TStringList.Create;
+  try
+    with ASql do
+    begin
+      Add('Insert into ' + PegaNomeTab(ATabela));
+      Add('(');
+
+      //campos da tabela
+      Separador := '';
+      for PropRtti in TipoRtti.GetProperties do
+      begin
+        Add(Separador + PropRtti.Name);
+        Separador := ',';
+      end;
+      Add(')');
+
+      //parâmetros
+      Add('Values (');
+      Separador := '';
+      for PropRtti in TipoRtti.GetProperties do
+      begin
+        Add(Separador + ':' + PropRtti.Name);
+        Separador := ',';
+      end;
+      Add(')');
+    end;
+    Result := ASql.text;
+  finally
+    ASql.Free;
+  end;
+end;
+
+function TDaoBase.GerarSqlSelect(ATabela: TTabela): string;
+var
+  Campo, Separador: string;
+  ASql : TStringList;
+begin
+  ASql := TStringList.Create;
+  try
+    with ASql do
+    begin
+      Add('Select * from ' + PegaNomeTab(ATabela));
+      Add('Where');
+      Separador := '';
+      for Campo in PegaPks(ATabela) do
+      begin
+        Add(Separador + Campo + '= :' + Campo);
+        Separador := ' and ';
+      end;
+    end;
+    Result := ASql.Text;
+  finally
+    ASql.Free;
+  end;
+end;
+
+function TDaoBase.GerarSqlUpdate(ATabela: TTabela; TipoRtti: TRttiType): string;
+var
+  Campo, Separador: string;
+  ASql : TStringList;
+  PropRtti: TRttiProperty;
+begin
+  ASql := TStringList.Create;
+  try
+    with ASql do
+    begin
+      Add('Update ' + PegaNomeTab(ATabela));
+      Add('set');
+
+      //campos da tabela
+      Separador := '';
+      for PropRtti in TipoRtti.GetProperties do
+      begin
+        Add(Separador + PropRtti.Name + '=:'+PropRtti.Name);
+        Separador := ',';
+      end;
+      Add('where');
+
+      //parâmetros da cláusula where
+      Separador := '';
+      for Campo in PegaPks(ATabela) do
+      begin
+        Add(Separador+ Campo + '= :' + Campo);
+        Separador := ' and ';
+      end;
+    end;
+    Result := ASql.text;
+  finally
+    ASql.Free;
+  end;
+end;
+
+procedure TDaoBase.SetaDadosTabela(AProp: TRttiProperty; ACampo: string;
+  ATabela: TTabela; AQry: TObject);
+var
+  Params: TRecParams;
+begin
+  Params.Prop   := AProp;
+  Params.Campo  := ACampo;
+  Params.Tabela := ATabela;
+  Params.Qry    := AQry;
+
+  case AProp.PropertyType.TypeKind of
+    tkInt64, tkInteger:
+      begin
+        SetaCamposInteger(Params);
+      end;
+    tkChar, tkString, tkUString:
+      begin
+        SetaCamposString(Params);
+      end;
+    tkFloat:
+      begin
+        if CompareText(AProp.PropertyType.Name, 'TDateTime') = 0 then
+          SetaCamposDate(Params)
+        else
+          SetaCamposCurrency(Params);
+      end;
+  else
+    raise Exception.Create('Tipo de campo não conhecido: ' +
+      AProp.PropertyType.ToString);
+  end;
+end;
+
+procedure TDaoBase.SetDataSet(const Value: TDataSet);
+begin
+  FDataSet := Value;
+end;
+
+procedure TDaoBase.SetLocalBD(const Value: string);
+begin
+  FLocalBD := Value;
+end;
+
+procedure TDaoBase.SetPorta(const Value: string);
+begin
+  FPorta := Value;
+end;
+
+procedure TDaoBase.SetSenha(const Value: string);
+begin
+  FSenha := Value;
+end;
+
+procedure TDaoBase.SetUsuario(const Value: string);
+begin
+  FUsuario := Value;
+end;
+
+end.
