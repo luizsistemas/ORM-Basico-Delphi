@@ -1,3 +1,6 @@
+# Diretories #
+Generico/Win32/*
+
 # Compiled source #
 ###################
 *.com
@@ -33,7 +36,6 @@
 ######################
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
