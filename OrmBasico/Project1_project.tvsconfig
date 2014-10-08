@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<TgConfig Version="3" SubLevelDisabled="False">
-  <Option Name="namespaceFolder.Base" Type="System.String" Value="Base" Category="General" IsBrowsable="False" />
-  <Option Name="namespaceFolder.DaoUib" Type="System.String" Value="DaoUib" Category="General" IsBrowsable="False" />
-  <Option Name="namespaceFolder.Project1" Type="System.String" Value="Project1" Category="General" IsBrowsable="False" />
-  <Option Name="namespaceFolder.Teste" Type="System.String" Value="Teste" Category="General" IsBrowsable="False" />
-</TgConfig>

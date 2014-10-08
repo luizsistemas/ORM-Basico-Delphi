@@ -35,7 +35,7 @@ begin
 
   with Conexao do
   begin
-    LocalBD := 'F:\Programas\ProgsXe\Persistencia\Bd\BANCOTESTE.FDB';
+    LocalBD := ExtractFilePath(ParamStr(0)) + '..\..\Bd\BANCOTESTE.FDB';
     Usuario := 'sysdba';
     Senha   := '02025626';
     Conecta;

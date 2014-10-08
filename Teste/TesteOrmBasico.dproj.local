@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2014/08/09 10:02:45.000.347,=F:\Usuario\LuizCarlos\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2014/08/09 10:28:02.000.710,=F:\Usuario\LuizCarlos\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2014/10/08 14:27:25.425,=F:\Usuario\LuizCarlos\Documentos\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2014/10/08 14:28:03.675,F:\Programas\ProgsXe\Persistencia\Teste\TesteOrmBasico.dproj=F:\Usuario\LuizCarlos\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2014/10/08 14:30:16.578,=F:\Programas\ProgsXe\Persistencia\Teste\Entity\Cidade.pas</Transaction>
+    <Transaction>2014/10/08 14:30:16.586,=F:\Programas\ProgsXe\Persistencia\Teste\Entity\Cliente.pas</Transaction>
+    <Transaction>2014/10/08 14:30:24.056,=F:\Programas\ProgsXe\Persistencia\Teste\ufrmMain.pas</Transaction>
+    <Transaction>2014/10/08 14:30:41.577,=F:\Programas\ProgsXe\Persistencia\Teste\Views\ufrmTesteAtributos.pas</Transaction>
+    <Transaction>2014/10/08 14:30:41.598,=F:\Programas\ProgsXe\Persistencia\Teste\Views\ufrmTesteIbx.pas</Transaction>
+    <Transaction>2014/10/08 14:33:04.850,=F:\Programas\ProgsXe\Persistencia\OrmBasico\Classes\PrsAtributos.pas</Transaction>
+    <Transaction>2014/10/08 14:33:04.861,=F:\Programas\ProgsXe\Persistencia\OrmBasico\Classes\PrsBase.pas</Transaction>
+    <Transaction>2014/10/08 14:33:04.871,=F:\Programas\ProgsXe\Persistencia\OrmBasico\Classes\PrsDaoIBX.pas</Transaction>
+    <Transaction>2014/10/08 14:33:25.044,=F:\Programas\ProgsXe\Persistencia\Teste\DataModule\udmPrin.pas</Transaction>
+  </Transactions>
+</BorlandProject>

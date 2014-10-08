@@ -54,8 +54,7 @@ begin
       id := 1;
       UF := 'MA';
       Nome := 'MARANHÃO';
-      //testando campo obrigatório não informado
-      IBGE := 0;
+      IBGE := 2100000;
     end;
 
     dmPrin.Transacao.StartTransaction;
@@ -65,7 +64,7 @@ begin
       dmPrin.Transacao.Commit;
 
       Memo1.Lines.Add(Format('Registro inserido: %d', [Registros]));
-      Memo1.Lines.Add(Format('id: %s, nome: %s',[ATab.Id, atab.nome]));
+      Memo1.Lines.Add(Format('id: %d, nome: %s',[ATab.Id, atab.nome]));
     except
       on E: Exception do
       begin
@@ -92,7 +91,7 @@ begin
       id := 1;
       UF := 'MA';
       Nome := 'BALSAS2';
-      IBGE := 0;
+      IBGE := 2100000;
     end;
     dmPrin.Transacao.StartTransaction;
     try

@@ -1,9 +1,12 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{2685C9D5-77C0-4C07-A6B1-BBB3FEBC9DED}</ProjectGuid>
+        <ProjectGuid>{3D93D2F0-CD57-488E-A3C6-AA11664BE1A2}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Generico\ProjPersitGeneric.dproj">
+        <Projects Include="OrmBasico\PrjPersistencia.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Teste\TesteOrmBasico.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -14,23 +17,32 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="ProjPersitGeneric">
-        <MSBuild Projects="Generico\ProjPersitGeneric.dproj"/>
+    <Target Name="PrjPersistencia">
+        <MSBuild Projects="OrmBasico\PrjPersistencia.dproj"/>
     </Target>
-    <Target Name="ProjPersitGeneric:Clean">
-        <MSBuild Projects="Generico\ProjPersitGeneric.dproj" Targets="Clean"/>
+    <Target Name="PrjPersistencia:Clean">
+        <MSBuild Projects="OrmBasico\PrjPersistencia.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="ProjPersitGeneric:Make">
-        <MSBuild Projects="Generico\ProjPersitGeneric.dproj" Targets="Make"/>
+    <Target Name="PrjPersistencia:Make">
+        <MSBuild Projects="OrmBasico\PrjPersistencia.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TesteOrmBasico">
+        <MSBuild Projects="Teste\TesteOrmBasico.dproj"/>
+    </Target>
+    <Target Name="TesteOrmBasico:Clean">
+        <MSBuild Projects="Teste\TesteOrmBasico.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TesteOrmBasico:Make">
+        <MSBuild Projects="Teste\TesteOrmBasico.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="ProjPersitGeneric"/>
+        <CallTarget Targets="PrjPersistencia;TesteOrmBasico"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ProjPersitGeneric:Clean"/>
+        <CallTarget Targets="PrjPersistencia:Clean;TesteOrmBasico:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ProjPersitGeneric:Make"/>
+        <CallTarget Targets="PrjPersistencia:Make;TesteOrmBasico:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
