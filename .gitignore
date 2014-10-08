@@ -27,7 +27,6 @@ Teste/Win32/*
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 *.fdb
 *.gdb
