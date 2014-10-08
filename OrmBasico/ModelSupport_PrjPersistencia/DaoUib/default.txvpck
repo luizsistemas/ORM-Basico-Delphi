@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="z86u1w1suke_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:PrjPersistencia:DaoUib.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.@unitclass.ExecComando(uib.TUIBQuery,DaoUib.TProcComando)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:PrjPersistencia:DaoUib.TDaoUib">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="100,100,175,217" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.ConfParametro(uib.TUIBQuery,Rtti.TRttiProperty,System.string,Base.TTabela)" />
+      <reference referencedUin="delphi:e_field:src:PrjPersistencia:DaoUib.TDaoUib.Qry" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.Inserir(Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.Salvar(Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.Excluir(Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.Create(uib.TUIBDataBase,uib.TUIBTransaction)" />
+      <reference referencedUin="delphi:e_field:src:PrjPersistencia:DaoUib.TDaoUib.FDatabase" />
+      <reference referencedUin="delphi:e_field:src:PrjPersistencia:DaoUib.TDaoUib.FTransacao" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.InTransaction()" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.StartTransaction()" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.Commit()" />
+      <reference referencedUin="delphi:e_method:src:PrjPersistencia:DaoUib.TDaoUib.RollBack()" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:PrjPersistencia:DaoUib.TProcComando">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+  </view>
+</nodeSet>
