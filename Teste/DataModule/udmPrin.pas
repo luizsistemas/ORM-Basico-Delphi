@@ -3,19 +3,28 @@ unit udmPrin;
 interface
 
 uses
-  System.SysUtils, System.Classes, prsDaoIBX;
+  System.SysUtils, System.Classes, prsBase, prsDaoFireDac, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.Comp.Client, Data.DB,
+  FireDAC.Phys.IBBase, FireDAC.VCLUI.Wait, IBX.IBDatabase, IBX.IBSQL, PrsDaoIBX;
 
 type
   TdmPrin = class(TDataModule)
+    FDConnection1: TFDConnection;
+    ttt: TFDTransaction;
+    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    IBDatabase1: TIBDatabase;
+    tnormal: TIBTransaction;
+    texec: TIBTransaction;
+    IBSQL1: TIBSQL;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    Conexao: TConexaoIbx;
-    Dao: TDaoIBX;
-    Transacao: TTransacaoIbx;
+    Dao: TDaoIbx;
   end;
 
 var
@@ -29,26 +38,21 @@ implementation
 
 procedure TdmPrin.DataModuleCreate(Sender: TObject);
 begin
-  // configuração da conexão - utilizando IBX
-  Conexao := TConexaoIbx.Create;
-  Transacao := TTransacaoIbx.Create(Conexao.Database);
-
-  with Conexao do
-  begin
-    LocalBD := ExtractFilePath(ParamStr(0)) + '..\..\Bd\BANCOTESTE.FDB';
-    Usuario := 'sysdba';
-    Senha   := '02025626';
-    Conecta;
-//    MyTrans := Transaction;
-  end;
-
-  Dao := TDaoIBX.Create(Conexao, Transacao);
+//   configuração da conexão - utilizando FireDac
+//  with FDConnection1 do
+//  begin
+//    Connected := False;
+//    Params.Database := BancoDados;
+//    Params.UserName := Usuario;
+//    Params.Password := senha;
+//    TFDPhysFBConnectionDefParams(FDConnection1.Params).Server := Server;
+//    dbSeguros.Connected := True;
+//  end;
+  Dao := TDaoIBX.Create(ibdatabase1, texec);
 end;
 
 procedure TdmPrin.DataModuleDestroy(Sender: TObject);
 begin
-  Transacao.Free;
-  Conexao.Free;
   Dao.Free;
 end;
 

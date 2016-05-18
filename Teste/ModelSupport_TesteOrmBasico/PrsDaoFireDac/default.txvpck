@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="paiwa8x8hts_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsDaoFireDac.@unitclass">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="420,340,261,657" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FConexao" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FTransacao" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FDataSet" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.DbToTabela&lt;1&gt;(PrsBase.TTabela,Data.DB.TDataSet)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.SetDataSet(Data.DB.TDataSet)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ExecutaQuery()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Create()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.SetaBancoDeDados(FireDAC.Comp.Client.TFDConnection,FireDAC.Comp.Client.TFDTransaction)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaAll(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaSql(System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaSql(System.string,System.Variant[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaSql(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaTab(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaTab(PrsBase.TTabela,System.string[],System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaTab(PrsBase.TTabela,System.string[],System.string[],System.string[],System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ConsultaGen&lt;1&gt;(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.GetID(PrsBase.TTabela,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.GetMax(PrsBase.TTabela,System.string,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.GetRecordCount(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.GetRecordCount(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Inserir(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Inserir(PrsBase.TTabela,System.string[],PrsBase.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Salvar(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Salvar(PrsBase.TTabela,System.string[],PrsBase.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Excluir(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Excluir(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Excluir(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Buscar(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.ExcluirTodos(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.StartTransaction()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Commit()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.RollBack()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.InTransaction()" />
+      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.DataSet" />
+      <reference referencedUin="delphi:l_impl:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac:PrsBase.IDaoBase">
+        <property name="sourceAnchor" value="420,358" />
+        <property name="targetAnchor" value="172,358" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FDefSQL" />
+      <reference referencedUin="delphi:l_ast:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FDefSQL">
+        <property name="sourceAnchor" value="681,458" />
+        <property name="targetAnchor" value="845,196" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FQry" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.QryParams" />
+      <reference referencedUin="delphi:l_ast:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.QryParams">
+        <property name="sourceAnchor" value="610,340" />
+        <property name="targetAnchor" value="610,124" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FQuery" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FSql" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FParams" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Create(FireDAC.Comp.Client.TFDConnection,FireDAC.Comp.Client.TFDTransaction)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.Limpar(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:l_ast:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FSql">
+        <property name="sourceAnchor" value="681,458" />
+        <property name="targetAnchor" value="845,196" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac.FParams">
+        <property name="sourceAnchor" value="610,340" />
+        <property name="targetAnchor" value="610,124" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.IDaoBase">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,220,152,411" />
+      <property name="hideOperation" value="False" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ExecutaQuery()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.GetID(PrsBase.TTabela,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.StartTransaction()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Commit()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.RollBack()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.InTransaction()" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Inserir(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Inserir(PrsBase.TTabela,System.string[],PrsBase.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Salvar(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Salvar(PrsBase.TTabela,System.string[],PrsBase.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Excluir(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Excluir(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Excluir(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ExcluirTodos(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Buscar(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaAll(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaSql(System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaSql(System.string,System.Variant[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaSql(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaTab(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaTab(PrsBase.TTabela,System.string[],System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.ConsultaTab(PrsBase.TTabela,System.string[],System.string[],System.string[],System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IDaoBase.Limpar(PrsBase.TTabela)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.IBaseSql">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="820,40,149,156" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IBaseSql.GerarSqlInsert(PrsBase.TTabela,System.Rtti.TRttiType,System.string[],PrsBase.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IBaseSql.GerarSqlUpdate(PrsBase.TTabela,System.Rtti.TRttiType,System.string[],PrsBase.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IBaseSql.GerarSqlDelete(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IBaseSql.GerarSqlSelect(PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IBaseSql.GerarSqlSelect(PrsBase.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IBaseSql.GerarSqlSelect(PrsBase.TTabela,System.string[],System.string[])" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="260,40,141,218" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.Qry" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.Create(FireDAC.Comp.Client.TFDQuery)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.QryParamInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.QryParamString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.QryParamDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.QryParamCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.QryParamVariant(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetaCamposInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetaCamposString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetaCamposDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetaCamposCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:l_impl:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac:PrsBase.IQueryParams">
+        <property name="sourceAnchor" value="401,92" />
+        <property name="targetAnchor" value="540,92" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetParamInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetParamString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetParamDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetParamCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetParamVariant(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetCamposInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetCamposString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetCamposDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac.SetCamposCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.IQueryParams">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="540,60,149,64" />
+      <property name="hideOperation" value="True" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.QryParamInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.QryParamString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.QryParamDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.QryParamCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.QryParamVariant(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetaCamposInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetaCamposString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetaCamposDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetaCamposCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetParamInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetParamString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetParamDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetParamCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetParamVariant(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetCamposInteger(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetCamposString(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetCamposDate(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.IQueryParams.SetCamposCurrency(System.Rtti.TRttiProperty,System.string,PrsBase.TTabela,System.TObject)" />
+    </reference>
+  </view>
+</nodeSet>

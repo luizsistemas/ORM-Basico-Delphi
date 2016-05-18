@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<TgConfig Version="3" SubLevelDisabled="False">
+  <Option Name="namespaceFolder.PrsAtributos" Type="System.String" Value="PrsAtributos" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.PrsBase" Type="System.String" Value="PrsBase" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Namespace1" Type="System.String" Value="Namespace1" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Geral" Type="System.String" Value="Geral" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.PrsDaoFireDac" Type="System.String" Value="PrsDaoFireDac" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.TesteOrmBasico" Type="System.String" Value="TesteOrmBasico" Category="General" IsBrowsable="False" />
+</TgConfig>

@@ -41,17 +41,6 @@ uses
   PrsBase, Rtti, System.Classes;
 
 type
-  // TTipoCampo = (tcNormal, tcPK, tcRequerido);
-
-  TCamposAnoni = record
-    NomeTabela: string;
-    Sep: string;
-    PKs: TResultArray;
-    TipoRtti: TRttiType;
-  end;
-
-  TFuncReflexao = reference to function(ACampos: TCamposAnoni): Integer;
-
   AttTabela = class(TCustomAttribute)
   private
     FNome: string;
@@ -60,17 +49,11 @@ type
     property Nome: string read FNome write FNome;
   end;
 
-  /// <summary>
-  /// Atributos de Chave Primaria e Relacionamentos
-  /// </summary>
-
+  // Atributos de Chave Primaria e Relacionamentos
   AttPK = class(TCustomAttribute)
   end;
 
-  /// <summary>
-  /// Atributos de Validação
-  /// </summary>
-
+  // Atributos de Validação
   AttBaseValidacao = class(TCustomAttribute)
   private
     FMensagemErro: string;
@@ -81,6 +64,7 @@ type
 
   AttNotNull = class(AttBaseValidacao)
   public
+    Field1: Integer;
     constructor Create(const ANomeCampo: string);
     function ValidarString(Value: string): Boolean;
     function ValidarInteger(Value: Integer): Boolean;
@@ -104,20 +88,144 @@ type
     function Validar(Value: Double): Boolean;
   end;
 
-  // Reflection para os comandos Sql
-function ReflexaoSQL(ATabela: TTabela; AnoniComando: TFuncReflexao): Integer;
+  // Comandos de atributos
+  IAtributos = interface
+    function PropExiste(ACampo: string; Prop: TRttiProperty;
+      RttiType: TRttiType): Boolean;
 
-function PegaNomeTab(ATabela: TTabela): string;
-function PegaPks(ATabela: TTabela): TResultArray;
-procedure ValidaTabela(ATabela: TTabela);
-procedure SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+    function PegaNomeTab(ATabela: TTabela): string;
+    function PegaPks(ATabela: TTabela): TCamposArray;
+    function LocalizaCampo(ACampo: string; ACampos: array of string): Boolean;
+
+    procedure ValidaTabela(ATabela: TTabela; ACampos: array of string;
+      AFlag: TFlagCampos = fcAdd);
+
+    procedure SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+    procedure SetarDadosTabela(AProp: TRttiProperty; ACampo: string;
+      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+
+    procedure ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
+      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+
+    procedure LimparCampos(ATabela: TTabela);
+  end;
+
+  TAtributos = class(TInterfacedObject, IAtributos)
+  public
+    class function Get: IAtributos;
+
+    function PropExiste(ACampo: string; Prop: TRttiProperty;
+      RttiType: TRttiType): Boolean;
+
+    function PegaNomeTab(ATabela: TTabela): string;
+    function PegaPks(ATabela: TTabela): TCamposArray;
+    function LocalizaCampo(ACampo: string; ACampos: array of string): Boolean;
+
+    procedure ValidaTabela(ATabela: TTabela; ACampos: array of string;
+      AFlag: TFlagCampos = fcAdd);
+
+    procedure SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+    procedure SetarDadosTabela(AProp: TRttiProperty; ACampo: string;
+      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+
+    procedure ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
+      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+
+    procedure LimparCampos(ATabela: TTabela);
+  end;
+
 
 implementation
 
 uses
   System.TypInfo, System.SysUtils, Forms, Winapi.Windows, System.Variants;
 
-procedure SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+{ DaoBase }
+
+procedure TAtributos.ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
+  ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+begin
+  case AProp.PropertyType.TypeKind of
+    tkInt64, tkInteger:  AParams.SetParamInteger(AProp, ACampo, ATabela, AQry);
+    tkChar, tkString, tkUString: AParams.SetParamString(AProp, ACampo, ATabela, AQry);
+    tkFloat:
+      begin
+        if CompareText(AProp.PropertyType.Name, 'TDateTime') = 0 then
+          AParams.SetParamDate(AProp, ACampo, ATabela, AQry)
+        else
+          AParams.SetParamCurrency(AProp, ACampo, ATabela, AQry);
+      end;
+    tkVariant: AParams.SetParamVariant(AProp, ACampo, ATabela, AQry);
+  else
+    raise Exception.Create('Tipo de campo não conhecido: ' +
+      AProp.PropertyType.ToString);
+  end;
+end;
+
+function TAtributos.PropExiste(ACampo: string; Prop: TRttiProperty;
+  RttiType: TRttiType): Boolean;
+begin
+  Result := False;
+  for Prop in RttiType.GetProperties do
+  begin
+    if CompareText(Prop.Name, ACampo) = 0 then
+    begin
+      Result := True;
+      Break;
+    end;
+  end;
+end;
+
+procedure TAtributos.LimparCampos(ATabela: TTabela);
+var
+  Contexto: TRttiContext;
+  TipoRtti: TRttiType;
+  PropRtti: TRttiProperty;
+begin
+  Contexto := TRttiContext.Create;
+  try
+    TipoRtti := Contexto.GetType(ATabela.ClassType);
+    for PropRtti in TipoRtti.GetProperties do
+    begin
+       case PropRtti.PropertyType.TypeKind of
+         tkFloat,
+         tkInteger: PropRtti.SetValue(ATabela, 0);
+       else
+         PropRtti.SetValue(ATabela, '');
+       end;
+    end;
+  finally
+    Contexto.free;
+  end;
+end;
+
+procedure TAtributos.SetarDadosTabela(AProp: TRttiProperty; ACampo: string;
+  ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+begin
+  case AProp.PropertyType.TypeKind of
+    tkInt64, tkInteger:
+      begin
+        AParams.SetCamposInteger(AProp, ACampo, ATabela, AQry);
+      end;
+    tkChar, tkString, tkUString:
+      begin
+        AParams.SetCamposString(AProp, ACampo, ATabela, AQry);
+      end;
+    tkFloat:
+      begin
+        if CompareText(AProp.PropertyType.Name, 'TDateTime') = 0 then
+          AParams.SetCamposDate(AProp, ACampo, ATabela, AQry)
+        else
+          AParams.SetCamposCurrency(AProp, ACampo, ATabela, AQry);
+      end;
+  else
+    raise Exception.Create('Tipo de campo não conhecido: ' +
+      AProp.PropertyType.ToString);
+  end;
+end;
+
+
+procedure TAtributos.SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
 var
   Contexto: TRttiContext;
   TipoRtti: TRttiType;
@@ -138,37 +246,7 @@ begin
   end;
 end;
 
-function ReflexaoSQL(ATabela: TTabela; AnoniComando: TFuncReflexao): Integer;
-var
-  ACampos: TCamposAnoni;
-  Contexto: TRttiContext;
-begin
-  ACampos.NomeTabela := PegaNomeTab(ATabela);
-
-  if ACampos.NomeTabela = EmptyStr then
-    raise Exception.Create('Informe o Atributo NomeTabela na classe ' +
-      ATabela.ClassName);
-
-  ACampos.PKs := PegaPks(ATabela);
-
-  if Length(ACampos.PKs) = 0 then
-    raise Exception.Create('Informe campos da chave primária na classe ' +
-      ATabela.ClassName);
-
-  Contexto := TRttiContext.Create;
-  try
-    ACampos.TipoRtti := Contexto.GetType(ATabela.ClassType);
-
-    // executamos os comandos Sql através do método anônimo
-    ACampos.Sep := '';
-    Result := AnoniComando(ACampos);
-
-  finally
-    Contexto.free;
-  end;
-end;
-
-function PegaNomeTab(ATabela: TTabela): string;
+function TAtributos.PegaNomeTab(ATabela: TTabela): string;
 var
   Contexto: TRttiContext;
   TipoRtti: TRttiType;
@@ -188,7 +266,28 @@ begin
   end;
 end;
 
-procedure ValidaTabela(ATabela: TTabela);
+function TAtributos.LocalizaCampo(ACampo: string; ACampos: array of string): Boolean;
+var
+ _Campo: string;
+begin
+  Result := false;
+  for _Campo in ACampos do
+  begin
+    if LowerCase(ACampo) = LowerCase(_Campo)  then
+    begin
+      Result := true;
+      Break;
+    end;
+  end;
+end;
+
+class function TAtributos.Get: IAtributos;
+begin
+  Result := TAtributos.Create;
+end;
+
+procedure TAtributos.ValidaTabela(ATabela: TTabela; ACampos: array of string;
+  AFlag: TFlagCampos);
 var
   Contexto: TRttiContext;
   TipoRtti: TRttiType;
@@ -207,6 +306,13 @@ begin
         TipoRtti := Contexto.GetType(ATabela.ClassType);
         for PropRtti in TipoRtti.GetProperties do
         begin
+          if Length(ACampos) > 0 then
+          begin
+            if ((AFlag=fcAdd) and (not LocalizaCampo(PropRtti.Name, ACampos))) or
+              ((AFlag=fcIgnore) and (LocalizaCampo(PropRtti.Name, ACampos))) then
+              Continue;
+          end;
+
           for AtribRtti in PropRtti.GetAttributes do
           begin
             PropRtti.PropertyType.TypeKind;
@@ -272,7 +378,7 @@ begin
   end;
 end;
 
-function PegaPks(ATabela: TTabela): TResultArray;
+function TAtributos.PegaPks(ATabela: TTabela): TCamposArray;
 var
   Contexto: TRttiContext;
   TipoRtti: TRttiType;

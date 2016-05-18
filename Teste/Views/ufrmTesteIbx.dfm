@@ -13,24 +13,4 @@ object Form1: TForm1
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object IBTransaction1: TIBTransaction
-    DefaultDatabase = IBDatabase1
-    Params.Strings = (
-      'read_committed'
-      'rec_version'
-      'nowait')
-    Left = 176
-    Top = 56
-  end
-  object IBDatabase1: TIBDatabase
-    DatabaseName = 
-      'C:\Users\Luiz\Documents\RAD Studio\Projects\Persistencia\Bd\BANC' +
-      'OTESTE.FDB'
-    Params.Strings = (
-      'user_name=sysdba'
-      'password=masterkey')
-    ServerType = 'IBServer'
-    Left = 272
-    Top = 48
-  end
 end

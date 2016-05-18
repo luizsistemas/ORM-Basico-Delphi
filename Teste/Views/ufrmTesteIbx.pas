@@ -4,12 +4,10 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IBX.IBDatabase, Data.DB;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB;
 
 type
   TForm1 = class(TForm)
-    IBTransaction1: TIBTransaction;
-    IBDatabase1: TIBDatabase;
   private
     { Private declarations }
   public

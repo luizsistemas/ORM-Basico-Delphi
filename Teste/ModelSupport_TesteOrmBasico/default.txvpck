@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="o907svb1vjq_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::paiwa8x8hts_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="900,160,140,166" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsDaoFireDac.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsDaoFireDac.TDaoFireDac" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsDaoFireDac.TQueryFireDac" />
+    </reference>
+    <reference referencedUin="design:view:::pnuapvnj6ur_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="169,1,100,151" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:Cidade.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:Cidade.TCidade" />
+    </reference>
+    <reference referencedUin="design:view:::zttpo05ysjg_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="169,171,101,151" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:udmPrin.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:udmPrin.TdmPrin" />
+    </reference>
+    <reference referencedUin="design:view:::0cqs1mpktih_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="20,180,147,134" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:TesteOrmBasico.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::vvpvopsp9t_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="308,1,127,151" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteIbx.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteIbx.TForm1" />
+    </reference>
+    <reference referencedUin="design:view:::i59vcqu1bki_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="308,171,100,151" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:Cliente.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:Cliente.TCliente" />
+    </reference>
+    <reference referencedUin="design:view:::g4z82r42ryq_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="660,200,122,258" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttPK" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttNotNull" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttTabela" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttMaxValue" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.IAtributos" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.TAtributos" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttBaseValidacao" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttMinValue" />
+    </reference>
+    <reference referencedUin="design:view:::q0g610dc1no_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="460,280,108,275" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TTabela" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TFlagCampos" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TDaoBase" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TConexaoBase" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TCamposArray" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TPadraoSql" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.IBaseSql" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.IDaoBase" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.IQueryParams" />
+    </reference>
+    <reference referencedUin="design:view:::5zw19cmweve_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="473,1,160,151" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteAtributos.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteAtributos.TfrmTesteAtributos" />
+    </reference>
+  </view>
+</nodeSet>
