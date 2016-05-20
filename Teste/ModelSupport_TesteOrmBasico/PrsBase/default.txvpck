@@ -16,31 +16,6 @@
       <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TFlagCampos.fcAdd" />
       <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TFlagCampos.fcIgnore" />
     </reference>
-    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TConexaoBase">
-      <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="1380,20,135,373" />
-      <property name="location_set_by_user" value="True" />
-      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TConexaoBase.FSenha" />
-      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TConexaoBase.FPorta" />
-      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TConexaoBase.FUsuario" />
-      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TConexaoBase.FLocalBD" />
-      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TConexaoBase.FProtocolo" />
-      <reference referencedUin="delphi:e_field:src:TesteOrmBasico:PrsBase.TConexaoBase.FServer" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.SetPorta(System.string)" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.SetSenha(System.string)" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.SetUsuario(System.string)" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.SetLocalBD(System.string)" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.SetTipo(System.Integer)" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.SetServer(System.string)" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.Conectado()" />
-      <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TConexaoBase.Conecta()" />
-      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsBase.TConexaoBase.LocalBD" />
-      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsBase.TConexaoBase.Usuario" />
-      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsBase.TConexaoBase.Senha" />
-      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsBase.TConexaoBase.Porta" />
-      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsBase.TConexaoBase.Protocolo" />
-      <reference referencedUin="delphi:e_property:src:TesteOrmBasico:PrsBase.TConexaoBase.Server" />
-    </reference>
     <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.@unitclass">
       <property name="$shortcutReference" value="true" />
     </reference>
@@ -98,7 +73,7 @@
       <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TPadraoSql.GerarSqlSelect(PrsBase.TTabela)" />
       <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TPadraoSql.GerarSqlSelect(PrsBase.TTabela,System.string[])" />
       <reference referencedUin="delphi:e_method:src:TesteOrmBasico:PrsBase.TPadraoSql.GerarSqlSelect(PrsBase.TTabela,System.string[],System.string[])" />
-      <reference referencedUin="delphi:l_impl:src:TesteOrmBasico:PrsBase.TPadraoSql:PrsBase.IBaseSql">
+      <reference referencedUin="delphi:l_impl:src:TesteOrmBasico:PrsBase.TPadraoSql:IBaseSql">
         <property name="sourceAnchor" value="920,358" />
         <property name="targetAnchor" value="829,358" />
         <property name="bendpoints" value="" />

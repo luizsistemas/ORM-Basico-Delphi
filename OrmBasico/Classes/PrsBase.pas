@@ -47,32 +47,6 @@ type
   TTabela = class
   end;
 
-  TConexaoBase = class
-  private
-    FSenha: string;
-    FPorta: string;
-    FUsuario: string;
-    FLocalBD: string;
-    FProtocolo: integer;
-    FServer: string;
-    procedure SetPorta(const Value: string);
-    procedure SetSenha(const Value: string);
-    procedure SetUsuario(const Value: string);
-    procedure SetLocalBD(const Value: string);
-    procedure SetTipo(const Value: integer);
-    procedure SetServer(const Value: string);
-  public
-    function Conectado: Boolean; virtual; abstract;
-    procedure Conecta; virtual; abstract;
-
-    property LocalBD: string read FLocalBD write SetLocalBD;
-    property Usuario: string read FUsuario write SetUsuario;
-    property Senha: string read FSenha write SetSenha;
-    property Porta: string read FPorta write SetPorta;
-    property Protocolo: integer read FProtocolo write SetTipo; //0 - local 1 - tcpIP
-    property Server: string read FServer write SetServer;
-  end;
-
   IBaseSql = interface
     ['{3890762A-9CF2-46C3-A75C-62947D3DAD7B}']
 
@@ -182,38 +156,6 @@ type
 implementation
 
 uses PrsAtributos;
-
-{ TConexaoBase }
-
-procedure TConexaoBase.SetLocalBD(const Value: string);
-begin
-  FLocalBD := Value;
-end;
-
-procedure TConexaoBase.SetPorta(const Value: string);
-begin
-  FPorta := Value;
-end;
-
-procedure TConexaoBase.SetSenha(const Value: string);
-begin
-  FSenha := Value;
-end;
-
-procedure TConexaoBase.SetServer(const Value: string);
-begin
-  FServer := Value;
-end;
-
-procedure TConexaoBase.SetTipo(const Value: integer);
-begin
-  FProtocolo := Value;
-end;
-
-procedure TConexaoBase.SetUsuario(const Value: string);
-begin
-  FUsuario := Value;
-end;
 
 { PadraoSql}
 function TPadraoSql.GerarSqlDelete(ATabela: TTabela): string;
