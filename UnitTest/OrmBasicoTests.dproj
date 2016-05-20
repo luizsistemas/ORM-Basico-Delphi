@@ -103,6 +103,8 @@
         <DCCReference Include="..\OrmBasico\Classes\PrsAtributos.pas"/>
         <DCCReference Include="..\OrmBasico\Classes\PrsDaoFireDac.pas"/>
         <DCCReference Include="TestPrsDaoFireDac.pas"/>
+        <DCCReference Include="TestPrsDaoIBX.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\PrsDaoIBX.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

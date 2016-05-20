@@ -18,12 +18,13 @@ uses
   FastMM4,
   Cidade in '..\Teste\Entity\Cidade.pas',
   udmPrin in '..\Teste\DataModule\udmPrin.pas' {dmPrin: TDataModule},
-
   DUnitTestRunner,
   PrsBase in '..\OrmBasico\Classes\PrsBase.pas',
   PrsAtributos in '..\OrmBasico\Classes\PrsAtributos.pas',
   PrsDaoFireDac in '..\OrmBasico\Classes\PrsDaoFireDac.pas',
-  TestPrsDaoFireDac in 'TestPrsDaoFireDac.pas';
+  TestPrsDaoFireDac in 'TestPrsDaoFireDac.pas',
+  TestPrsDaoIBX in 'TestPrsDaoIBX.pas',
+  PrsDaoIBX in '..\OrmBasico\Classes\PrsDaoIBX.pas';
 
 {$R *.RES}
 
