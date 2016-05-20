@@ -1,0 +1,856 @@
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 52
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 56138
+
+Current memory dump of 256 bytes starting at pointer address 7FC61F00:
+B0 04 02 00 01 00 00 00 11 00 00 00 54 00 65 00 73 00 74 00 65 00 20 00 64 00 65 00 20 00 49 00
+6E 00 63 00 6C 00 75 00 73 00 61 00 6F 00 00 00 77 A6 AA 33 80 80 80 80 00 00 00 00 01 CC C5 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F5 0A 01 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+4B 31 55 00 22 18 55 00 96 1E 55 00 64 1C 55 00 AF 20 55 00 DA 95 81 00 A5 E2 81 00 3E 95 81 00
+24 04 00 00 24 04 00 00 21 8E 40 00 59 96 40 00 54 33 55 00 A3 8F 40 00 88 18 55 00 A3 8F 40 00
+23 1C 55 00 A3 8F 40 00 DC 1F 55 00 A3 8F 40 00 5B 95 81 00 34 00 00 00 58 FD 54 00 FF F5 65 87
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 00 0A 9A 78 00 00 00 00 81 E8 C5 7F
+∞  .  .  .  .  .  .  .  .  .  .  .  T  .  e  .  s  .  t  .  e  .     .  d  .  e  .     .  I  .
+n  .  c  .  l  .  u  .  s  .  a  .  o  .  .  .  w  ¶  ™  3  Ä  Ä  Ä  Ä  .  .  .  .  .  Ã  ≈  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ı  .  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+K  1  U  .  "  .  U  .  ñ  .  U  .  d  .  U  .  Ø     U  .  ⁄  ï  Å  .  •  ‚  Å  .  >  ï  Å  .
+$  .  .  .  $  .  .  .  !  é  @  .  Y  ñ  @  .  T  3  U  .  £  è  @  .  à  .  U  .  £  è  @  .
+#  .  U  .  £  è  @  .  ‹  .  U  .  £  è  @  .  [  ï  Å  .  4  .  .  .  X  ˝  T  .  ˇ  ı  e  á
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  ö  x  .  .  .  .  Å  Ë  ≈  
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 20
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 56147
+
+Current memory dump of 256 bytes starting at pointer address 7FC6DB00:
+B0 04 02 00 01 00 00 00 02 00 00 00 4D 00 41 00 00 00 A8 DA B7 33 80 80 00 00 00 00 A1 F1 C6 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 36 08 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00
+51 EF 40 00 7C C2 E6 77 C7 2C 90 75 E8 2C 90 75 6A 1C E7 77 5F 5E 16 76 F4 49 47 00 52 8E 44 00
+24 04 00 00 24 04 00 00 F2 6E 40 00 75 AD 40 00 49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00
+59 96 40 00 91 FA 45 00 21 8E 40 00 59 96 40 00 A3 8F 40 00 14 00 00 00 B0 04 02 00 E7 20 29 D5
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 18 DF D6 2A 00 00 00 00 01 EC C6 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C6 F4 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+EF 4F 53 00 80 51 53 00 98 60 74 00 B4 D7 77 00 B7 02 78 00 43 0C 78 00 73 98 78 00 EE D7 82 00
+∞  .  .  .  .  .  .  .  .  .  .  .  M  .  A  .  .  .  ®  ⁄  ∑  3  Ä  Ä  .  .  .  .  °  Ò  ∆  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  6  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .
+Q  Ô  @  .  |  ¬  Ê  w  «  ,  ê  u  Ë  ,  ê  u  j  .  Á  w  _  ^  .  v  Ù  I  G  .  R  é  D  .
+$  .  .  .  $  .  .  .  Ú  n  @  .  u  ≠  @  .  I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .
+Y  ñ  @  .  ë  ˙  E  .  !  é  @  .  Y  ñ  @  .  £  è  @  .  .  .  .  .  ∞  .  .  .  Á     )  ’
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  ﬂ  ÷  *  .  .  .  .  .  Ï  ∆  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ∆  Ù  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+Ô  O  S  .  Ä  Q  S  .  ò  `  t  .  ¥  ◊  w  .  ∑  .  x  .  C  .  x  .  s  ò  x  .  Ó  ◊  Ç  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 20
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 56186
+
+Current memory dump of 256 bytes starting at pointer address 7FC6DD80:
+B0 04 02 00 01 00 00 00 02 00 00 00 4D 00 41 00 00 00 8B B0 F2 32 80 80 00 00 00 00 E1 F2 C6 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 3F 08 01 00 45 6F 40 00 59 CE 40 00 92 CF 40 00
+45 0B 46 00 40 F9 45 00 90 F9 45 00 15 14 46 00 40 F9 45 00 4A 28 46 00 1E 2A 46 00 FB 26 46 00
+24 04 00 00 24 04 00 00 F2 6E 40 00 EC D0 40 00 B2 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00
+59 96 40 00 D1 AE 46 00 A3 8F 40 00 AA 6A 47 00 B9 FA 46 00 0C 00 00 00 00 00 00 00 B6 A0 94 85
+94 C2 84 00 80 80 80 80 80 80 80 80 49 5F 6B 7A 80 80 80 80 80 80 80 80 00 00 00 00 01 E2 C6 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 39 E6 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+EF 4F 53 00 80 51 53 00 98 60 74 00 B4 D7 77 00 B7 02 78 00 43 0C 78 00 73 98 78 00 EE D7 82 00
+∞  .  .  .  .  .  .  .  .  .  .  .  M  .  A  .  .  .  ã  ∞  Ú  2  Ä  Ä  .  .  .  .  ·  Ú  ∆  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ?  .  .  .  E  o  @  .  Y  Œ  @  .  í  œ  @  .
+E  .  F  .  @  ˘  E  .  ê  ˘  E  .  .  .  F  .  @  ˘  E  .  J  (  F  .  .  *  F  .  ˚  &  F  .
+$  .  .  .  $  .  .  .  Ú  n  @  .  Ï  –  @  .  ≤  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .
+Y  ñ  @  .  —  Æ  F  .  £  è  @  .  ™  j  G  .  π  ˙  F  .  .  .  .  .  .  .  .  .  ∂  †  î  Ö
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  I  _  k  z  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  .  ‚  ∆  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  9  Ê  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+Ô  O  S  .  Ä  Q  S  .  ò  `  t  .  ¥  ◊  w  .  ∑  .  x  .  C  .  x  .  s  ò  x  .  Ó  ◊  Ç  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 20
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 56224
+
+Current memory dump of 256 bytes starting at pointer address 7FC6E0A0:
+B0 04 02 00 01 00 00 00 02 00 00 00 4D 00 41 00 00 00 1F 4E 75 33 80 80 00 00 00 00 C1 EA C6 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0B 08 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00
+51 EF 40 00 7C C2 E6 77 C7 2C 90 75 E8 2C 90 75 6A 1C E7 77 5F 5E 16 76 F4 49 47 00 52 8E 44 00
+24 04 00 00 24 04 00 00 F2 6E 40 00 75 AD 40 00 49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00
+59 96 40 00 91 FA 45 00 21 8E 40 00 59 96 40 00 A3 8F 40 00 14 00 00 00 B0 04 02 00 5C 26 29 D5
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 A3 D9 D6 2A 00 00 00 00 21 D6 C6 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 34 07 01 00 D6 6E 40 00 BB AC 40 00 6F B2 40 00
+43 75 42 00 1F 52 6E 00 32 1B 67 00 36 93 7F 01 D4 68 41 00 B4 80 41 00 C9 80 41 00 F2 6E 40 00
+∞  .  .  .  .  .  .  .  .  .  .  .  M  .  A  .  .  .  .  N  u  3  Ä  Ä  .  .  .  .  ¡  Í  ∆  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .
+Q  Ô  @  .  |  ¬  Ê  w  «  ,  ê  u  Ë  ,  ê  u  j  .  Á  w  _  ^  .  v  Ù  I  G  .  R  é  D  .
+$  .  .  .  $  .  .  .  Ú  n  @  .  u  ≠  @  .  I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .
+Y  ñ  @  .  ë  ˙  E  .  !  é  @  .  Y  ñ  @  .  £  è  @  .  .  .  .  .  ∞  .  .  .  \  &  )  ’
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  £  Ÿ  ÷  *  .  .  .  .  !  ÷  ∆  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  4  .  .  .  ÷  n  @  .  ª  ¨  @  .  o  ≤  @  .
+C  u  B  .  .  R  n  .  2  .  g  .  6  ì    .  ‘  h  A  .  ¥  Ä  A  .  …  Ä  A  .  Ú  n  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+408F74 [System.pas][System][TObject.$bctr$qqrv][16242]
+5390A7 [Data.DB.pas][Data.DB][Db.TDataSet.Next$qqrv][14227]
+831484 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][271]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+
+The block is currently used for an object of class: TCidade
+
+The allocation number is: 56164
+
+Current memory dump of 256 bytes starting at pointer address 7FC79AD0:
+D8 2A 67 00 00 00 00 00 8C DD C6 7F 04 00 00 00 0C E3 C7 7F 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 D5 59 81 77 00 00 00 00 91 AD C7 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+52 08 01 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00 DB 13 46 00 40 F9 45 00 4A 28 46 00 1E 2A 46 00
+FB 26 46 00 76 02 46 00 8C DD 45 00 FF 8F 45 00 24 04 00 00 24 04 00 00 F2 6E 40 00 21 8E 40 00
+59 96 40 00 D1 AE 46 00 A3 8F 40 00 AA 6A 47 00 B9 FA 46 00 A3 8F 40 00 8F F8 45 00 A6 C8 46 00
+A3 8F 40 00 24 00 00 00 68 12 46 00 4A 5F E5 85 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 B5 A0 1A 7A 00 00 00 00 51 C6 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 24 08 01 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+ÿ  *  g  .  .  .  .  .  å  ›  ∆    .  .  .  .  .  „  «    .  .  .  .  .  .  .  .  .  .  .  .
+.  .  .  .  ’  Y  Å  w  .  .  .  .  ë  ≠  «    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+R  .  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .  €  .  F  .  @  ˘  E  .  J  (  F  .  .  *  F  .
+˚  &  F  .  v  .  F  .  å  ›  E  .  ˇ  è  E  .  $  .  .  .  $  .  .  .  Ú  n  @  .  !  é  @  .
+Y  ñ  @  .  —  Æ  F  .  £  è  @  .  ™  j  G  .  π  ˙  F  .  £  è  @  .  è  ¯  E  .  ¶  »  F  .
+£  è  @  .  $  .  .  .  h  .  F  .  J  _  Â  Ö  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  µ  †  .  z  .  .  .  .  Q  ∆  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  $  .  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+418152 [FastMM4.pas][FastMM4][DebugReallocMem$qqrpvi][8727]
+406F13 [System.pas][System][@ReallocMem$qqrrpvi][4718]
+40CE59 [System.pas][System][DynArraySetLength$qqrrpvpvipi][34393]
+44AD2B [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalSetCapacity$qqri][3830]
+449A90 [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalGrow$qqri][3091]
+449AB5 [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalGrowCheck$qqri][3097]
+44880F [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalAdd4$qqrpxv][2463]
+8316EB [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][304]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+
+The block is currently used for an object of class: Unknown
+
+The allocation number is: 56163
+
+Current memory dump of 256 bytes starting at pointer address 7FC7AD60:
+01 00 00 00 04 00 00 00 A0 D6 C7 7F D0 9A C7 7F 60 E4 C7 7F 00 00 00 00 07 2E C4 77 80 80 80 80
+80 80 80 80 80 80 80 80 00 00 00 00 81 CC C7 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+F6 07 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 51 EF 40 00 7C C2 E6 77 C7 2C 90 75 E8 2C 90 75
+6A 1C E7 77 5F 5E 16 76 F4 49 47 00 52 8E 44 00 24 04 00 00 24 04 00 00 F2 6E 40 00 75 AD 40 00
+49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00 59 96 40 00 91 FA 45 00 21 8E 40 00 59 96 40 00
+A3 8F 40 00 16 00 00 00 B0 04 02 00 19 F3 29 D5 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 E6 0C D6 2A 80 80 80 80 80 80 80 80 80 80 80 80 80 80 00 00 00 00 C1 D4 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 51 08 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00
+.  .  .  .  .  .  .  .  †  ÷  «    –  ö  «    `  ‰  «    .  .  .  .  .  .  ƒ  w  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  Å  Ã  «    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+ˆ  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  Q  Ô  @  .  |  ¬  Ê  w  «  ,  ê  u  Ë  ,  ê  u
+j  .  Á  w  _  ^  .  v  Ù  I  G  .  R  é  D  .  $  .  .  .  $  .  .  .  Ú  n  @  .  u  ≠  @  .
+I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .  Y  ñ  @  .  ë  ˙  E  .  !  é  @  .  Y  ñ  @  .
+£  è  @  .  .  .  .  .  ∞  .  .  .  .  Û  )  ’  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ê  .  ÷  *  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  ¡  ‘  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  Q  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+408F74 [System.pas][System][TObject.$bctr$qqrv][16242]
+831484 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][271]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+817FE6 [TestFramework.pas][TestFramework][TTestResult.RunTestRun$qqr46System.%DelphiInterface$19Testframework.ITest%][1649]
+
+The block is currently used for an object of class: TCidade
+
+The allocation number is: 56123
+
+Current memory dump of 256 bytes starting at pointer address 7FC7D6A0:
+D8 2A 67 00 87 D6 12 00 0C DB C6 7F 05 00 00 00 0C 1F C6 7F 00 00 00 00 00 00 00 00 C0 C1 E4 40
+00 00 00 00 8C D6 30 77 00 00 00 00 21 AA C7 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+6F 08 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 51 EF 40 00 7C C2 E6 77 C7 2C 90 75 E8 2C 90 75
+6A 1C E7 77 5F 5E 16 76 F4 49 47 00 52 8E 44 00 24 04 00 00 24 04 00 00 F2 6E 40 00 75 AD 40 00
+49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00 59 96 40 00 91 FA 45 00 21 8E 40 00 59 96 40 00
+A3 8F 40 00 1C 00 00 00 B0 04 02 00 D8 1C 2A D5 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 27 E3 D5 2A 80 80 80 80 80 80 80 80 00 00 00 00 31 CD C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 F0 08 01 00 D6 6E 40 00 03 8E 40 00 69 EA 40 00
+ÿ  *  g  .  á  ÷  .  .  .  €  ∆    .  .  .  .  .  .  ∆    .  .  .  .  .  .  .  .  ¿  ¡  ‰  @
+.  .  .  .  å  ÷  0  w  .  .  .  .  !  ™  «    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+o  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  Q  Ô  @  .  |  ¬  Ê  w  «  ,  ê  u  Ë  ,  ê  u
+j  .  Á  w  _  ^  .  v  Ù  I  G  .  R  é  D  .  $  .  .  .  $  .  .  .  Ú  n  @  .  u  ≠  @  .
+I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .  Y  ñ  @  .  ë  ˙  E  .  !  é  @  .  Y  ñ  @  .
+£  è  @  .  .  .  .  .  ∞  .  .  .  ÿ  .  *  ’  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  '  „  ’  *  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  1  Õ  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .    .  .  .  ÷  n  @  .  .  é  @  .  i  Í  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 56215
+
+Current memory dump of 256 bytes starting at pointer address 7FC7E250:
+B0 04 02 00 01 00 00 00 06 00 00 00 42 00 41 00 4C 00 53 00 41 00 53 00 00 00 FE 70 2E 33 80 80
+80 80 80 80 80 80 80 80 00 00 00 00 60 8A C7 7F 00 00 00 00 00 00 00 00 68 7E 41 00 00 00 00 00
+71 DB 00 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 C3 AF 40 00 F4 0E E7 77 D5 7A F1 77 F4 0E E7 77
+D5 7A F1 77 E9 64 F1 77 52 7E E7 77 CD 64 F1 77 24 04 00 00 24 04 00 00 F2 6E 40 00 75 AD 40 00
+48 3B 52 00 DC 73 53 00 AC 73 53 00 8E 15 83 00 CD 10 83 00 85 DD 82 00 D8 CD 81 00 DA CF 81 00
+7D 8F 40 00 1A 00 00 00 B0 04 02 00 8B 8F D1 CC B0 04 02 00 01 00 00 00 06 00 00 00 43 00 41 00
+58 00 49 00 41 00 53 00 00 00 74 70 2E 33 80 80 80 80 80 80 80 80 80 80 00 00 00 00 91 EF C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 9E 07 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00
+∞  .  .  .  .  .  .  .  .  .  .  .  B  .  A  .  L  .  S  .  A  .  S  .  .  .  ˛  p  .  3  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  `  ä  «    .  .  .  .  .  .  .  .  h  ~  A  .  .  .  .  .
+q  €  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  √  Ø  @  .  Ù  .  Á  w  ’  z  Ò  w  Ù  .  Á  w
+’  z  Ò  w  È  d  Ò  w  R  ~  Á  w  Õ  d  Ò  w  $  .  .  .  $  .  .  .  Ú  n  @  .  u  ≠  @  .
+H  ;  R  .  ‹  s  S  .  ¨  s  S  .  é  .  É  .  Õ  .  É  .  Ö  ›  Ç  .  ÿ  Õ  Å  .  ⁄  œ  Å  .
+}  è  @  .  .  .  .  .  ∞  .  .  .  ã  è  —  Ã  ∞  .  .  .  .  .  .  .  .  .  .  .  C  .  A  .
+X  .  I  .  A  .  S  .  .  .  t  p  .  3  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  ë  Ô  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  û  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 56177
+
+Current memory dump of 256 bytes starting at pointer address 7FC7E300:
+B0 04 02 00 01 00 00 00 06 00 00 00 43 00 41 00 58 00 49 00 41 00 53 00 00 00 74 70 2E 33 80 80
+80 80 80 80 80 80 80 80 00 00 00 00 91 EF C7 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+9E 07 01 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 51 EF 40 00 00 00 6E 00 7C C2 E6 77 C7 2C 90 75
+E8 2C 90 75 6A 1C E7 77 5F 5E 16 76 F4 49 47 00 24 04 00 00 24 04 00 00 F2 6E 40 00 75 AD 40 00
+49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00 59 96 40 00 91 FA 45 00 21 8E 40 00 59 96 40 00
+A3 8F 40 00 16 00 00 00 B0 04 02 00 0F 9A 53 D5 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 F0 65 AC 2A 80 80 80 80 80 80 80 80 80 80 80 80 80 80 00 00 00 00 60 8A C7 7F
+00 00 00 00 00 00 00 00 68 7E 41 00 00 00 00 00 8A DB 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+∞  .  .  .  .  .  .  .  .  .  .  .  C  .  A  .  X  .  I  .  A  .  S  .  .  .  t  p  .  3  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  ë  Ô  «    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+û  .  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  Q  Ô  @  .  .  .  n  .  |  ¬  Ê  w  «  ,  ê  u
+Ë  ,  ê  u  j  .  Á  w  _  ^  .  v  Ù  I  G  .  $  .  .  .  $  .  .  .  Ú  n  @  .  u  ≠  @  .
+I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .  Y  ñ  @  .  ë  ˙  E  .  !  é  @  .  Y  ñ  @  .
+£  è  @  .  .  .  .  .  ∞  .  .  .  .  ö  S  ’  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä    e  ¨  *  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  `  ä  «  
+.  .  .  .  .  .  .  .  h  ~  A  .  .  .  .  .  ä  €  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+408F74 [System.pas][System][TObject.$bctr$qqrv][16242]
+5390A7 [Data.DB.pas][Data.DB][Db.TDataSet.Next$qqrv][14227]
+831484 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][271]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+
+The block is currently used for an object of class: TCidade
+
+The allocation number is: 56202
+
+Current memory dump of 256 bytes starting at pointer address 7FC7E460:
+D8 2A 67 00 98 10 20 00 AC E0 C6 7F 01 00 00 00 5C E2 C7 7F 00 00 00 00 00 00 00 00 C0 C1 E4 40
+00 00 00 00 1F 10 81 77 00 00 00 00 61 DE C7 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+F7 07 01 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00 DB 13 46 00 40 F9 45 00 4A 28 46 00 1E 2A 46 00
+FB 26 46 00 76 02 46 00 8C DD 45 00 FF 8F 45 00 24 04 00 00 24 04 00 00 F2 6E 40 00 21 8E 40 00
+59 96 40 00 D1 AE 46 00 A3 8F 40 00 AA 6A 47 00 B9 FA 46 00 A3 8F 40 00 8F F8 45 00 A6 C8 46 00
+A3 8F 40 00 24 00 00 00 68 12 46 00 7F A8 E5 85 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 57 1A 7A 00 00 00 00 B1 90 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 A2 07 01 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+ÿ  *  g  .  ò  .     .  ¨  ‡  ∆    .  .  .  .  \  ‚  «    .  .  .  .  .  .  .  .  ¿  ¡  ‰  @
+.  .  .  .  .  .  Å  w  .  .  .  .  a  ﬁ  «    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+˜  .  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .  €  .  F  .  @  ˘  E  .  J  (  F  .  .  *  F  .
+˚  &  F  .  v  .  F  .  å  ›  E  .  ˇ  è  E  .  $  .  .  .  $  .  .  .  Ú  n  @  .  !  é  @  .
+Y  ñ  @  .  —  Æ  F  .  £  è  @  .  ™  j  G  .  π  ˙  F  .  £  è  @  .  è  ¯  E  .  ¶  »  F  .
+£  è  @  .  $  .  .  .  h  .  F  .    ®  Â  Ö  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  W  .  z  .  .  .  .  ±  ê  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ¢  .  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+A memory block has been leaked. The size is: 68
+
+This block was allocated by thread 0x424, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+830DD2 [System.Generics.Collections.pas][TestPrsDaoFireDac][Generics.Collections.%TObjectList__1$p14Cidade.TCidade%.$bctr$qqro][6599]
+40C353 [System.pas][System][@InitializeArray$qqrpvt1ui][31519]
+831469 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][267]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+
+The block is currently used for an object of class: TObjectList<Cidade.TCidade>
+
+The allocation number is: 56122
+
+Current memory dump of 256 bytes starting at pointer address 7FD46690:
+40 FC 82 00 00 00 00 00 03 00 00 00 9C EB 82 00 1C 00 83 00 90 66 D4 7F 44 00 83 00 90 66 D4 7F
+68 AD C7 7F A8 14 84 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 99 D9 0A 77
+80 80 80 80 80 80 80 80 00 00 00 00 F1 6A D4 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+4E AF 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00 46 00 7A 00 D0 F7 7E 00 3E 6D 79 00 30 C5 80 00
+93 EB 80 00 09 19 81 00 5A EA 4C 00 07 E9 4C 00 24 04 00 00 24 04 00 00 21 8E 40 00 59 96 40 00
+68 F9 79 00 A3 8F 40 00 66 6F 79 00 D5 C5 80 00 A3 8F 40 00 19 CB 4C 00 9A 77 65 00 B6 F6 66 00
+E8 A6 40 00 3C 00 00 00 E4 47 79 00 B2 4E 6F 88 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+@  ¸  Ç  .  .  .  .  .  .  .  .  .  ú  Î  Ç  .  .  .  É  .  ê  f  ‘    D  .  É  .  ê  f  ‘  
+h  ≠  «    ®  .  Ñ  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ô  Ÿ  .  w
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  Ò  j  ‘    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+N  Ø  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .  F  .  z  .  –  ˜  ~  .  >  m  y  .  0  ≈  Ä  .
+ì  Î  Ä  .  .  .  Å  .  Z  Í  L  .  .  È  L  .  $  .  .  .  $  .  .  .  !  é  @  .  Y  ñ  @  .
+h  ˘  y  .  £  è  @  .  f  o  y  .  ’  ≈  Ä  .  £  è  @  .  .  À  L  .  ö  w  e  .  ∂  ˆ  f  .
+Ë  ¶  @  .  <  .  .  .  ‰  G  y  .  ≤  N  o  à  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+
+--------------------------------2016/5/20 14:12:26--------------------------------
+This application has leaked memory. The small block leaks are (excluding expected leaks registered by pointer):
+
+13 - 20 bytes: UnicodeString x 3
+21 - 36 bytes: TCidade x 3, UnicodeString x 2, Unknown x 1
+37 - 52 bytes: UnicodeString x 1
+53 - 68 bytes: TObjectList<Cidade.TCidade> x 1
+
+Note: Memory leak detail is logged to a text file in the same folder as this application. To disable this memory leak check, undefine "EnableMemoryLeakReporting".
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 52
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 55585
+
+Current memory dump of 256 bytes starting at pointer address 7FC71C30:
+B0 04 02 00 01 00 00 00 11 00 00 00 54 00 65 00 73 00 74 00 65 00 20 00 64 00 65 00 20 00 49 00
+6E 00 63 00 6C 00 75 00 73 00 61 00 6F 00 00 00 48 93 A9 33 80 80 80 80 00 00 00 00 01 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 5B DB 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+4B 31 55 00 22 18 55 00 96 1E 55 00 64 1C 55 00 AF 20 55 00 DA 95 81 00 A5 E2 81 00 3E 95 81 00
+38 10 00 00 38 10 00 00 21 8E 40 00 59 96 40 00 54 33 55 00 A3 8F 40 00 88 18 55 00 A3 8F 40 00
+23 1C 55 00 A3 8F 40 00 DC 1F 55 00 A3 8F 40 00 5B 95 81 00 34 00 00 00 58 FD 54 00 BD DB 66 87
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 42 24 99 78 00 00 00 00 31 20 C7 7F
+∞  .  .  .  .  .  .  .  .  .  .  .  T  .  e  .  s  .  t  .  e  .     .  d  .  e  .     .  I  .
+n  .  c  .  l  .  u  .  s  .  a  .  o  .  .  .  H  ì  ©  3  Ä  Ä  Ä  Ä  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  [  €  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+K  1  U  .  "  .  U  .  ñ  .  U  .  d  .  U  .  Ø     U  .  ⁄  ï  Å  .  •  ‚  Å  .  >  ï  Å  .
+8  .  .  .  8  .  .  .  !  é  @  .  Y  ñ  @  .  T  3  U  .  £  è  @  .  à  .  U  .  £  è  @  .
+#  .  U  .  £  è  @  .  ‹  .  U  .  £  è  @  .  [  ï  Å  .  4  .  .  .  X  ˝  T  .  Ω  €  f  á
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  B  $  ô  x  .  .  .  .  1     «  
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 20
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 55594
+
+Current memory dump of 256 bytes starting at pointer address 7FC7D830:
+B0 04 02 00 01 00 00 00 02 00 00 00 4D 00 41 00 00 00 79 C7 B6 33 80 80 00 00 00 00 71 E0 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 D9 00 00 45 6F 40 00 59 CE 40 00 AF AA 46 00
+92 CF 40 00 F7 AB 46 00 C8 E9 40 00 C0 33 46 00 48 30 46 00 7E 15 83 00 CD 10 83 00 85 DD 82 00
+38 10 00 00 38 10 00 00 F2 6E 40 00 EC D0 40 00 92 AE 46 00 C0 33 46 00 48 30 46 00 7E 15 83 00
+CD 10 83 00 85 DD 82 00 D8 CD 81 00 DA CF 81 00 7D 8F 40 00 14 00 00 00 00 00 00 00 41 0B 90 87
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 BE F4 6F 78 00 00 00 00 D1 DA C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 89 D9 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+BF 75 4B 00 AA 80 4B 00 75 24 6C 00 7B 25 6C 00 0B 14 6C 00 18 1F 6C 00 AF 20 6C 00 AE 6A 74 00
+∞  .  .  .  .  .  .  .  .  .  .  .  M  .  A  .  .  .  y  «  ∂  3  Ä  Ä  .  .  .  .  q  ‡  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  Ä  Ÿ  .  .  E  o  @  .  Y  Œ  @  .  Ø  ™  F  .
+í  œ  @  .  ˜  ´  F  .  »  È  @  .  ¿  3  F  .  H  0  F  .  ~  .  É  .  Õ  .  É  .  Ö  ›  Ç  .
+8  .  .  .  8  .  .  .  Ú  n  @  .  Ï  –  @  .  í  Æ  F  .  ¿  3  F  .  H  0  F  .  ~  .  É  .
+Õ  .  É  .  Ö  ›  Ç  .  ÿ  Õ  Å  .  ⁄  œ  Å  .  }  è  @  .  .  .  .  .  .  .  .  .  A  .  ê  á
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  æ  Ù  o  x  .  .  .  .  —  ⁄  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  â  Ÿ  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+ø  u  K  .  ™  Ä  K  .  u  $  l  .  {  %  l  .  .  .  l  .  .  .  l  .  Ø     l  .  Æ  j  t  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 20
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 55633
+
+Current memory dump of 256 bytes starting at pointer address 7FC7DAB0:
+B0 04 02 00 01 00 00 00 02 00 00 00 4D 00 41 00 00 00 5C 9D F1 32 80 80 00 00 00 00 51 D8 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 88 D9 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+BF 75 4B 00 F2 6E 40 00 AA 80 4B 00 75 24 6C 00 B7 90 40 00 7B 25 6C 00 0B 14 6C 00 18 1F 6C 00
+38 10 00 00 38 10 00 00 F2 6E 40 00 21 8E 40 00 59 96 40 00 96 8F 40 00 17 25 6C 00 7B 25 6C 00
+0B 14 6C 00 18 1F 6C 00 AF 20 6C 00 5D 6B 74 00 B1 6B 74 00 10 00 00 00 D0 42 49 00 28 B6 A3 87
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 D7 49 5C 78 80 80 80 80 00 00 00 00 11 AF C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 3E D7 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+97 99 67 00 C8 C5 6B 00 8A E9 6E 00 33 F7 6E 00 47 5D 70 00 58 73 70 00 B4 74 78 00 30 AE 77 00
+∞  .  .  .  .  .  .  .  .  .  .  .  M  .  A  .  .  .  \  ù  Ò  2  Ä  Ä  .  .  .  .  Q  ÿ  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  à  Ÿ  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+ø  u  K  .  Ú  n  @  .  ™  Ä  K  .  u  $  l  .  ∑  ê  @  .  {  %  l  .  .  .  l  .  .  .  l  .
+8  .  .  .  8  .  .  .  Ú  n  @  .  !  é  @  .  Y  ñ  @  .  ñ  è  @  .  .  %  l  .  {  %  l  .
+.  .  l  .  .  .  l  .  Ø     l  .  ]  k  t  .  ±  k  t  .  .  .  .  .  –  B  I  .  (  ∂  £  á
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  ◊  I  \  x  Ä  Ä  Ä  Ä  .  .  .  .  .  Ø  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  >  ◊  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+ó  ô  g  .  »  ≈  k  .  ä  È  n  .  3  ˜  n  .  G  ]  p  .  X  s  p  .  ¥  t  x  .  0  Æ  w  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 20
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 55671
+
+Current memory dump of 256 bytes starting at pointer address 7FC7DDD0:
+B0 04 02 00 01 00 00 00 02 00 00 00 4D 00 41 00 00 00 F0 3A 74 33 80 80 00 00 00 00 11 E1 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 2B D8 00 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00
+CB A5 67 00 00 E8 72 00 9F 82 73 00 EF 93 73 00 FD A1 73 00 C5 94 73 00 5B 5D 70 00 58 73 70 00
+38 10 00 00 38 10 00 00 F2 6E 40 00 75 AD 40 00 49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00
+59 96 40 00 BD 23 52 00 A3 8F 40 00 74 70 4B 00 A3 8F 40 00 12 00 00 00 B0 04 02 00 DE 5D F9 86
+94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 21 A2 06 79 80 80 00 00 00 00 51 E7 C7 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AA D8 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+97 99 67 00 BA 63 6B 00 EF 64 6B 00 29 7F 74 00 53 80 74 00 4D 9C 74 00 AC 5B 53 00 5B 5C 53 00
+∞  .  .  .  .  .  .  .  .  .  .  .  M  .  A  .  .  .    :  t  3  Ä  Ä  .  .  .  .  .  ·  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  +  ÿ  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .
+À  •  g  .  .  Ë  r  .  ü  Ç  s  .  Ô  ì  s  .  ˝  °  s  .  ≈  î  s  .  [  ]  p  .  X  s  p  .
+8  .  .  .  8  .  .  .  Ú  n  @  .  u  ≠  @  .  I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .
+Y  ñ  @  .  Ω  #  R  .  £  è  @  .  t  p  K  .  £  è  @  .  .  .  .  .  ∞  .  .  .  ﬁ  ]  ˘  Ü
+î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  !  ¢  .  y  Ä  Ä  .  .  .  .  Q  Á  «  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ™  ÿ  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+ó  ô  g  .  ∫  c  k  .  Ô  d  k  .  )    t  .  S  Ä  t  .  M  ú  t  .  ¨  [  S  .  [  \  S  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+408F74 [System.pas][System][TObject.$bctr$qqrv][16242]
+5390A7 [Data.DB.pas][Data.DB][Db.TDataSet.Next$qqrv][14227]
+831484 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][271]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+
+The block is currently used for an object of class: TCidade
+
+The allocation number is: 55611
+
+Current memory dump of 256 bytes starting at pointer address 7FC895F0:
+D8 2A 67 00 00 00 00 00 BC DA C7 7F 04 00 00 00 8C DF C8 7F 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 B6 48 80 77 00 00 00 00 E1 A3 C8 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+11 D7 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00 FB E4 72 00 8E E0 72 00 9B E1 72 00 3F 20 73 00
+1E 91 73 00 3B 93 73 00 59 35 70 00 3F 76 77 00 38 10 00 00 38 10 00 00 F2 6E 40 00 21 8E 40 00
+59 96 40 00 6C E5 72 00 72 E0 72 00 6A 2C 73 00 63 94 73 00 A5 39 70 00 13 77 77 00 70 7B 77 00
+E3 7E 77 00 24 00 00 00 CC 39 72 00 EE B6 FC 88 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 11 49 03 77 00 00 00 00 C1 89 C8 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 47 D6 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+ÿ  *  g  .  .  .  .  .  º  ⁄  «    .  .  .  .  å  ﬂ  »    .  .  .  .  .  .  .  .  .  .  .  .
+.  .  .  .  ∂  H  Ä  w  .  .  .  .  ·  £  »    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+.  ◊  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .  ˚  ‰  r  .  é  ‡  r  .  õ  ·  r  .  ?     s  .
+.  ë  s  .  ;  ì  s  .  Y  5  p  .  ?  v  w  .  8  .  .  .  8  .  .  .  Ú  n  @  .  !  é  @  .
+Y  ñ  @  .  l  Â  r  .  r  ‡  r  .  j  ,  s  .  c  î  s  .  •  9  p  .  .  w  w  .  p  {  w  .
+„  ~  w  .  $  .  .  .  Ã  9  r  .  Ó  ∂  ¸  à  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  I  .  w  .  .  .  .  ¡  â  »  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  G  ÷  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+418152 [FastMM4.pas][FastMM4][DebugReallocMem$qqrpvi][8727]
+406F13 [System.pas][System][@ReallocMem$qqrrpvi][4718]
+40CE59 [System.pas][System][DynArraySetLength$qqrrpvpvipi][34393]
+44AD2B [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalSetCapacity$qqri][3830]
+449A90 [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalGrow$qqri][3091]
+449AB5 [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalGrowCheck$qqri][3097]
+44880F [System.Generics.Collections.pas][System.Generics.Collections][Generics.Collections.TListHelper.InternalAdd4$qqrpxv][2463]
+8316EB [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][304]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+
+The block is currently used for an object of class: Unknown
+
+The allocation number is: 55610
+
+Current memory dump of 256 bytes starting at pointer address 7FC8A9E0:
+01 00 00 00 04 00 00 00 20 D3 C8 7F F0 95 C8 7F E0 E0 C8 7F 00 00 00 00 88 1B C3 77 80 80 80 80
+80 80 80 80 80 80 80 80 00 00 00 00 D1 B7 C8 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2C D6 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00 DB 13 46 00 40 F9 45 00 4A 28 46 00 1E 2A 46 00
+FB 26 46 00 76 02 46 00 8C DD 45 00 FF 8F 45 00 38 10 00 00 38 10 00 00 F2 6E 40 00 21 8E 40 00
+59 96 40 00 D1 AE 46 00 A3 8F 40 00 AA 6A 47 00 B9 FA 46 00 A3 8F 40 00 8F F8 45 00 A6 C8 46 00
+A3 8F 40 00 24 00 00 00 68 12 46 00 5C 54 E6 85 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 A3 AB 19 7A 00 00 00 00 41 8F C8 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 E6 D6 00 00 45 6F 40 00 59 CE 40 00 92 CF 40 00
+.  .  .  .  .  .  .  .     ”  »      ï  »    ‡  ‡  »    .  .  .  .  à  .  √  w  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  —  ∑  »    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+,  ÷  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .  €  .  F  .  @  ˘  E  .  J  (  F  .  .  *  F  .
+˚  &  F  .  v  .  F  .  å  ›  E  .  ˇ  è  E  .  8  .  .  .  8  .  .  .  Ú  n  @  .  !  é  @  .
+Y  ñ  @  .  —  Æ  F  .  £  è  @  .  ™  j  G  .  π  ˙  F  .  £  è  @  .  è  ¯  E  .  ¶  »  F  .
+£  è  @  .  $  .  .  .  h  .  F  .  \  T  Ê  Ö  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  £  ´  .  z  .  .  .  .  A  è  »  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  Ê  ÷  .  .  E  o  @  .  Y  Œ  @  .  í  œ  @  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+408F74 [System.pas][System][TObject.$bctr$qqrv][16242]
+831484 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][271]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+817FE6 [TestFramework.pas][TestFramework][TTestResult.RunTestRun$qqr46System.%DelphiInterface$19Testframework.ITest%][1649]
+
+The block is currently used for an object of class: TCidade
+
+The allocation number is: 55570
+
+Current memory dump of 256 bytes starting at pointer address 7FC8D320:
+D8 2A 67 00 87 D6 12 00 3C D8 C7 7F 05 00 00 00 3C 1C C7 7F 00 00 00 00 00 00 00 00 C0 C1 E4 40
+00 00 00 00 0D C4 2F 77 00 00 00 00 71 D7 C8 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+2E D8 00 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 CB A5 67 00 00 E8 72 00 9F 82 73 00 EF 93 73 00
+FD A1 73 00 C5 94 73 00 5B 5D 70 00 58 73 70 00 38 10 00 00 38 10 00 00 F2 6E 40 00 75 AD 40 00
+49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00 59 96 40 00 BD 23 52 00 A3 8F 40 00 74 70 4B 00
+A3 8F 40 00 16 00 00 00 B0 04 02 00 45 53 FA 86 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 BA AC 05 79 80 80 80 80 80 80 80 80 80 80 80 80 80 80 00 00 00 00 C1 AA C8 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C3 D7 00 00 45 6F 40 00 59 CE 40 00 92 CF 40 00
+ÿ  *  g  .  á  ÷  .  .  <  ÿ  «    .  .  .  .  <  .  «    .  .  .  .  .  .  .  .  ¿  ¡  ‰  @
+.  .  .  .  .  ƒ  /  w  .  .  .  .  q  ◊  »    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+.  ÿ  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  À  •  g  .  .  Ë  r  .  ü  Ç  s  .  Ô  ì  s  .
+˝  °  s  .  ≈  î  s  .  [  ]  p  .  X  s  p  .  8  .  .  .  8  .  .  .  Ú  n  @  .  u  ≠  @  .
+I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .  Y  ñ  @  .  Ω  #  R  .  £  è  @  .  t  p  K  .
+£  è  @  .  .  .  .  .  ∞  .  .  .  E  S  ˙  Ü  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  ∫  ¨  .  y  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  ¡  ™  »  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  √  ◊  .  .  E  o  @  .  Y  Œ  @  .  í  œ  @  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 55662
+
+Current memory dump of 256 bytes starting at pointer address 7FC8DED0:
+B0 04 02 00 01 00 00 00 06 00 00 00 42 00 41 00 4C 00 53 00 41 00 53 00 00 00 7F 5E 2D 33 80 80
+80 80 80 80 80 80 80 80 00 00 00 00 90 87 C8 7F 00 00 00 00 00 00 00 00 68 7E 41 00 00 00 00 00
+48 D9 00 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 C3 AF 40 00 F4 0E E7 77 D5 7A F1 77 F4 0E E7 77
+D5 7A F1 77 E9 64 F1 77 52 7E E7 77 CD 64 F1 77 38 10 00 00 38 10 00 00 F2 6E 40 00 75 AD 40 00
+48 3B 52 00 DC 73 53 00 AC 73 53 00 8E 15 83 00 CD 10 83 00 85 DD 82 00 D8 CD 81 00 DA CF 81 00
+7D 8F 40 00 1A 00 00 00 B0 04 02 00 0A A2 D2 CC B0 04 02 00 01 00 00 00 06 00 00 00 43 00 41 00
+58 00 49 00 41 00 53 00 00 00 F5 5D 2D 33 80 80 80 80 80 80 80 80 80 80 00 00 00 00 81 E4 C8 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 37 D8 00 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00
+∞  .  .  .  .  .  .  .  .  .  .  .  B  .  A  .  L  .  S  .  A  .  S  .  .  .    ^  -  3  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  ê  á  »    .  .  .  .  .  .  .  .  h  ~  A  .  .  .  .  .
+H  Ÿ  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  √  Ø  @  .  Ù  .  Á  w  ’  z  Ò  w  Ù  .  Á  w
+’  z  Ò  w  È  d  Ò  w  R  ~  Á  w  Õ  d  Ò  w  8  .  .  .  8  .  .  .  Ú  n  @  .  u  ≠  @  .
+H  ;  R  .  ‹  s  S  .  ¨  s  S  .  é  .  É  .  Õ  .  É  .  Ö  ›  Ç  .  ÿ  Õ  Å  .  ⁄  œ  Å  .
+}  è  @  .  .  .  .  .  ∞  .  .  .  .  ¢  “  Ã  ∞  .  .  .  .  .  .  .  .  .  .  .  C  .  A  .
+X  .  I  .  A  .  S  .  .  .  ı  ]  -  3  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  Å  ‰  »  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  7  ÿ  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+40ACBB [System.pas][System][@NewUnicodeString$qqri][24451]
+40AEEC [System.pas][System][@UStrFromPWCharLen$qqrr20System.UnicodeStringpbi][25121]
+40AFC3 [System.pas][System][InternalUStrFromPCharLen$qqrr20System.UnicodeStringpcii][25298]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77E70EF4 [RtlAllocateHeap]
+77F17AD5 [Unknown function at RtlpNtSetValueKey]
+77F164E9 [Unknown function at RtlpNtSetValueKey]
+77E77E52 [Unknown function at RtlNtStatusToDosError]
+77F164CD [Unknown function at RtlpNtSetValueKey]
+
+The block is currently used for an object of class: UnicodeString
+
+The allocation number is: 55624
+
+Current memory dump of 256 bytes starting at pointer address 7FC8DF80:
+B0 04 02 00 01 00 00 00 06 00 00 00 43 00 41 00 58 00 49 00 41 00 53 00 00 00 F5 5D 2D 33 80 80
+80 80 80 80 80 80 80 80 00 00 00 00 81 E4 C8 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+37 D8 00 00 D6 6E 40 00 BB AC 40 00 EC AE 40 00 CB A5 67 00 00 E8 72 00 9F 82 73 00 EF 93 73 00
+FD A1 73 00 C5 94 73 00 5B 5D 70 00 58 73 70 00 38 10 00 00 38 10 00 00 F2 6E 40 00 75 AD 40 00
+49 C4 40 00 91 C3 40 00 1B 90 40 00 1A 8E 40 00 59 96 40 00 BD 23 52 00 A3 8F 40 00 74 70 4B 00
+A3 8F 40 00 1C 00 00 00 B0 04 02 00 B4 5F FA 86 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 4B A0 05 79 80 80 80 80 80 80 80 80 00 00 00 00 90 87 C8 7F
+00 00 00 00 00 00 00 00 68 7E 41 00 00 00 00 00 61 D9 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00
+∞  .  .  .  .  .  .  .  .  .  .  .  C  .  A  .  X  .  I  .  A  .  S  .  .  .  ı  ]  -  3  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  Å  ‰  »    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+7  ÿ  .  .  ÷  n  @  .  ª  ¨  @  .  Ï  Æ  @  .  À  •  g  .  .  Ë  r  .  ü  Ç  s  .  Ô  ì  s  .
+˝  °  s  .  ≈  î  s  .  [  ]  p  .  X  s  p  .  8  .  .  .  8  .  .  .  Ú  n  @  .  u  ≠  @  .
+I  ƒ  @  .  ë  √  @  .  .  ê  @  .  .  é  @  .  Y  ñ  @  .  Ω  #  R  .  £  è  @  .  t  p  K  .
+£  è  @  .  .  .  .  .  ∞  .  .  .  ¥  _  ˙  Ü  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  K  †  .  y  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  ê  á  »  
+.  .  .  .  .  .  .  .  h  ~  A  .  .  .  .  .  a  Ÿ  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 36
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+408F74 [System.pas][System][TObject.$bctr$qqrv][16242]
+5390A7 [Data.DB.pas][Data.DB][Db.TDataSet.Next$qqrv][14227]
+831484 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][271]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+
+The block is currently used for an object of class: TCidade
+
+The allocation number is: 55649
+
+Current memory dump of 256 bytes starting at pointer address 7FC8E0E0:
+D8 2A 67 00 98 10 20 00 DC DD C7 7F 01 00 00 00 DC DE C8 7F 00 00 00 00 00 00 00 00 C0 C1 E4 40
+00 00 00 00 A0 FD 7F 77 00 00 00 00 91 D0 C8 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+85 D9 00 00 45 6F 40 00 59 CE 40 00 AF AA 46 00 92 CF 40 00 F7 AB 46 00 C8 E9 40 00 C0 33 46 00
+48 30 46 00 6E 16 83 00 CD 10 83 00 85 DD 82 00 38 10 00 00 38 10 00 00 F2 6E 40 00 EC D0 40 00
+92 AE 46 00 C0 33 46 00 48 30 46 00 6E 16 83 00 CD 10 83 00 85 DD 82 00 D8 CD 81 00 DA CF 81 00
+7D 8F 40 00 18 00 00 00 00 00 00 00 EA 15 91 87 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 15 EA 6E 78 80 80 80 80 80 80 80 80 80 80 80 80 00 00 00 00 31 CF C8 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 25 D8 00 00 45 6F 40 00 59 CE 40 00 6C EF 69 00
+ÿ  *  g  .  ò  .     .  ‹  ›  «    .  .  .  .  ‹  ﬁ  »    .  .  .  .  .  .  .  .  ¿  ¡  ‰  @
+.  .  .  .  †  ˝    w  .  .  .  .  ë  –  »    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+Ö  Ÿ  .  .  E  o  @  .  Y  Œ  @  .  Ø  ™  F  .  í  œ  @  .  ˜  ´  F  .  »  È  @  .  ¿  3  F  .
+H  0  F  .  n  .  É  .  Õ  .  É  .  Ö  ›  Ç  .  8  .  .  .  8  .  .  .  Ú  n  @  .  Ï  –  @  .
+í  Æ  F  .  ¿  3  F  .  H  0  F  .  n  .  É  .  Õ  .  É  .  Ö  ›  Ç  .  ÿ  Õ  Å  .  ⁄  œ  Å  .
+}  è  @  .  .  .  .  .  .  .  .  .  Í  .  ë  á  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  Í  n  x  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  1  œ  »  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  %  ÿ  .  .  E  o  @  .  Y  Œ  @  .  l  Ô  i  .
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+A memory block has been leaked. The size is: 68
+
+This block was allocated by thread 0x1038, and the stack trace (return addresses) at the time was:
+406ED6 [System.pas][System][@GetMem$qqri][4596]
+408E03 [System.pas][System][TObject.NewInstance$qqrv][16178]
+40960E [System.pas][System][@ClassCreate$qqrpvzc][17493]
+830DD2 [System.Generics.Collections.pas][TestPrsDaoFireDac][Generics.Collections.%TObjectList__1$p14Cidade.TCidade%.$bctr$qqro][6599]
+40C353 [System.pas][System][@InitializeArray$qqrpvt1ui][31519]
+831469 [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%DbToTabela$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap16Data.Db.TDataSet$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][267]
+8310CD [PrsDaoFireDac.pas][TestPrsDaoFireDac][TDaoFireDac.%ConsultaGen$p14Cidade.TCidade%$qqrp15Prsbase.TTabelap20System.UnicodeStringxi$p62System.Generics.Collections.%TObjectList__1$p14Cidade.TCidade%][344]
+82DD85 [TestPrsDaoFireDac.pas][TestPrsDaoFireDac][TestTDaoFireDac.TestConsultaGenerica$qqrv][131]
+81CDD8 [TestFramework.pas][TestFramework][TTestCase.Invoke$qqrynpqqrv$v][3051]
+81CFDA [TestFramework.pas][TestFramework][TTestCase.RunTest$qqrp25Testframework.TTestResult][3090]
+408F7D [System.pas][System][TObject.$bctr$qqrv][16243]
+
+The block is currently used for an object of class: TObjectList<Cidade.TCidade>
+
+The allocation number is: 55569
+
+Current memory dump of 256 bytes starting at pointer address 7FD46690:
+40 FC 82 00 00 00 00 00 03 00 00 00 9C EB 82 00 1C 00 83 00 90 66 D4 7F 44 00 83 00 90 66 D4 7F
+E8 A9 C8 7F A8 14 84 00 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 9A C3 0A 77
+80 80 80 80 80 80 80 80 00 00 00 00 F1 6A D4 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+25 AD 00 00 D6 6E 40 00 03 8E 40 00 0E 96 40 00 46 00 7A 00 D0 F7 7E 00 3E 6D 79 00 30 C5 80 00
+93 EB 80 00 09 19 81 00 5A EA 4C 00 07 E9 4C 00 38 10 00 00 38 10 00 00 21 8E 40 00 59 96 40 00
+68 F9 79 00 A3 8F 40 00 66 6F 79 00 D5 C5 80 00 A3 8F 40 00 19 CB 4C 00 9A 77 65 00 B6 F6 66 00
+E8 A6 40 00 3C 00 00 00 E4 47 79 00 B1 64 6F 88 94 C2 84 00 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+@  ¸  Ç  .  .  .  .  .  .  .  .  .  ú  Î  Ç  .  .  .  É  .  ê  f  ‘    D  .  É  .  ê  f  ‘  
+Ë  ©  »    ®  .  Ñ  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  ö  √  .  w
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  Ò  j  ‘    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+%  ≠  .  .  ÷  n  @  .  .  é  @  .  .  ñ  @  .  F  .  z  .  –  ˜  ~  .  >  m  y  .  0  ≈  Ä  .
+ì  Î  Ä  .  .  .  Å  .  Z  Í  L  .  .  È  L  .  8  .  .  .  8  .  .  .  !  é  @  .  Y  ñ  @  .
+h  ˘  y  .  £  è  @  .  f  o  y  .  ’  ≈  Ä  .  £  è  @  .  .  À  L  .  ö  w  e  .  ∂  ˆ  f  .
+Ë  ¶  @  .  <  .  .  .  ‰  G  y  .  ±  d  o  à  î  ¬  Ñ  .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+
+--------------------------------2016/5/20 14:13:46--------------------------------
+This application has leaked memory. The small block leaks are (excluding expected leaks registered by pointer):
+
+13 - 20 bytes: UnicodeString x 3
+21 - 36 bytes: TCidade x 3, UnicodeString x 2, Unknown x 1
+37 - 52 bytes: UnicodeString x 1
+53 - 68 bytes: TObjectList<Cidade.TCidade> x 1
+
+Note: Memory leak detail is logged to a text file in the same folder as this application. To disable this memory leak check, undefine "EnableMemoryLeakReporting".

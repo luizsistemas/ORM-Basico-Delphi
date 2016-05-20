@@ -6,6 +6,9 @@
         <Projects Include="Teste\TesteOrmBasico.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="UnitTest\OrmBasicoTests.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="TesteOrmBasico:Make">
         <MSBuild Projects="Teste\TesteOrmBasico.dproj" Targets="Make"/>
     </Target>
+    <Target Name="OrmBasicoTests">
+        <MSBuild Projects="UnitTest\OrmBasicoTests.dproj"/>
+    </Target>
+    <Target Name="OrmBasicoTests:Clean">
+        <MSBuild Projects="UnitTest\OrmBasicoTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OrmBasicoTests:Make">
+        <MSBuild Projects="UnitTest\OrmBasicoTests.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="TesteOrmBasico"/>
+        <CallTarget Targets="TesteOrmBasico;OrmBasicoTests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="TesteOrmBasico:Clean"/>
+        <CallTarget Targets="TesteOrmBasico:Clean;OrmBasicoTests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="TesteOrmBasico:Make"/>
+        <CallTarget Targets="TesteOrmBasico:Make;OrmBasicoTests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
