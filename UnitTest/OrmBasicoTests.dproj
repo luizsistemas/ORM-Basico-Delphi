@@ -99,12 +99,16 @@
             <Form>dmPrin</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\OrmBasico\Classes\PrsBase.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\PrsAtributos.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\PrsDaoFireDac.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Base.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Atributos.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Comp.FireDac.pas"/>
         <DCCReference Include="TestPrsDaoFireDac.pas"/>
         <DCCReference Include="TestPrsDaoIBX.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\PrsDaoIBX.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasseFireDac.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasse.BancoFirebird.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasse.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Comp.IBX.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasseIBX.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

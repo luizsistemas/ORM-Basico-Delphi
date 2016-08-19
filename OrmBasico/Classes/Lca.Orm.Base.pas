@@ -33,7 +33,7 @@
 { Luiz Carlos Alves - contato@luizsistemas.com.br -  www.luizsistemas.com.br   }
 {                                                                              }
 {******************************************************************************}
-unit PrsBase;
+unit Lca.Orm.Base;
 
 interface
 
@@ -108,6 +108,9 @@ type
   // configura e executa a query
     function ExecutaQuery: Integer;
 
+  // gerar classe
+    function GerarClasse(ATabela, ANomeUnit: string; ANomeClasse: string = ''): string;
+
   // pega campo autoincremento
     function GetID(ATabela:TTabela; ACampo: string): Integer;
 
@@ -117,8 +120,7 @@ type
       AFlag: TFlagCampos = fcIgnore): Integer; overload;
 
     function Salvar(ATabela: TTabela): Integer; overload;
-    function Salvar(ATabela: TTabela; ACampos: array of string;
-      AFlag: TFlagCampos = fcAdd): Integer; overload;
+    function Salvar(ATabela: TTabela; ACampos: array of string; AFlag: TFlagCampos = fcAdd): Integer; overload;
 
     function Excluir(ATabela: TTabela): Integer; overload;
     function Excluir(ATabela: TTabela; AWhere: array of string): Integer; overload;
@@ -129,33 +131,39 @@ type
 
     // dataset para as consultas
     function ConsultaAll(ATabela: TTabela): TDataSet;
-
     function ConsultaSql(ASql: string): TDataSet; overload;
     function ConsultaSql(ASql: string; const ParamList: Array of Variant): TDataSet; overload;
     function ConsultaSql(ATabela: string; AWhere: string): TDataSet; overload;
+    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): TDataSet; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): TDataSet; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): TDataSet; overload;
 
-    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string)
-      : TDataSet; overload;
-
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string)
-      : TDataSet; overload;
-
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string;
-      TipoOrdem: Integer = 0): TDataSet; overload;
-
-  // limpar campos da tabela
+    // limpar campos da tabela
     procedure Limpar(ATabela: TTabela);
 
-  // comandos transação
+    // comandos transação
     procedure StartTransaction;
     procedure Commit;
     procedure RollBack;
     function  InTransaction: Boolean;
   end;
 
+  IBaseGerarClasseBanco = Interface
+  ['{D82EC768-996A-4E06-A59E-0C87CB305D0E}']
+
+     //obtem sql com nome, tamanho e tipo dos campos
+    function GetSQLCamposTabela(ATabela: string): string;
+
+    //obtem sql com chave primárias
+    function GetSQLCamposPK(ATabela: string): string;
+
+    procedure GerarFields(Ads: TDataSet; AResult: TStrings);
+    procedure GerarProperties(Ads: TDataSet; AResult: TStrings; ACamposPK: string);
+  End;
+
 implementation
 
-uses PrsAtributos;
+uses Lca.Orm.Atributos;
 
 { PadraoSql}
 function TPadraoSql.GerarSqlDelete(ATabela: TTabela): string;

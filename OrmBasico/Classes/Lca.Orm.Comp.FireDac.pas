@@ -34,15 +34,20 @@
 {                                                                              }
 {******************************************************************************}
 
-unit PrsDaoIBX;
+unit Lca.Orm.Comp.FireDac;
 
 interface
 
-uses Db, PrsBase, Rtti, PrsAtributos, system.SysUtils, system.Classes,
-  ibx.IB, ibx.IBQuery, ibx.IBDatabase, system.Generics.Collections;
+uses Db, Lca.Orm.Base, Rtti, Lca.Orm.Atributos, system.SysUtils, system.Classes,
+  system.Generics.Collections, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet;
 
 type
-  TQueryIBX = class(TInterfacedObject, IQueryParams)
+  TQueryFireDac = class(TInterfacedObject, IQueryParams)
   public
     // métodos responsáveis por setar os parâmetros
     procedure SetParamInteger(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TObject);
@@ -58,12 +63,12 @@ type
     procedure SetCamposCurrency(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TObject);
   end;
 
-  TDaoIBX = class(TInterfacedObject, IDaoBase)
+  TDaoFireDac = class(TInterfacedObject, IDaoBase)
   private
-    FConexao: TIBDatabase;
-    FTransacao: TIBTransaction;
+    FConexao: TFDConnection;
+    FTransacao: TFDTransaction;
 
-    FQuery: TIBQuery;
+    FQuery: TFDQuery;
     FSql: IBaseSql;
     FDataSet: TDataSet;
     FParams: IQueryParams;
@@ -75,9 +80,10 @@ type
   protected
     function ExecutaQuery: Integer;
   public
-    constructor Create(Conexao: TIBDatabase; Transacao: TIBTransaction);
-
+    constructor Create(Conexao: TFDConnection; Transacao: TFDTransaction);
     destructor Destroy; override;
+
+    function GerarClasse(ATabela, ANomeUnit, ANomeClasse: string): string;
 
     // dataset para as consultas
     function ConsultaAll(ATabela: TTabela): TDataSet;
@@ -137,119 +143,132 @@ type
 
 implementation
 
-uses Vcl.forms, dialogs, system.TypInfo, System.Variants;
+uses Vcl.forms, dialogs, system.TypInfo, System.Variants,
+  Lca.Orm.GerarClasseFireDac, Lca.Orm.GerarClasse.BancoFirebird;
 
 { TQueryFireDac }
 
-procedure TQueryIBX.SetParamCurrency(AProp: TRttiProperty; ACampo: string;
+procedure TQueryFireDac.SetParamCurrency(AProp: TRttiProperty; ACampo: string;
   ATabela: TTabela; AQry: TObject);
 begin
-  TIBQuery(AQry).ParamByName(ACampo).AsCurrency := AProp.GetValue(ATabela).AsCurrency;
+  TFDQuery(AQry).ParamByName(ACampo).AsCurrency := AProp.GetValue(ATabela).AsCurrency;
 end;
 
-procedure TQueryIBX.SetParamDate(AProp: TRttiProperty;
+procedure TQueryFireDac.SetParamDate(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
   inherited;
   if AProp.GetValue(ATabela).AsType<TDateTime> = 0 then
-    TIBQuery(AQry).ParamByName(ACampo).Clear
+    TFDQuery(AQry).ParamByName(ACampo).Clear
   else
-    TIBQuery(AQry).ParamByName(ACampo).AsDateTime := AProp.GetValue(ATabela).AsType<TDateTime>;
+    TFDQuery(AQry).ParamByName(ACampo).AsDateTime := AProp.GetValue(ATabela).AsType<TDateTime>;
 end;
 
-procedure TQueryIBX.SetParamInteger(AProp: TRttiProperty;
+procedure TQueryFireDac.SetParamInteger(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  TIBQuery(AQry).ParamByName(ACampo).AsInteger := AProp.GetValue(ATabela).AsInteger;
+  TFDQuery(AQry).ParamByName(ACampo).AsInteger := AProp.GetValue(ATabela).AsInteger;
 end;
 
-procedure TQueryIBX.SetParamString(AProp: TRttiProperty;
+procedure TQueryFireDac.SetParamString(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  TIBQuery(AQry).ParamByName(ACampo).AsString := AProp.GetValue(ATabela).AsString;
+  TFDQuery(AQry).ParamByName(ACampo).AsString := AProp.GetValue(ATabela).AsString;
 end;
 
-procedure TQueryIBX.SetParamVariant(AProp: TRttiProperty;
+procedure TQueryFireDac.SetParamVariant(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  TIBQuery(AQry).ParamByName(ACampo).Value := AProp.GetValue(ATabela).AsVariant;
+  TFDQuery(AQry).ParamByName(ACampo).Value := AProp.GetValue(ATabela).AsVariant;
 end;
 
-procedure TQueryIBX.SetCamposCurrency(AProp: TRttiProperty;
+procedure TQueryFireDac.SetCamposCurrency(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  AProp.SetValue(ATabela, TIBQuery(AQry).FieldByName(ACampo).AsCurrency);
+  AProp.SetValue(ATabela, TFDQuery(AQry).FieldByName(ACampo).AsCurrency);
 end;
 
-procedure TQueryIBX.SetCamposDate(AProp: TRttiProperty;
+procedure TQueryFireDac.SetCamposDate(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  AProp.SetValue(ATabela, TIBQuery(AQry).FieldByName(ACampo).AsDateTime);
+  AProp.SetValue(ATabela, TFDQuery(AQry).FieldByName(ACampo).AsDateTime);
 end;
 
-procedure TQueryIBX.SetCamposInteger(AProp: TRttiProperty;
+procedure TQueryFireDac.SetCamposInteger(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  AProp.SetValue(ATabela, TIBQuery(AQry).FieldByName(ACampo).AsInteger);
+  AProp.SetValue(ATabela, TFDQuery(AQry).FieldByName(ACampo).AsInteger);
 end;
 
-procedure TQueryIBX.SetCamposString(AProp: TRttiProperty;
+procedure TQueryFireDac.SetCamposString(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TObject);
 begin
-  AProp.SetValue(ATabela, TIBQuery(AQry).FieldByName(ACampo).AsString);
+  AProp.SetValue(ATabela, TFDQuery(AQry).FieldByName(ACampo).AsString);
 end;
 
 { TDaoFireDac }
 
-constructor TDaoIBX.Create(Conexao: TIBDatabase;
-  Transacao: TIBTransaction);
+constructor TDaoFireDac.Create(Conexao: TFDConnection;
+  Transacao: TFDTransaction);
 begin
   inherited Create;
   FSql := TPadraoSql.create;
-  FParams := TQueryIBX.create;
+  FParams := TQueryFireDac.create;
   FConexao := Conexao;
   FTransacao := Transacao;
 
-  FQuery := TIBQuery.Create(Application);
-  FQuery.Database := FConexao;
+  FQuery := TFDQuery.Create(Application);
+  FQuery.Connection := FConexao;
 end;
 
-destructor TDaoIBX.Destroy;
+destructor TDaoFireDac.Destroy;
 begin
   inherited;
 end;
 
-procedure TDaoIBX.SetDataSet(const Value: TDataSet);
+function TDaoFireDac.GerarClasse(ATabela, ANomeUnit, ANomeClasse: string): string;
+var
+  NovaClasse: TGerarClasseFireDac;
+begin
+  NovaClasse := TGerarClasseFireDac.Create(TGerarClasseBancoFirebird.Create, Self);
+  try
+    Result := NovaClasse.Gerar(ATabela, ANomeUnit, ANomeClasse);
+  finally
+    NovaClasse.Free;
+  end;
+end;
+
+procedure TDaoFireDac.SetDataSet(const Value: TDataSet);
 begin
   FDataSet := Value;
 end;
 
-procedure TDaoIBX.StartTransaction;
+procedure TDaoFireDac.StartTransaction;
 begin
   FTransacao.StartTransaction;
 end;
 
-procedure TDaoIBX.Commit;
+procedure TDaoFireDac.Commit;
 begin
   FTransacao.Commit;
 end;
 
-procedure TDaoIBX.RollBack;
+procedure TDaoFireDac.RollBack;
 begin
   FTransacao.RollBack;
 end;
 
-function TDaoIBX.InTransaction: Boolean;
+function TDaoFireDac.InTransaction: Boolean;
 begin
-  Result := FTransacao.InTransaction;
+  Result := FConexao.InTransaction;
 end;
 
-procedure TDaoIBX.Limpar(ATabela: TTabela);
+procedure TDaoFireDac.Limpar(ATabela: TTabela);
 begin
   TAtributos.Get.LimparCampos(ATabela);
 end;
 
-function TDaoIBX.DbToTabela<T>(ATabela: TTabela; ADataSet: TDataSet)
+function TDaoFireDac.DbToTabela<T>(ATabela: TTabela; ADataSet: TDataSet)
   : TObjectList<T>;
 var
   AuxValue: TValue;
@@ -302,23 +321,23 @@ begin
   end;
 end;
 
-function TDaoIBX.ConsultaGen<T>(ATabela: TTabela; ACamposWhere: array of string)
+function TDaoFireDac.ConsultaGen<T>(ATabela: TTabela; ACamposWhere: array of string)
   : TObjectList<T>;
 var
-  Dados: TIBQuery;
+  Dados: TFDQuery;
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
 begin
-  Dados := TIBQuery.Create(Application);
+  Dados := TFDQuery.Create(Application);
   try
     Contexto := TRttiContext.Create;
     try
       TipoRtti := Contexto.GetType(ATabela.ClassType);
       with Dados do
       begin
-        Database := FConexao;
+        Connection := FConexao;
         sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
 
         for Campo in ACamposWhere do
@@ -346,14 +365,14 @@ begin
   end;
 end;
 
-function TDaoIBX.ConsultaAll(ATabela: TTabela): TDataSet;
+function TDaoFireDac.ConsultaAll(ATabela: TTabela): TDataSet;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
 begin
-  AQry := TIBQuery.Create(Application);
+  AQry := TFDQuery.Create(Application);
   with AQry do
   begin
-    Database := FConexao;
+    Connection := FConexao;
     sql.Clear;
     sql.Add('Select * from ' + TAtributos.Get.PegaNomeTab(ATabela));
     Open;
@@ -361,14 +380,14 @@ begin
   Result := AQry;
 end;
 
-function TDaoIBX.ConsultaSql(ASql: string): TDataSet;
+function TDaoFireDac.ConsultaSql(ASql: string): TDataSet;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
 begin
-  AQry := TIBQuery.Create(Application);
+  AQry := TFDQuery.Create(Application);
   with AQry do
   begin
-    Database := FConexao;
+    Connection := FConexao;
     sql.Clear;
     sql.Add(ASql);
     Open;
@@ -376,15 +395,15 @@ begin
   Result := AQry;
 end;
 
-function TDaoIBX.ConsultaSql(ASql: string; const ParamList: array of Variant): TDataSet;
+function TDaoFireDac.ConsultaSql(ASql: string; const ParamList: array of Variant): TDataSet;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
   i: integer;
 begin
-  AQry := TIBQuery.Create(Application);
+  AQry := TFDQuery.Create(Application);
   with AQry do
   begin
-    Database := FConexao;
+    Connection := FConexao;
     sql.Clear;
     sql.Add(ASql);
 
@@ -400,14 +419,14 @@ begin
   Result := AQry;
 end;
 
-function TDaoIBX.ConsultaSql(ATabela, AWhere: string): TDataSet;
+function TDaoFireDac.ConsultaSql(ATabela, AWhere: string): TDataSet;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
 begin
-  AQry := TIBQuery.Create(Application);
+  AQry := TFDQuery.Create(Application);
   with AQry do
   begin
-    Database := FConexao;
+    Connection := FConexao;
     sql.Clear;
     sql.Add('select * from ' + ATabela);
     if AWhere <> '' then
@@ -417,24 +436,24 @@ begin
   Result := AQry;
 end;
 
-function TDaoIBX.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
+function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
   AOrdem: array of string; TipoOrdem: Integer): TDataSet;
 var
-  Dados: TIBQuery;
+  Dados: TFDQuery;
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   Separador: string;
 begin
-  Dados := TIBQuery.Create(Application);
+  Dados := TFDQuery.Create(Application);
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
 
     with Dados do
     begin
-      Database := FConexao;
+      Connection := FConexao;
       sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
 
       if Length(AOrdem)>0 then
@@ -469,22 +488,22 @@ begin
   end;
 end;
 
-function TDaoIBX.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): TDataSet;
+function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): TDataSet;
 var
-  Dados: TIBQuery;
+  Dados: TFDQuery;
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
 begin
-  Dados := TIBQuery.Create(Application);
+  Dados := TFDQuery.Create(Application);
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
 
     with Dados do
     begin
-      Database := FConexao;
+      Connection := FConexao;
       sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
 
       if Length(ACamposWhere)>0 then
@@ -507,23 +526,23 @@ begin
   end;
 end;
 
-function TDaoIBX.ConsultaTab(ATabela: TTabela;
+function TDaoFireDac.ConsultaTab(ATabela: TTabela;
   ACamposWhere: array of string): TDataSet;
 var
-  Dados: TIBQuery;
+  Dados: TFDQuery;
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
 begin
-  Dados := TIBQuery.Create(Application);
+  Dados := TFDQuery.Create(Application);
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
 
     with Dados do
     begin
-      Database := FConexao;
+      Connection := FConexao;
       sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
 
       if Length(ACamposWhere)>0 then
@@ -549,14 +568,14 @@ begin
   end;
 end;
 
-function TDaoIBX.GetID(ATabela: TTabela; ACampo: string): Integer;
+function TDaoFireDac.GetID(ATabela: TTabela; ACampo: string): Integer;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
 begin
-  AQry := TIBQuery.Create(Application);
+  AQry := TFDQuery.Create(Application);
   with AQry do
   begin
-    Database := FConexao;
+    Connection := FConexao;
     sql.Clear;
     sql.Add('select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela));
     Open;
@@ -564,10 +583,10 @@ begin
   end;
 end;
 
-function TDaoIBX.GetMax(ATabela: TTabela; ACampo: string;
+function TDaoFireDac.GetMax(ATabela: TTabela; ACampo: string;
   ACamposChave: array of string): Integer;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
   Campo: string;
   Contexto: TRttiContext;
   TipoRtti: TRttiType;
@@ -575,11 +594,11 @@ var
   Separador: string;
   NumMax: Integer;
 begin
-  AQry := TIBQuery.Create(Application);
+  AQry := TFDQuery.Create(Application);
   try
     with AQry do
     begin
-      Database := FConexao;
+      Connection := FConexao;
       sql.Clear;
       sql.Add('select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela));
       sql.Add('Where');
@@ -616,15 +635,15 @@ begin
   end;
 end;
 
-function TDaoIBX.GetRecordCount(ATabela, AWhere: string): Integer;
+function TDaoFireDac.GetRecordCount(ATabela, AWhere: string): Integer;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
 begin
-  AQry := TIBQuery.Create(nil);
+  AQry := TFDQuery.Create(nil);
   try
     with AQry do
     begin
-      Database := FConexao;
+      Connection := FConexao;
       sql.Clear;
       sql.Add('select count(*) from ' + ATabela);
       if AWhere <> '' then
@@ -638,23 +657,23 @@ begin
   end;
 end;
 
-function TDaoIBX.GetRecordCount(ATabela: TTabela;
+function TDaoFireDac.GetRecordCount(ATabela: TTabela;
   ACamposWhere: array of string): Integer;
 var
-  AQry: TIBQuery;
+  AQry: TFDQuery;
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
 begin
-  AQry := TIBQuery.Create(nil);
+  AQry := TFDQuery.Create(nil);
   try
     with AQry do
     begin
       Contexto := TRttiContext.Create;
       try
         TipoRtti := Contexto.GetType(ATabela.ClassType);
-        Database := FConexao;
+        Connection := FConexao;
 
         sql.Clear;
 
@@ -685,7 +704,7 @@ begin
   end;
 end;
 
-function TDaoIBX.ExecutaQuery: Integer;
+function TDaoFireDac.ExecutaQuery: Integer;
 begin
   with FQuery do
   begin
@@ -695,7 +714,7 @@ begin
   end;
 end;
 
-function TDaoIBX.Excluir(ATabela: TTabela): Integer;
+function TDaoFireDac.Excluir(ATabela: TTabela): Integer;
 var
   Campo: string;
   PropRtti: TRttiProperty;
@@ -719,7 +738,7 @@ begin
   Result := ExecutaQuery;
 end;
 
-function TDaoIBX.Excluir(ATabela: TTabela; AWhere: array of string): Integer;
+function TDaoFireDac.Excluir(ATabela: TTabela; AWhere: array of string): Integer;
 var
   Campo: string;
   PropRtti: TRttiProperty;
@@ -756,7 +775,7 @@ begin
   Result := ExecutaQuery;
 end;
 
-function TDaoIBX.Excluir(ATabela: string; AWhereValue: string): Integer;
+function TDaoFireDac.Excluir(ATabela: string; AWhereValue: string): Integer;
 begin
   if Trim(AWhereValue) = '' then
     raise Exception.Create('Campo/Valor para a exclusão não informado');
@@ -769,7 +788,7 @@ begin
   Result := ExecutaQuery;
 end;
 
-function TDaoIBX.ExcluirTodos(ATabela: TTabela): Integer;
+function TDaoFireDac.ExcluirTodos(ATabela: TTabela): Integer;
 begin
   FQuery.close;
   FQuery.sql.Clear;
@@ -777,12 +796,12 @@ begin
   Result := ExecutaQuery;
 end;
 
-function TDaoIBX.Inserir(ATabela: TTabela): Integer;
+function TDaoFireDac.Inserir(ATabela: TTabela): Integer;
 begin
   Result := Self.Inserir(ATabela, []);
 end;
 
-function TDaoIBX.Inserir(ATabela: TTabela; ACampos: array of string;
+function TDaoFireDac.Inserir(ATabela: TTabela; ACampos: array of string;
   AFlag: TFlagCampos): Integer;
 var
   Atributos: IAtributos;
@@ -821,12 +840,12 @@ begin
   end;
 end;
 
-function TDaoIBX.Salvar(ATabela: TTabela): Integer;
+function TDaoFireDac.Salvar(ATabela: TTabela): Integer;
 begin
   Result := Self.Salvar(ATabela, []);
 end;
 
-function TDaoIBX.Salvar(ATabela: TTabela; ACampos: array of string;
+function TDaoFireDac.Salvar(ATabela: TTabela; ACampos: array of string;
   AFlag: TFlagCampos): Integer;
 var
   Atributos: IAtributos;
@@ -862,19 +881,19 @@ begin
   end;
 end;
 
-function TDaoIBX.Buscar(ATabela: TTabela): Integer;
+function TDaoFireDac.Buscar(ATabela: TTabela): Integer;
 var
-  Dados: TIBQuery;
+  Dados: TFDQuery;
   Campo: string;
   PropRtti: TRttiProperty;
   RttiType: TRttiType;
 begin
-  Dados := TIBQuery.Create(nil);
+  Dados := TFDQuery.Create(nil);
   try
     RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
     with Dados do
     begin
-      Database := FConexao;
+      Connection := FConexao;
       sql.Text := FSql.GerarSqlSelect(ATabela);
 
       for Campo in TAtributos.Get.PegaPks(ATabela) do

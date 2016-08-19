@@ -2,7 +2,7 @@ unit Cidade;
 
 interface
 
-uses PrsBase, PrsAtributos;
+uses Lca.Orm.Base, Lca.Orm.Atributos;
 
 type
   [AttTabela('Cidade')]

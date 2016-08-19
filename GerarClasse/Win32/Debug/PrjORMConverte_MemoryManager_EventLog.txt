@@ -1,0 +1,45 @@
+
+--------------------------------2016/8/18 14:18:29--------------------------------
+A memory block has been leaked. The size is: 100
+
+This block was allocated by thread 0x1484, and the stack trace (return addresses) at the time was:
+406922 [System.pas][System][@GetMem$qqri][4351]
+407727 [System.pas][System][TObject.NewInstance$qqrv][15578]
+407E4E [System.pas][System][@ClassCreate$qqrpvzc][16888]
+4B9152 [System.Classes.pas][System.Classes][Classes.TStringList.$bctr$qqrv][6849]
+6B4DFB [ufrmConverte.pas][ufrmConverte][TfrmConverte.btnGerarClick$qqrp14System.TObject][48]
+533E41 [Vcl.Controls.pas][Vcl.Controls][Controls.TControl.Click$qqrv][7348]
+54E72B [Vcl.StdCtrls.pas][Vcl.StdCtrls][Stdctrls.TCustomButton.Click$qqrv][5320]
+54F231 [Vcl.StdCtrls.pas][Vcl.StdCtrls][Stdctrls.TCustomButton.CNCommand$qqrr26Winapi.Messages.TWMCommand][5781]
+5338E8 [Vcl.Controls.pas][Vcl.Controls][Controls.TControl.WndProc$qqrr24Winapi.Messages.TMessage][7232]
+538497 [Vcl.Controls.pas][Vcl.Controls][Controls.TWinControl.DefaultHandler$qqrpv][10075]
+5E3883 [Vcl.Forms.pas][Vcl.Forms][Forms.TCustomForm.DefaultHandler$qqrpv][5709]
+
+The block is currently used for an object of class: TStringList
+
+The allocation number is: 3159
+
+Current memory dump of 256 bytes starting at pointer address 7FE7C8A0:
+54 54 49 00 00 00 00 00 00 00 00 00 40 B8 E9 7F 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 7D 7F 5C 7C
+80 80 80 80 80 80 80 80 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+5B 0C 00 00 22 69 40 00 27 77 40 00 4E 7E 40 00 52 91 4B 00 30 77 40 00 4E 7E 40 00 FA 2E 64 00
+24 F3 6A 00 D7 5F 42 00 66 4E 6B 00 41 3E 53 00 84 14 00 00 84 14 00 00 3E 69 40 00 45 77 40 00
+99 7E 40 00 03 8A 4B 00 4B 78 40 00 3C 2F 64 00 4B 78 40 00 60 F3 6A 00 66 4E 6B 00 41 3E 53 00
+2B E7 54 00 5C 00 00 00 54 54 49 00 49 B7 FF 86 8C C2 6C 00 80 80 80 80 80 80 80 80 80 80 80 80
+T  T  I  .  .  .  .  .  .  .  .  .  @  ¸  é    .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  }    \  |
+€  €  €  €  €  €  €  €  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+[  .  .  .  "  i  @  .  '  w  @  .  N  ~  @  .  R  ‘  K  .  0  w  @  .  N  ~  @  .  ú  .  d  .
+$  ó  j  .  ×  _  B  .  f  N  k  .  A  >  S  .  „  .  .  .  „  .  .  .  >  i  @  .  E  w  @  .
+™  ~  @  .  .  Š  K  .  K  x  @  .  <  /  d  .  K  x  @  .  `  ó  j  .  f  N  k  .  A  >  S  .
++  ç  T  .  \  .  .  .  T  T  I  .  I  ·  ÿ  †  Œ  Â  l  .  €  €  €  €  €  €  €  €  €  €  €  €
+
+--------------------------------2016/8/18 14:18:29--------------------------------
+This application has leaked memory. The small block leaks are (excluding expected leaks registered by pointer):
+
+85 - 100 bytes: TStringList x 1
+
+Note: Memory leak detail is logged to a text file in the same folder as this application. To disable this memory leak check, undefine "EnableMemoryLeakReporting".

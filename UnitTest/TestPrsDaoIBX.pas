@@ -12,8 +12,9 @@ unit TestPrsDaoIBX;
 interface
 
 uses
-  TestFramework, Db, PrsDaoIBX, ibx.IBDatabase, PrsAtributos, ibx.IB, ibx.IBQuery, Rtti,
-  PrsBase, system.SysUtils, system.Classes, system.Generics.Collections,
+  TestFramework, Db, Lca.Orm.Comp.IBX, ibx.IBDatabase,
+  Lca.Orm.Atributos, ibx.IB, ibx.IBQuery, Rtti,
+  Lca.Orm.Base, system.SysUtils, system.Classes, system.Generics.Collections,
   Cidade, udmPrin, Vcl.Dialogs;
 
 type

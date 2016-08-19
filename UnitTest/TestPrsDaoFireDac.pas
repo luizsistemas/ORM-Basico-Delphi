@@ -3,11 +3,11 @@ unit TestPrsDaoFireDac;
 interface
 
 uses
-  TestFramework, system.Generics.Collections, PrsBase, FireDAC.Stan.Error,
+  TestFramework, system.Generics.Collections, Lca.Orm.Base, FireDAC.Stan.Error,
   FireDAC.Stan.Intf, FireDAC.DApt, FireDAC.VCLUI.Wait, Rtti, FireDAC.Stan.Async,
-  FireDAC.DatS, FireDAC.UI.Intf, PrsDaoFireDac, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.UI.Intf, Lca.Orm.Comp.FireDac, FireDAC.Stan.Param,
   FireDAC.Comp.Client, FireDAC.Phys, FireDAC.Stan.Pool, FireDAC.Stan.Option,
-  system.Classes, PrsAtributos, FireDAC.Comp.DataSet, FireDAC.Stan.Def,
+  system.Classes, Lca.Orm.Atributos, FireDAC.Comp.DataSet, FireDAC.Stan.Def,
   FireDAC.DApt.Intf, Db, FireDAC.Phys.FB, system.SysUtils, FireDAC.Phys.FBDef,
   FireDAC.Phys.Intf, Cidade, udmPrin;
 

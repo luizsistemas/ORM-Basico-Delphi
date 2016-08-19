@@ -38,7 +38,7 @@ unit DaoUib;
 
 interface
 
-uses prsBase, Rtti, PrsAtributos, uib, system.SysUtils, System.Classes, uibdataset,
+uses Lca.Orm.Base, Rtti, Lca.Orm.Atributos, uib, system.SysUtils, System.Classes, uibdataset,
   db;
 
 type

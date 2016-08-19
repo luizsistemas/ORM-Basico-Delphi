@@ -111,15 +111,19 @@
         <DCCReference Include="Views\ufrmTesteIbx.pas">
             <Form>Form1</Form>
         </DCCReference>
-        <DCCReference Include="..\OrmBasico\Classes\PrsAtributos.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\PrsBase.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Atributos.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Base.pas"/>
         <DCCReference Include="DataModule\udmPrin.pas">
             <Form>dmPrin</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\OrmBasico\Classes\PrsDaoFireDac.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\PrsDaoIBX.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Comp.FireDac.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Comp.IBX.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasse.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasse.BancoFirebird.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasseFireDac.pas"/>
+        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasseIBX.pas"/>
         <None Include="ModelSupport_TesteOrmBasico\default.txaPackage"/>
         <None Include="ModelSupport_TesteOrmBasico\default.txvpck"/>
         <None Include="ModelSupport_TesteOrmBasico\PrsAtributos\default.txvpck"/>

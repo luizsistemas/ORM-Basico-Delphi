@@ -3,11 +3,13 @@ unit udmPrin;
 interface
 
 uses
-  System.SysUtils, System.Classes, prsBase, prsDaoFireDac, FireDAC.Stan.Intf,
+  System.SysUtils, System.Classes, Lca.Orm.Base, Lca.Orm.Comp.FireDac,
+  FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.Comp.Client, Data.DB,
-  FireDAC.Phys.IBBase, FireDAC.VCLUI.Wait, IBX.IBDatabase, IBX.IBSQL, PrsDaoIBX;
+  FireDAC.Phys.IBBase, FireDAC.VCLUI.Wait, IBX.IBDatabase, IBX.IBSQL,
+  Lca.Orm.Comp.IBX;
 
 type
   TdmPrin = class(TDataModule)

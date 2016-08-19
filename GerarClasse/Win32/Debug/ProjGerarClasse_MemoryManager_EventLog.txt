@@ -1,0 +1,268 @@
+
+--------------------------------2016/8/18 19:38:33--------------------------------
+FastMM has detected an attempt to call a virtual method on a freed object. An access violation will now be raised in order to abort the current operation.
+
+Virtual method: Destroy
+
+The allocation number was: 6530
+
+The object was allocated by thread 0x1A14, and the stack trace (return addresses) at the time was:
+406E8E [System.pas][System][@GetMem$qqri][4596]
+409C6B [System.pas][System][@NewUnicodeString$qqri][24451]
+40ABCB [System.pas][System][@UStrSetLength$qqrr20System.UnicodeStringi][29748]
+40DE3F [System.pas][System][UTF8ToUnicodeString$qqrrx29System.%SmallString$uc$i255$%][37891]
+40DEAB [System.pas][System][UTF8ToString$qqrrx29System.%SmallString$uc$i255$%][37908]
+407CC2 [System.pas][System][TObject.ClassName$qqrv][16129]
+5ED56C [Vcl.Forms.pas][Vcl.Forms][Forms.IsClass$qqrp14System.TObjectp17System.TMetaClass][10632]
+5ED5FE [Vcl.Forms.pas][Vcl.Forms][Forms.TApplication.HandleException$qqrp14System.TObject][10652]
+53F504 [Vcl.Controls.pas][Vcl.Controls][Controls.TWinControl.MainWndProc$qqrr24Winapi.Messages.TMessage][9792]
+7785FE71 [ZwWow64CallFunction64]
+7785FE43 [ZwWow64CallFunction64]
+
+The object was subsequently freed by thread 0x1A14, and the stack trace (return addresses) at the time was:
+406EAA [System.pas][System][@FreeMem$qqrpv][4644]
+409D25 [System.pas][System][@UStrClr$qqrpv][24667]
+40DE2D [System.pas][System][UTF8ToUnicodeString$qqrrx29System.%SmallString$uc$i255$%][37888]
+40DEAB [System.pas][System][UTF8ToString$qqrrx29System.%SmallString$uc$i255$%][37908]
+407CC2 [System.pas][System][TObject.ClassName$qqrv][16129]
+5ED56C [Vcl.Forms.pas][Vcl.Forms][Forms.IsClass$qqrp14System.TObjectp17System.TMetaClass][10632]
+5ED5FE [Vcl.Forms.pas][Vcl.Forms][Forms.TApplication.HandleException$qqrp14System.TObject][10652]
+53F504 [Vcl.Controls.pas][Vcl.Controls][Controls.TWinControl.MainWndProc$qqrr24Winapi.Messages.TMessage][9792]
+7785FE71 [ZwWow64CallFunction64]
+7785FE43 [ZwWow64CallFunction64]
+7788D0BF [Unknown function at LdrUnloadDll]
+
+The current thread ID is 0x1A14, and the stack trace (return addresses) leading to this error is:
+407F8F [System.pas][System][TObject.Free$qqrv][16255]
+7E2C42 [udmPrin.pas][udmPrin][TdmPrin.DataModuleDestroy$qqrp14System.TObject][56]
+4CD6DA [System.Classes.pas][System.Classes][Classes.TDataModule.DoDestroy$qqrv][16714]
+4CD5AE [System.Classes.pas][System.Classes][Classes.TDataModule.BeforeDestruction$qqrv][16683]
+4086A4 [System.pas][System][@BeforeDestruction$qqrxp14System.TObjectzc][17576]
+4CD5BB [System.Classes.pas][System.Classes][Classes.TDataModule.$bdtr$qqrv][16687]
+4CB739 [System.Classes.pas][System.Classes][Classes.TComponent.DestroyComponents$qqrv][15647]
+5E0692 [Vcl.Forms.pas][Vcl.Forms][Forms.DoneApplication$qqrv][2180]
+4262DB [System.SysUtils.pas][System.SysUtils][Sysutils.DoExitProc$qqrv][5836]
+409A98 [System.pas][System][@Halt0$qqrv][23964]
+7EF387 
+
+Current memory dump of 256 bytes starting at pointer address 7FDFA050:
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 CB CC 92 25 80 80 80 80 80 80 00 00 00 00 11 D2 DF 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 45 0A 00 00 8E 6E 40 00 EF 7D 40 00 FA 85 40 00
+B7 11 4D 00 1A 60 41 00 9D 5A 4B 00 64 61 4B 00 B0 E5 61 00 FB EE 61 00 0C 16 63 00 C5 7E 76 00
+14 1A 00 00 14 1A 00 00 0D 7E 40 00 45 86 40 00 C0 13 4D 00 8F 7F 40 00 FA 5A 4B 00 8F 7F 40 00
+02 18 63 00 0D 7E 40 00 45 86 40 00 91 81 76 00 A1 D7 7D 00 34 00 00 00 6C 23 4A 00 12 F4 20 87
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 ED 0B DF 78 00 00 00 00 11 A2 DF 7F
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  À  Ã  í  %  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  .  “  ﬂ  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  E  .  .  .  é  n  @  .  Ô  }  @  .  ˙  Ö  @  .
+∑  .  M  .  .  `  A  .  ù  Z  K  .  d  a  K  .  ∞  Â  a  .  ˚  Ó  a  .  .  .  c  .  ≈  ~  v  .
+.  .  .  .  .  .  .  .  .  ~  @  .  E  Ü  @  .  ¿  .  M  .  è    @  .  ˙  Z  K  .  è    @  .
+.  .  c  .  .  ~  @  .  E  Ü  @  .  ë  Å  v  .  °  ◊  }  .  4  .  .  .  l  #  J  .  .  Ù     á
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ì  .  ﬂ  x  .  .  .  .  .  ¢  ﬂ  
+
+--------------------------------2016/8/18 19:38:48--------------------------------
+FastMM has detected an attempt to call a virtual method on a freed object. An access violation will now be raised in order to abort the current operation.
+
+Freed object class: TDaoIBX
+
+Virtual method: Destroy
+
+Virtual method address: 7DFE1C
+
+The allocation number was: 2624
+
+The object was allocated by thread 0x11D4, and the stack trace (return addresses) at the time was:
+406E8E [System.pas][System][@GetMem$qqri][4596]
+407DEF [System.pas][System][TObject.NewInstance$qqrv][16178]
+40D9F5 [System.pas][System][TInterfacedObject.NewInstance$qqrv][37504]
+4085FA [System.pas][System][@ClassCreate$qqrpvzc][17493]
+7DFD6A [PrsDaoIBX.pas][PrsDaoIBX][TDaoIBX.$bctr$qqrp26Ibx.Ibdatabase.TIBDatabasep29Ibx.Ibdatabase.TIBTransaction][199]
+45C44A [System.Rtti.pas][System.Rtti][Rtti.TPoolToken.$bdtr$qqrv][4445]
+40DA7D [System.pas][System][TInterfacedObject._Release$qqsv][37535]
+42F795 [System.SysUtils.pas][System.SysUtils][Sysutils.TThreadLocalCounter.HashIndex$qqrv][24865]
+7E2C19 [udmPrin.pas][udmPrin][TdmPrin.DataModuleCreate$qqrp14System.TObject][51]
+4CD67A [System.Classes.pas][System.Classes][Classes.TDataModule.DoCreate$qqrv][16703]
+4CD527 [System.Classes.pas][System.Classes][Classes.TDataModule.AfterConstruction$qqrv][16667]
+
+The object was subsequently freed by thread 0x11D4, and the stack trace (return addresses) at the time was:
+406EAA [System.pas][System][@FreeMem$qqrpv][4644]
+407E0D [System.pas][System][TObject.FreeInstance$qqrv][16187]
+408645 [System.pas][System][@ClassDestroy$qqrxp14System.TObject][17536]
+7DFE49 [PrsDaoIBX.pas][PrsDaoIBX][TDaoIBX.$bdtr$qqrv][213]
+40DA7D [System.pas][System][TInterfacedObject._Release$qqsv][37535]
+40D943 [System.pas][System][@IntfClear$qqrr44System.%DelphiInterface$17System.IInterface%][36551]
+40B439 [System.pas][System][@FinalizeArray$qqrpvt1ui][31928]
+40B329 [System.pas][System][@FinalizeRecord$qqrpvt1][31631]
+408007 [System.pas][System][TObject.CleanupInstance$qqrv][16392]
+407E06 [System.pas][System][TObject.FreeInstance$qqrv][16186]
+408645 [System.pas][System][@ClassDestroy$qqrxp14System.TObject][17536]
+
+The current thread ID is 0x11D4, and the stack trace (return addresses) leading to this error is:
+407F8F [System.pas][System][TObject.Free$qqrv][16255]
+7E2C42 [udmPrin.pas][udmPrin][TdmPrin.DataModuleDestroy$qqrp14System.TObject][56]
+4CD6DA [System.Classes.pas][System.Classes][Classes.TDataModule.DoDestroy$qqrv][16714]
+4CD5AE [System.Classes.pas][System.Classes][Classes.TDataModule.BeforeDestruction$qqrv][16683]
+4086A4 [System.pas][System][@BeforeDestruction$qqrxp14System.TObjectzc][17576]
+4CD5BB [System.Classes.pas][System.Classes][Classes.TDataModule.$bdtr$qqrv][16687]
+4CB739 [System.Classes.pas][System.Classes][Classes.TComponent.DestroyComponents$qqrv][15647]
+5E0692 [Vcl.Forms.pas][Vcl.Forms][Forms.DoneApplication$qqrv][2180]
+4262DB [System.SysUtils.pas][System.SysUtils][Sysutils.DoExitProc$qqrv][5836]
+409A98 [System.pas][System][@Halt0$qqrv][23964]
+7EF387 
+
+Current memory dump of 256 bytes starting at pointer address 7FDFA050:
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 42 7B 3C 79 80 80 80 80 80 80 80 80 00 00 00 00 11 D2 DF 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 45 0A 00 00 8E 6E 40 00 EF 7D 40 00 FA 85 40 00
+B7 11 4D 00 1A 60 41 00 9D 5A 4B 00 64 61 4B 00 B0 E5 61 00 FB EE 61 00 0C 16 63 00 C5 7E 76 00
+D4 11 00 00 D4 11 00 00 0D 7E 40 00 45 86 40 00 C0 13 4D 00 8F 7F 40 00 FA 5A 4B 00 8F 7F 40 00
+02 18 63 00 0D 7E 40 00 45 86 40 00 91 81 76 00 A1 D7 7D 00 34 00 00 00 6C 23 4A 00 92 E3 20 87
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 6D 1C DF 78 00 00 00 00 11 A2 DF 7F
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  B  {  <  y  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  .  “  ﬂ  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  E  .  .  .  é  n  @  .  Ô  }  @  .  ˙  Ö  @  .
+∑  .  M  .  .  `  A  .  ù  Z  K  .  d  a  K  .  ∞  Â  a  .  ˚  Ó  a  .  .  .  c  .  ≈  ~  v  .
+‘  .  .  .  ‘  .  .  .  .  ~  @  .  E  Ü  @  .  ¿  .  M  .  è    @  .  ˙  Z  K  .  è    @  .
+.  .  c  .  .  ~  @  .  E  Ü  @  .  ë  Å  v  .  °  ◊  }  .  4  .  .  .  l  #  J  .  í  „     á
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  m  .  ﬂ  x  .  .  .  .  .  ¢  ﬂ  
+
+--------------------------------2016/8/18 19:40:36--------------------------------
+FastMM has detected an attempt to call a virtual method on a freed object. An access violation will now be raised in order to abort the current operation.
+
+Freed object class: TDaoIBX
+
+Virtual method: Destroy
+
+Virtual method address: 7DFE1C
+
+The allocation number was: 1606
+
+The object was allocated by thread 0xB38, and the stack trace (return addresses) at the time was:
+406E8E [System.pas][System][@GetMem$qqri][4596]
+407DEF [System.pas][System][TObject.NewInstance$qqrv][16178]
+40D9F5 [System.pas][System][TInterfacedObject.NewInstance$qqrv][37504]
+4085FA [System.pas][System][@ClassCreate$qqrpvzc][17493]
+7DFD6A [PrsDaoIBX.pas][PrsDaoIBX][TDaoIBX.$bctr$qqrp26Ibx.Ibdatabase.TIBDatabasep29Ibx.Ibdatabase.TIBTransaction][199]
+45C44A [System.Rtti.pas][System.Rtti][Rtti.TPoolToken.$bdtr$qqrv][4445]
+40DA7D [System.pas][System][TInterfacedObject._Release$qqsv][37535]
+42F795 [System.SysUtils.pas][System.SysUtils][Sysutils.TThreadLocalCounter.HashIndex$qqrv][24865]
+7E2C19 [udmPrin.pas][udmPrin][TdmPrin.DataModuleCreate$qqrp14System.TObject][51]
+4CD67A [System.Classes.pas][System.Classes][Classes.TDataModule.DoCreate$qqrv][16703]
+4CD527 [System.Classes.pas][System.Classes][Classes.TDataModule.AfterConstruction$qqrv][16667]
+
+The object was subsequently freed by thread 0xB38, and the stack trace (return addresses) at the time was:
+406EAA [System.pas][System][@FreeMem$qqrpv][4644]
+407E0D [System.pas][System][TObject.FreeInstance$qqrv][16187]
+408645 [System.pas][System][@ClassDestroy$qqrxp14System.TObject][17536]
+7DFE49 [PrsDaoIBX.pas][PrsDaoIBX][TDaoIBX.$bdtr$qqrv][213]
+40DA7D [System.pas][System][TInterfacedObject._Release$qqsv][37535]
+40D943 [System.pas][System][@IntfClear$qqrr44System.%DelphiInterface$17System.IInterface%][36551]
+40B439 [System.pas][System][@FinalizeArray$qqrpvt1ui][31928]
+40B329 [System.pas][System][@FinalizeRecord$qqrpvt1][31631]
+408007 [System.pas][System][TObject.CleanupInstance$qqrv][16392]
+407E06 [System.pas][System][TObject.FreeInstance$qqrv][16186]
+408645 [System.pas][System][@ClassDestroy$qqrxp14System.TObject][17536]
+
+The current thread ID is 0xB38, and the stack trace (return addresses) leading to this error is:
+407F8F [System.pas][System][TObject.Free$qqrv][16255]
+7E2C42 [udmPrin.pas][udmPrin][TdmPrin.DataModuleDestroy$qqrp14System.TObject][56]
+4CD6DA [System.Classes.pas][System.Classes][Classes.TDataModule.DoDestroy$qqrv][16714]
+4CD5AE [System.Classes.pas][System.Classes][Classes.TDataModule.BeforeDestruction$qqrv][16683]
+4086A4 [System.pas][System][@BeforeDestruction$qqrxp14System.TObjectzc][17576]
+4CD5BB [System.Classes.pas][System.Classes][Classes.TDataModule.$bdtr$qqrv][16687]
+4CB739 [System.Classes.pas][System.Classes][Classes.TComponent.DestroyComponents$qqrv][15647]
+5E0692 [Vcl.Forms.pas][Vcl.Forms][Forms.DoneApplication$qqrv][2180]
+4262DB [System.SysUtils.pas][System.SysUtils][Sysutils.DoExitProc$qqrv][5836]
+409A98 [System.pas][System][@Halt0$qqrv][23964]
+7EF387 
+
+Current memory dump of 256 bytes starting at pointer address 7FDF9E10:
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 B4 8E 3C 79 80 80 80 80 80 80 80 80 00 00 00 00 D1 C0 DF 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 4D 06 00 00 8E 6E 40 00 EF 7D 40 00 FA 85 40 00
+B7 11 4D 00 1A 60 41 00 9D 5A 4B 00 64 61 4B 00 B0 E5 61 00 FB EE 61 00 0C 16 63 00 C5 7E 76 00
+38 0B 00 00 38 0B 00 00 0D 7E 40 00 45 86 40 00 C0 13 4D 00 8F 7F 40 00 FA 5A 4B 00 8F 7F 40 00
+02 18 63 00 0D 7E 40 00 45 86 40 00 91 81 76 00 A1 D7 7D 00 34 00 00 00 6C 23 4A 00 22 D0 20 87
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 DD 2F DF 78 00 00 00 00 91 A0 DF 7F
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  ¥  é  <  y  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  .  .  .  .  —  ¿  ﬂ  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  M  .  .  .  é  n  @  .  Ô  }  @  .  ˙  Ö  @  .
+∑  .  M  .  .  `  A  .  ù  Z  K  .  d  a  K  .  ∞  Â  a  .  ˚  Ó  a  .  .  .  c  .  ≈  ~  v  .
+8  .  .  .  8  .  .  .  .  ~  @  .  E  Ü  @  .  ¿  .  M  .  è    @  .  ˙  Z  K  .  è    @  .
+.  .  c  .  .  ~  @  .  E  Ü  @  .  ë  Å  v  .  °  ◊  }  .  4  .  .  .  l  #  J  .  "  –     á
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  ›  /  ﬂ  x  .  .  .  .  ë  †  ﬂ  
+
+--------------------------------2016/8/19 7:08:30--------------------------------
+FastMM has detected an attempt to call a virtual method on a freed object. An access violation will now be raised in order to abort the current operation.
+
+Freed object class: TList<System.Classes.TCollectionItem>
+
+Virtual method: Destroy
+
+Virtual method address: 4D1378
+
+The allocation number was: 6511
+
+The object was allocated by thread 0x1E38, and the stack trace (return addresses) at the time was:
+406E8E [System.pas][System][@GetMem$qqri][4596]
+407DEF [System.pas][System][TObject.NewInstance$qqrv][16178]
+4085FA [System.pas][System][@ClassCreate$qqrpvzc][17493]
+4D11B7 [System.Generics.Collections.pas][System.Classes][Generics.Collections.%TList__1$p30System.Classes.TCollectionItem%.$bctr$qqrv][4115]
+41601A [FastMM4.pas][FastMM4][CalculateHeaderCheckSum$qqrp29Fastmm4.TFullDebugBlockHeader][8011]
+4B5A9D [System.Classes.pas][System.Classes][Classes.TCollection.$bctr$qqrp17System.TMetaClass][5659]
+4B6164 [System.Classes.pas][System.Classes][Classes.TOwnedCollection.$bctr$qqrp26System.Classes.TPersistentp17System.TMetaClass][5904]
+61E5B0 [Data.DB.pas][Data.DB][Db.TDefCollection.$bctr$qqrp16Data.Db.TDataSetp26System.Classes.TPersistentp17System.TMetaClass][3767]
+61EEFB [Data.DB.pas][Data.DB][Db.TFieldDefs.$bctr$qqrp26System.Classes.TPersistent][4090]
+63160C [Data.DB.pas][Data.DB][Db.TDataSet.$bctr$qqrp25System.Classes.TComponent][12199]
+767EC5 [IBX.IBCustomDataSet.pas][IBX.IBCustomDataSet][Ibcustomdataset.TIBCustomDataSet.$bctr$qqrp25System.Classes.TComponent][803]
+
+The object was subsequently freed by thread 0x1E38, and the stack trace (return addresses) at the time was:
+407E0D [System.pas][System][TObject.FreeInstance$qqrv][16187]
+408645 [System.pas][System][@ClassDestroy$qqrxp14System.TObject][17536]
+4D13C0 [System.Classes][Generics.Collections.%TList__1$p30System.Classes.TCollectionItem%.$bdtr$qqrv]
+407F8F [System.pas][System][TObject.Free$qqrv][16255]
+4B5AFA [System.Classes.pas][System.Classes][Classes.TCollection.$bdtr$qqrv][5669]
+407F8F [System.pas][System][TObject.Free$qqrv][16255]
+631802 [Data.DB.pas][Data.DB][Db.TDataSet.$bdtr$qqrv][12228]
+407E0D [System.pas][System][TObject.FreeInstance$qqrv][16187]
+408645 [System.pas][System][@ClassDestroy$qqrxp14System.TObject][17536]
+768191 [IBX.IBCustomDataSet.pas][IBX.IBCustomDataSet][Ibcustomdataset.TIBCustomDataSet.$bdtr$qqrv][866]
+7DD7A1 [IBX.IBQuery.pas][IBX.IBQuery][Ibquery.TIBQuery.$bdtr$qqrv][137]
+
+The current thread ID is 0x1E38, and the stack trace (return addresses) leading to this error is:
+407F8F [System.pas][System][TObject.Free$qqrv][16255]
+7E2C42 [udmPrin.pas][udmPrin][TdmPrin.DataModuleDestroy$qqrp14System.TObject][56]
+4CD6DA [System.Classes.pas][System.Classes][Classes.TDataModule.DoDestroy$qqrv][16714]
+4CD5AE [System.Classes.pas][System.Classes][Classes.TDataModule.BeforeDestruction$qqrv][16683]
+4086A4 [System.pas][System][@BeforeDestruction$qqrxp14System.TObjectzc][17576]
+4CD5BB [System.Classes.pas][System.Classes][Classes.TDataModule.$bdtr$qqrv][16687]
+4CB739 [System.Classes.pas][System.Classes][Classes.TComponent.DestroyComponents$qqrv][15647]
+5E0692 [Vcl.Forms.pas][Vcl.Forms][Forms.DoneApplication$qqrv][2180]
+4262DB [System.SysUtils.pas][System.SysUtils][Sysutils.DoExitProc$qqrv][5836]
+409A98 [System.pas][System][@Halt0$qqrv][23964]
+7EF387 
+
+Current memory dump of 256 bytes starting at pointer address 7FDF9E10:
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 7B F7 DE 78 00 00 00 00 D1 C0 DF 7F
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 4D 06 00 00 8E 6E 40 00 EF 7D 40 00 FA 85 40 00
+B7 11 4D 00 1A 60 41 00 9D 5A 4B 00 64 61 4B 00 B0 E5 61 00 FB EE 61 00 0C 16 63 00 C5 7E 76 00
+38 1E 00 00 38 1E 00 00 0D 7E 40 00 45 86 40 00 C0 13 4D 00 8F 7F 40 00 FA 5A 4B 00 8F 7F 40 00
+02 18 63 00 0D 7E 40 00 45 86 40 00 91 81 76 00 A1 D7 7D 00 34 00 00 00 6C 23 4A 00 22 F6 20 87
+94 E2 7F 00 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 DD 09 DF 78 00 00 00 00 91 A0 DF 7F
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  {  ˜  ﬁ  x  .  .  .  .  —  ¿  ﬂ  
+.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  M  .  .  .  é  n  @  .  Ô  }  @  .  ˙  Ö  @  .
+∑  .  M  .  .  `  A  .  ù  Z  K  .  d  a  K  .  ∞  Â  a  .  ˚  Ó  a  .  .  .  c  .  ≈  ~  v  .
+8  .  .  .  8  .  .  .  .  ~  @  .  E  Ü  @  .  ¿  .  M  .  è    @  .  ˙  Z  K  .  è    @  .
+.  .  c  .  .  ~  @  .  E  Ü  @  .  ë  Å  v  .  °  ◊  }  .  4  .  .  .  l  #  J  .  "  ˆ     á
+î  ‚    .  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä
+Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  Ä  ›  .  ﬂ  x  .  .  .  .  ë  †  ﬂ  

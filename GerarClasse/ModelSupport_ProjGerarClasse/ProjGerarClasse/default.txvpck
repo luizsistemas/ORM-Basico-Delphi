@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="95m62046e39me7ami_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:ProjGerarClasse.@unitclass">
+      <property name="$shortcutReference" value="true" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="940,160,387,158" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird.GetTypeField(System.Integer,System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird.GetSQLCamposTabela(System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird.GetSQLCamposPK(System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird.GerarFields(Data.DB.TDataSet,System.Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird.GerarProperties(Data.DB.TDataSet,System.Classes.TStrings,System.string)" />
+      <reference referencedUin="delphi:l_impl:src:ProjGerarClasse:Lca.Orm.GerarClasse.BancoFirebird.TGerarClasseBancoFirebird:Lca.Orm.Base.IBaseGerarClasseBanco">
+        <property name="sourceAnchor" value="940,162" />
+        <property name="targetAnchor" value="861,130" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="980,580,313,131" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac.FDao" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac.GetCamposPK()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac.GerarFieldsProperties()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac.Create(Lca.Orm.Base.IBaseGerarClasseBanco,Lca.Orm.Comp.FireDac.TDaoFireDac)" />
+      <reference referencedUin="delphi:l_gnt:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac:Lca.Orm.GerarClasse.TGerarClasse">
+        <property name="sourceAnchor" value="1027,580" />
+        <property name="targetAnchor" value="877,489" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:ProjGerarClasse:Lca.Orm.GerarClasseFireDac.TGerarClasseFireDac.FDao">
+        <property name="sourceAnchor" value="1110,711" />
+        <property name="targetAnchor" value="1110,820" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="240,580,264,131" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX.FDao" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX.GetCamposPK()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX.GerarFieldsProperties()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX.Create(Lca.Orm.Base.IBaseGerarClasseBanco,Lca.Orm.Comp.IBX.TDaoIBX)" />
+      <reference referencedUin="delphi:l_gnt:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX:Lca.Orm.GerarClasse.TGerarClasse">
+        <property name="sourceAnchor" value="476,580" />
+        <property name="targetAnchor" value="620,491" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:ProjGerarClasse:Lca.Orm.GerarClasseIBX.TGerarClasseIBX.FDao">
+        <property name="sourceAnchor" value="382,711" />
+        <property name="targetAnchor" value="382,820" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="260,820,261,684" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.FConexao" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.FTransacao" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.FQuery" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.FSql" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.FDataSet" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.FParams" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.DbToTabela&lt;1&gt;(Lca.Orm.Base.TTabela,Data.DB.TDataSet)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.SetDataSet(Data.DB.TDataSet)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ExecutaQuery()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Create(IBX.IBDatabase.TIBDatabase,IBX.IBDatabase.TIBTransaction)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.GerarClasse(System.string,System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaAll(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaSql(System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaSql(System.string,System.Variant[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaSql(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaTab(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaTab(Lca.Orm.Base.TTabela,System.string[],System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaTab(Lca.Orm.Base.TTabela,System.string[],System.string[],System.string[],System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ConsultaGen&lt;1&gt;(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Limpar(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.GetID(Lca.Orm.Base.TTabela,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.GetMax(Lca.Orm.Base.TTabela,System.string,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.GetRecordCount(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.GetRecordCount(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Inserir(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Inserir(Lca.Orm.Base.TTabela,System.string[],Lca.Orm.Base.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Salvar(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Salvar(Lca.Orm.Base.TTabela,System.string[],Lca.Orm.Base.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Excluir(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Excluir(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Excluir(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.ExcluirTodos(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Buscar(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.StartTransaction()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.Commit()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.RollBack()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.InTransaction()" />
+      <reference referencedUin="delphi:e_property:src:ProjGerarClasse:Lca.Orm.Comp.IBX.TDaoIBX.DataSet" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="980,820,261,684" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.FConexao" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.FTransacao" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.FQuery" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.FSql" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.FDataSet" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.FParams" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.DbToTabela&lt;1&gt;(Lca.Orm.Base.TTabela,Data.DB.TDataSet)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.SetDataSet(Data.DB.TDataSet)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ExecutaQuery()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Create(FireDAC.Comp.Client.TFDConnection,FireDAC.Comp.Client.TFDTransaction)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.GerarClasse(System.string,System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaAll(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaSql(System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaSql(System.string,System.Variant[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaSql(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaTab(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaTab(Lca.Orm.Base.TTabela,System.string[],System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaTab(Lca.Orm.Base.TTabela,System.string[],System.string[],System.string[],System.Integer)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ConsultaGen&lt;1&gt;(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Limpar(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.GetID(Lca.Orm.Base.TTabela,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.GetMax(Lca.Orm.Base.TTabela,System.string,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.GetRecordCount(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.GetRecordCount(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Inserir(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Inserir(Lca.Orm.Base.TTabela,System.string[],Lca.Orm.Base.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Salvar(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Salvar(Lca.Orm.Base.TTabela,System.string[],Lca.Orm.Base.TFlagCampos)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Excluir(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Excluir(Lca.Orm.Base.TTabela,System.string[])" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Excluir(System.string,System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.ExcluirTodos(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Buscar(Lca.Orm.Base.TTabela)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.StartTransaction()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.Commit()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.RollBack()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.InTransaction()" />
+      <reference referencedUin="delphi:e_property:src:ProjGerarClasse:Lca.Orm.Comp.FireDac.TDaoFireDac.DataSet" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="620,280,257,266" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.Capitalize(System.string)" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.Resultado" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.GerarClasseBanco" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.FTabela" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.FUnit" />
+      <reference referencedUin="delphi:e_field:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.FClasse" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.GetCamposPK()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.GerarCabecalho()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.GerarFieldsProperties()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.GerarRodape()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.Create(Lca.Orm.Base.IBaseGerarClasseBanco)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.Destroy()" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.Gerar(System.string,System.string,System.string)" />
+      <reference referencedUin="delphi:l_ast:src:ProjGerarClasse:Lca.Orm.GerarClasse.TGerarClasse.GerarClasseBanco">
+        <property name="sourceAnchor" value="740,280" />
+        <property name="targetAnchor" value="740,146" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:ProjGerarClasse:Lca.Orm.Base.IBaseGerarClasseBanco">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="620,20,241,126" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Base.IBaseGerarClasseBanco.GetSQLCamposTabela(System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Base.IBaseGerarClasseBanco.GetSQLCamposPK(System.string)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Base.IBaseGerarClasseBanco.GerarFields(Data.DB.TDataSet,System.Classes.TStrings)" />
+      <reference referencedUin="delphi:e_method:src:ProjGerarClasse:Lca.Orm.Base.IBaseGerarClasseBanco.GerarProperties(Data.DB.TDataSet,System.Classes.TStrings,System.string)" />
+    </reference>
+  </view>
+</nodeSet>

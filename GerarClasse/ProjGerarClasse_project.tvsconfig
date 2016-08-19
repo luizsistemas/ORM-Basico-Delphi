@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<TgConfig Version="3" SubLevelDisabled="False">
+  <Option Name="namespaceFolder.PrsGerarClasse" Type="System.String" Value="PrsGerarClasse" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.PrsGerarClasseFirebird" Type="System.String" Value="PrsGerarClasseFirebird" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.PrsGerarClasseInterface" Type="System.String" Value="PrsGerarClasseInterface" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.PrsGerarClasseFireDac" Type="System.String" Value="PrsGerarClasseFireDac" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.PrsGerarClasseBancoFirebird" Type="System.String" Value="PrsGerarClasseBancoFirebird" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.ProjGerarClasse" Type="System.String" Value="ProjGerarClasse" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Lca" Type="System.String" Value="Lca" Category="General" IsBrowsable="False" />
+</TgConfig>

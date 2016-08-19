@@ -2,7 +2,7 @@ unit Cliente;
 
 interface
 
-uses PrsBase, PrsAtributos, Cidade;
+uses Lca.Orm.Base, Lca.Orm.Atributos, Cidade;
 
 type
   [AttTabela('Cliente')]

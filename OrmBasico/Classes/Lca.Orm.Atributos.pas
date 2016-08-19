@@ -33,12 +33,12 @@
 { Luiz Carlos Alves - contato@luizsistemas.com.br -  www.luizsistemas.com.br   }
 {                                                                              }
 {******************************************************************************}
-unit PrsAtributos;
+unit Lca.Orm.Atributos;
 
 interface
 
 uses
-  PrsBase, Rtti, System.Classes;
+  Lca.Orm.Base, Rtti, System.Classes;
 
 type
   AttTabela = class(TCustomAttribute)

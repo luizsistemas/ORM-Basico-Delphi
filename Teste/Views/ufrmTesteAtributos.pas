@@ -54,7 +54,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udmPrin, db, System.Generics.Collections, PrsBase;
+  udmPrin, db, System.Generics.Collections, Lca.Orm.Base;
 
 procedure TfrmTesteAtributos.btnInserirClick(Sender: TObject);
 var
