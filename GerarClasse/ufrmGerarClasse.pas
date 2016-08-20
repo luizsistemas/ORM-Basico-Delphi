@@ -82,7 +82,8 @@ procedure TfrmConverte.FormShow(Sender: TObject);
 const
   SQL: string = 'SELECT RDB$RELATION_NAME FROM RDB$RELATIONS ' +
                 'WHERE RDB$VIEW_BLR IS NULL and ' +
-                '(RDB$SYSTEM_FLAG = 0 OR RDB$SYSTEM_FLAG IS NULL)';
+                '(RDB$SYSTEM_FLAG = 0 OR RDB$SYSTEM_FLAG IS NULL) ' +
+                'ORDER BY 1';
 begin
   lbTabelas.Items.Clear;
 

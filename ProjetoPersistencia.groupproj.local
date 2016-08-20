@@ -4,6 +4,6 @@
     <Transaction>2014/10/08 14:28:19.000.589,F:\Programas\ProgsXe\Persistencia\ProjetoPersistencia.groupproj=F:\Usuario\LuizCarlos\Documentos\Embarcadero\Studio\Projects\ProjectGroup1.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="F:\Delphi10\Projetos\Persistencia\Teste\TesteOrmBasico.dproj"/>
+		<Projects ActiveProject="F:\Delphi10\Projetos\Persistencia\UnitTest\OrmBasicoTests.dproj"/>
 	</Default.Personality>
 </BorlandProject>

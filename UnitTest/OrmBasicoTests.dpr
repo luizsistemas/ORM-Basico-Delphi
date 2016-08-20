@@ -28,7 +28,8 @@ uses
   Lca.Orm.GerarClasse.BancoFirebird in '..\OrmBasico\Classes\Lca.Orm.GerarClasse.BancoFirebird.pas',
   Lca.Orm.GerarClasse in '..\OrmBasico\Classes\Lca.Orm.GerarClasse.pas',
   Lca.Orm.Comp.IBX in '..\OrmBasico\Classes\Lca.Orm.Comp.IBX.pas',
-  Lca.Orm.GerarClasseIBX in '..\OrmBasico\Classes\Lca.Orm.GerarClasseIBX.pas';
+  Lca.Orm.GerarClasseIBX in '..\OrmBasico\Classes\Lca.Orm.GerarClasseIBX.pas',
+  TestPrsDaoGerarClasse in 'TestPrsDaoGerarClasse.pas';
 
 {$R *.RES}
 
