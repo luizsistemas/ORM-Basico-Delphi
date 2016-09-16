@@ -142,12 +142,12 @@ begin
   case Tipo of
     7,
     8,
-    9,
-    16: Result := 'Integer';
+    9: Result := 'Integer';
     14,
     37,
     40: Result := 'string';
     11,
+    16,
     27,
     10: Result := 'Currency';
     12: Result := 'TDate';
