@@ -168,16 +168,13 @@ begin
   Atributos := TAtributos.Create;
   ASql := TStringList.Create;
   try
-    with ASql do
+    ASql.Add('Delete from ' + Atributos.PegaNomeTab(ATabela));
+    ASql.Add('Where');
+    Separador := '';
+    for Campo in Atributos.PegaPks(ATabela) do
     begin
-      Add('Delete from ' + Atributos.PegaNomeTab(ATabela));
-      Add('Where');
-      Separador := '';
-      for Campo in Atributos.PegaPks(ATabela) do
-      begin
-        Add(Separador + Campo + '= :' + Campo);
-        Separador := ' and ';
-      end;
+      ASql.Add(Separador + Campo + '= :' + Campo);
+      Separador := ' and ';
     end;
     Result := ASql.Text;
   finally
@@ -196,41 +193,37 @@ begin
   Atributos := TAtributos.Create;
   ASql := TStringList.Create;
   try
-    with ASql do
+    ASql.Add('Insert into ' + Atributos.PegaNomeTab(ATabela));
+    ASql.Add('(');
+
+    // campos da tabela
+    Separador := '';
+    for PropRtti in TipoRtti.GetProperties do
     begin
-      Add('Insert into ' + Atributos.PegaNomeTab(ATabela));
-      Add('(');
+      if Length(ACampos) > 0 then
+        if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
+          ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
+          continue;
 
-      // campos da tabela
-      Separador := '';
-      for PropRtti in TipoRtti.GetProperties do
-      begin
-        if Length(ACampos) > 0 then
-          if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
-            ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-            continue;
-
-        Add(Separador + PropRtti.Name);
-        Separador := ',';
-      end;
-      Add(')');
-
-      // parâmetros
-      Add('Values (');
-      Separador := '';
-
-      for PropRtti in TipoRtti.GetProperties do
-      begin
-        if Length(ACampos) > 0 then
-          if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
-            ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-            continue;
-
-        Add(Separador + ':' + PropRtti.Name);
-        Separador := ',';
-      end;
-      Add(')');
+      ASql.Add(Separador + PropRtti.Name);
+      Separador := ',';
     end;
+    ASql.Add(')');
+
+    // parâmetros
+    ASql.Add('Values (');
+    Separador := '';
+    for PropRtti in TipoRtti.GetProperties do
+    begin
+      if Length(ACampos) > 0 then
+        if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
+          ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
+          continue;
+
+      ASql.Add(Separador + ':' + PropRtti.Name);
+      Separador := ',';
+    end;
+    ASql.Add(')');
     Result := ASql.Text;
   finally
     ASql.Free;
@@ -246,16 +239,13 @@ begin
   Atributos := TAtributos.Create;
   ASql := TStringList.Create;
   try
-    with ASql do
+    ASql.Add('Select * from ' + Atributos.PegaNomeTab(ATabela));
+    ASql.Add('Where');
+    Separador := '';
+    for Campo in Atributos.PegaPks(ATabela) do
     begin
-      Add('Select * from ' + Atributos.PegaNomeTab(ATabela));
-      Add('Where');
-      Separador := '';
-      for Campo in Atributos.PegaPks(ATabela) do
-      begin
-        Add(Separador + Campo + '= :' + Campo);
-        Separador := ' and ';
-      end;
+      ASql.Add(Separador + Campo + '= :' + Campo);
+      Separador := ' and ';
     end;
     Result := ASql.Text;
   finally
@@ -270,14 +260,11 @@ var
 begin
   ASql := TStringList.Create;
   try
-    with ASql do
-    begin
-      Add('Select * from ' + TAtributos.Get.PegaNomeTab(ATabela));
-      Add('Where 1=1');
-      Separador := ' and ';
-      for Campo in ACamposWhere do
-        Add(Separador + Campo + '= :' + Campo);
-    end;
+    ASql.Add('Select * from ' + TAtributos.Get.PegaNomeTab(ATabela));
+    ASql.Add('Where 1=1');
+    Separador := ' and ';
+    for Campo in ACamposWhere do
+      ASql.Add(Separador + Campo + '= :' + Campo);
     Result := ASql.Text;
   finally
     ASql.Free;
@@ -292,31 +279,28 @@ var
 begin
   ASql := TStringList.Create;
   try
-    with ASql do
+    ASql.Add('Select ');
+
+    if Length(ACampos)>0 then
     begin
-      Add('Select ');
-
-      if Length(ACampos)>0 then
+      Separador := '';
+      for Campo in ACampos do
       begin
-        Separador := '';
-        for Campo in ACampos do
-        begin
-          Add(Separador + Campo);
-          Separador := ',';
-        end;
-      end
-      else
-        Add('*');
+        ASql.Add(Separador + Campo);
+        Separador := ',';
+      end;
+    end
+    else
+      ASql.Add('*');
 
-      Add(' from ' + TAtributos.Get.PegaNomeTab(ATabela));
+    ASql.Add(' from ' + TAtributos.Get.PegaNomeTab(ATabela));
 
-      Add('Where 1=1');
+    ASql.Add('Where 1=1');
 
-      Separador := ' and ';
+    Separador := ' and ';
 
-      for Campo in ACamposWhere do
-        Add(Separador + Campo + '= :' + Campo);
-    end;
+    for Campo in ACamposWhere do
+      ASql.Add(Separador + Campo + '= :' + Campo);
     Result := ASql.Text;
   finally
     ASql.Free;
@@ -334,32 +318,29 @@ begin
   Atributos := TAtributos.Create;
   ASql := TStringList.Create;
   try
-    with ASql do
+    ASql.Add('Update ' + Atributos.PegaNomeTab(ATabela));
+    ASql.Add('set');
+
+    // campos da tabela
+    Separador := '';
+    for PropRtti in TipoRtti.GetProperties do
     begin
-      Add('Update ' + Atributos.PegaNomeTab(ATabela));
-      Add('set');
+      if Length(ACampos) > 0 then
+        if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
+          ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
+          continue;
 
-      // campos da tabela
-      Separador := '';
-      for PropRtti in TipoRtti.GetProperties do
-      begin
-        if Length(ACampos) > 0 then
-          if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
-            ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-            continue;
+      ASql.Add(Separador + PropRtti.Name + '=:' + PropRtti.Name);
+      Separador := ',';
+    end;
+    ASql.Add('where');
 
-        Add(Separador + PropRtti.Name + '=:' + PropRtti.Name);
-        Separador := ',';
-      end;
-      Add('where');
-
-      // parâmetros da cláusula where
-      Separador := '';
-      for Campo in Atributos.PegaPks(ATabela) do
-      begin
-        Add(Separador + Campo + '= :' + Campo);
-        Separador := ' and ';
-      end;
+    // parâmetros da cláusula where
+    Separador := '';
+    for Campo in Atributos.PegaPks(ATabela) do
+    begin
+      ASql.Add(Separador + Campo + '= :' + Campo);
+      Separador := ' and ';
     end;
     Result := ASql.Text;
   finally
