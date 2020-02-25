@@ -251,7 +251,6 @@ var
   Campo: String;
 begin
   Result := TObjectList<T>.Create;
-
   while not ADataSet.Eof do
   begin
     AuxValue := GetTypeData(PTypeInfo(TypeInfo(T)))^.ClassType.Create;
@@ -288,13 +287,11 @@ begin
       end;
     end;
     Result.Add(AuxValue.AsType<T>);
-
     ADataSet.Next;
   end;
 end;
 
-function TDaoIBX.ConsultaGen<T>(ATabela: TTabela; ACamposWhere: array of string)
-  : TObjectList<T>;
+function TDaoIBX.ConsultaGen<T>(ATabela: TTabela; ACamposWhere: array of string): TObjectList<T>;
 var
   Dados: TIBQuery;
   Contexto: TRttiContext;
