@@ -73,8 +73,7 @@ type
     FDataSet: TDataSet;
     FParams: IQueryParams;
 
-    Function DbToTabela<T: TTabela>(ATabela: TTabela; ADataSet: TDataSet)
-      : TObjectList<T>;
+    Function DbToTabela<T: TTabela>(ATabela: TTabela; ADataSet: TDataSet): TObjectList<T>;
 
     procedure SetDataSet(const Value: TDataSet);
   protected
@@ -97,10 +96,11 @@ type
     function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string)
       : TDataSet; overload;
 
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string;
-      TipoOrdem: Integer = 0): TDataSet; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos,
+      ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): TDataSet; overload;
 
-    function ConsultaGen<T: TTabela>(ATabela: TTabela; ACamposWhere: array of string): TObjectList<T>;
+    function ConsultaGen<T: TTabela>(ATabela: TTabela;
+      ACamposWhere: array of string): TObjectList<T>;
 
     // pega campo autoincremento
     function GetID(ATabela: TTabela; ACampo: string): Integer; overload;
@@ -323,8 +323,6 @@ begin
       begin
         if not TAtributos.Get.PropExiste(Campo, PropRtti, TipoRtti) then
           raise Exception.Create('Campo ' + Campo + ' não existe no objeto!');
-
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
         begin
           if CompareText(PropRtti.Name, Campo) = 0 then
@@ -374,7 +372,6 @@ begin
   AQry.Connection := FConexao;
   AQry.SQL.Clear;
   AQry.SQL.Add(ASql);
-
   if (Length(ParamList) > 0) and (AQry.Params.Count > 0) then
    for I := 0 to AQry.Params.Count -1 do
      if (I < Length(ParamList)) then
@@ -433,7 +430,6 @@ begin
     begin
       for Campo in ACamposWhere do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
             TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
@@ -464,7 +460,6 @@ begin
     begin
       for Campo in ACamposWhere do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
             TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
@@ -496,7 +491,6 @@ begin
     begin
       for Campo in ACamposWhere do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
           begin
@@ -652,7 +646,6 @@ begin
   RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
   for Campo in TAtributos.Get.PegaPks(ATabela) do
   begin
-    // setando os parâmetros
     for PropRtti in RttiType.GetProperties do
       if CompareText(PropRtti.Name, Campo) = 0 then
         TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
@@ -680,7 +673,6 @@ begin
     FQuery.SQL.Add(Sep + Campo + '= :' + Campo);
     Sep := ' and ';
   end;
-  // percorrer todos os campos da chave primária
   for Campo in AWhere do
   begin
     for PropRtti in RttiType.GetProperties do
@@ -729,7 +721,6 @@ begin
     FQuery.Close;
     FQuery.SQL.Clear;
     FQuery.SQL.Text := FSql.GerarSqlInsert(ATabela, RttiType, ACampos, AFlag);
-    // valor dos parâmetros
     for PropRtti in RttiType.GetProperties do
     begin
       if (Length(ACampos) > 0) then
@@ -767,7 +758,6 @@ begin
     FQuery.Close;
     FQuery.SQL.Clear;
     FQuery.SQL.Text := FSql.GerarSqlUpdate(ATabela, RttiType, ACampos, AFlag);
-    // valor dos parâmetros
     for PropRtti in RttiType.GetProperties do
     begin
       if (Length(ACampos) > 0) and not (Atributos.LocalizaCampo(
@@ -799,7 +789,6 @@ begin
     Dados.SQL.Text := FSql.GerarSqlSelect(ATabela);
     for Campo in TAtributos.Get.PegaPks(ATabela) do
     begin
-      // setando os parâmetros
       for PropRtti in RttiType.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
         begin

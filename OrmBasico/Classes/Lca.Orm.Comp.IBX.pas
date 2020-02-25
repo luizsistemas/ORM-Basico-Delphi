@@ -259,7 +259,6 @@ begin
     begin
       Campo := PropRtti.Name;
       DataType := ADataSet.FieldByName(Campo).DataType;
-
       case DataType of
         ftInteger:
           begin
@@ -310,7 +309,6 @@ begin
       begin
         if not TAtributos.Get.PropExiste(Campo, PropRtti, TipoRtti) then
           raise Exception.Create('Campo ' + Campo + ' não existe no objeto!');
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
         begin
           if CompareText(PropRtti.Name, Campo) = 0 then
@@ -418,7 +416,6 @@ begin
     begin
       for Campo in ACamposWhere do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
             TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
@@ -449,7 +446,6 @@ begin
     begin
       for Campo in ACamposWhere do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
             TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
@@ -481,7 +477,6 @@ begin
     begin
       for Campo in ACamposWhere do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
           begin
@@ -548,7 +543,6 @@ begin
       TipoRtti := Contexto.GetType(ATabela.ClassType);
       for Campo in ACamposChave do
       begin
-        // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
             TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, AQry, FParams);
@@ -635,10 +629,8 @@ begin
   FQuery.SQL.Clear;
   FQuery.SQL.Text := FSql.GerarSqlDelete(ATabela);
   RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
-  // percorrer todos os campos da chave primária
   for Campo in TAtributos.Get.PegaPks(ATabela) do
   begin
-    // setando os parâmetros
     for PropRtti in RttiType.GetProperties do
       if CompareText(PropRtti.Name, Campo) = 0 then
         TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
@@ -666,10 +658,8 @@ begin
     FQuery.SQL.Add(Sep + Campo + '= :' + Campo);
     Sep := ' and ';
   end;
-  // percorrer todos os campos da chave primária
   for Campo in AWhere do
   begin
-    // setando os parâmetros
     for PropRtti in RttiType.GetProperties do
       if CompareText(PropRtti.Name, Campo) = 0 then
         TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
@@ -753,7 +743,6 @@ begin
     FQuery.Close;
     FQuery.SQL.Clear;
     FQuery.SQL.Text := FSql.GerarSqlUpdate(ATabela, RttiType, ACampos, AFlag);
-    // valor dos parâmetros
     for PropRtti in RttiType.GetProperties do
     begin
       if (Length(ACampos) > 0) and not (Atributos.LocalizaCampo(
@@ -785,7 +774,6 @@ begin
     FQuery.SQL.Text := FSql.GerarSqlSelect(ATabela);
     for Campo in TAtributos.Get.PegaPks(ATabela) do
     begin
-      // setando os parâmetros
       for PropRtti in RttiType.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
         begin

@@ -299,7 +299,6 @@ begin
   try
     if not Assigned(ATabela) then
       raise Exception.Create('Tabela não foi passada no parâmetro!');
-
     ListaErros := TStringList.Create;
     try
       Contexto := TRttiContext.Create;
@@ -313,7 +312,6 @@ begin
               ((AFlag=fcIgnore) and (LocalizaCampo(PropRtti.Name, ACampos))) then
               Continue;
           end;
-
           for AtribRtti in PropRtti.GetAttributes do
           begin
             PropRtti.PropertyType.TypeKind;
@@ -329,7 +327,6 @@ begin
                 .Validar(PropRtti.GetValue(ATabela).AsExtended) then
                 ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
             end;
-
             if AtribRtti is AttNotNull then
             begin
               case PropRtti.PropertyType.TypeKind of
@@ -366,13 +363,13 @@ begin
           end;
         end;
       finally
-        Contexto.free;
+        Contexto.Free;
       end;
 
       if ListaErros.Count > 0 then
         raise Exception.Create(PChar(ListaErros.Text));
     finally
-      ListaErros.free;
+      ListaErros.Free;
     end;
   except
     raise;
@@ -385,22 +382,22 @@ var
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   AtribRtti: TCustomAttribute;
-  i: Integer;
+  I: Integer;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    i := 0;
+    I := 0;
     for PropRtti in TipoRtti.GetProperties do
       for AtribRtti in PropRtti.GetAttributes do
         if AtribRtti Is AttPK then
         begin
-          SetLength(Result, i + 1);
-          Result[i] := PropRtti.Name;
-          inc(i);
+          SetLength(Result, I + 1);
+          Result[I] := PropRtti.Name;
+          Inc(I);
         end;
   finally
-    Contexto.free;
+    Contexto.Free;
   end;
 end;
 

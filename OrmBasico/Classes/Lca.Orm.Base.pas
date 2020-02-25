@@ -116,7 +116,8 @@ type
       AFlag: TFlagCampos = fcIgnore): Integer; overload;
 
     function Salvar(ATabela: TTabela): Integer; overload;
-    function Salvar(ATabela: TTabela; ACampos: array of string; AFlag: TFlagCampos = fcAdd): Integer; overload;
+    function Salvar(ATabela: TTabela; ACampos: array of string;
+      AFlag: TFlagCampos = fcAdd): Integer; overload;
 
     function Excluir(ATabela: TTabela): Integer; overload;
     function Excluir(ATabela: TTabela; AWhere: array of string): Integer; overload;
@@ -131,8 +132,10 @@ type
     function ConsultaSql(ASql: string; const ParamList: Array of Variant): TDataSet; overload;
     function ConsultaSql(ATabela: string; AWhere: string): TDataSet; overload;
     function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): TDataSet; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos,
+      ACamposWhere: array of string): TDataSet; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
+      AOrdem: array of string; TipoOrdem: Integer = 0): TDataSet; overload;
 
     // comandos transação
     procedure StartTransaction;
@@ -249,7 +252,8 @@ begin
   end;
 end;
 
-function TPadraoSql.GerarSqlSelect(ATabela: TTabela; ACamposWhere: array of string): string;
+function TPadraoSql.GerarSqlSelect(ATabela: TTabela;
+  ACamposWhere: array of string): string;
 var
   Campo, Separador: string;
   ASql: TStringList;
