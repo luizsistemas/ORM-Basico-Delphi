@@ -1,6 +1,8 @@
 # Diretories #
 Teste/Win32/*
 
+LibrarySupport/*
+
 # Compiled source #
 ###################
 *.com
