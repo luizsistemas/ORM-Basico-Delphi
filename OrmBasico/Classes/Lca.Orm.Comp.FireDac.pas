@@ -414,10 +414,8 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-
     Dados.Connection := FConexao;
     Dados.SQL.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
-
     if Length(AOrdem)>0 then
     begin
       Separador := '';
@@ -431,7 +429,6 @@ begin
         Separador := ',';
       end;
     end;
-
     if Length(ACamposWhere)>0 then
     begin
       for Campo in ACamposWhere do
@@ -442,9 +439,7 @@ begin
             TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
       end;
     end;
-
     Dados.Open;
-
     Result := Dados;
   finally
     Contexto.Free;
@@ -688,7 +683,6 @@ begin
   // percorrer todos os campos da chave primária
   for Campo in AWhere do
   begin
-    // setando os parâmetros
     for PropRtti in RttiType.GetProperties do
       if CompareText(PropRtti.Name, Campo) = 0 then
         TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);

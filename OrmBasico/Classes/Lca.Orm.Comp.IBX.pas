@@ -310,7 +310,6 @@ begin
       begin
         if not TAtributos.Get.PropExiste(Campo, PropRtti, TipoRtti) then
           raise Exception.Create('Campo ' + Campo + ' não existe no objeto!');
-
         // setando os parâmetros
         for PropRtti in TipoRtti.GetProperties do
         begin

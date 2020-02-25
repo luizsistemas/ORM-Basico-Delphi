@@ -195,7 +195,6 @@ begin
   try
     ASql.Add('Insert into ' + Atributos.PegaNomeTab(ATabela));
     ASql.Add('(');
-
     // campos da tabela
     Separador := '';
     for PropRtti in TipoRtti.GetProperties do
@@ -209,7 +208,6 @@ begin
       Separador := ',';
     end;
     ASql.Add(')');
-
     // parâmetros
     ASql.Add('Values (');
     Separador := '';
@@ -280,7 +278,6 @@ begin
   ASql := TStringList.Create;
   try
     ASql.Add('Select ');
-
     if Length(ACampos)>0 then
     begin
       Separador := '';
@@ -292,13 +289,9 @@ begin
     end
     else
       ASql.Add('*');
-
     ASql.Add(' from ' + TAtributos.Get.PegaNomeTab(ATabela));
-
     ASql.Add('Where 1=1');
-
     Separador := ' and ';
-
     for Campo in ACamposWhere do
       ASql.Add(Separador + Campo + '= :' + Campo);
     Result := ASql.Text;
@@ -320,7 +313,6 @@ begin
   try
     ASql.Add('Update ' + Atributos.PegaNomeTab(ATabela));
     ASql.Add('set');
-
     // campos da tabela
     Separador := '';
     for PropRtti in TipoRtti.GetProperties do
@@ -334,7 +326,6 @@ begin
       Separador := ',';
     end;
     ASql.Add('where');
-
     // parâmetros da cláusula where
     Separador := '';
     for Campo in Atributos.PegaPks(ATabela) do
