@@ -202,8 +202,7 @@ begin
       if Length(ACampos) > 0 then
         if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
           ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-          continue;
-
+          Continue;
       ASql.Add(Separador + PropRtti.Name);
       Separador := ',';
     end;
@@ -216,8 +215,7 @@ begin
       if Length(ACampos) > 0 then
         if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
           ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-          continue;
-
+          Continue;
       ASql.Add(Separador + ':' + PropRtti.Name);
       Separador := ',';
     end;
@@ -321,7 +319,6 @@ begin
         if ((AFlag = fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
           ((AFlag = fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
           continue;
-
       ASql.Add(Separador + PropRtti.Name + '=:' + PropRtti.Name);
       Separador := ',';
     end;
