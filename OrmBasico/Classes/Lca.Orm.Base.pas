@@ -45,25 +45,20 @@ type
   TFlagCampos = (fcAdd, fcIgnore);
 
   TTabela = class
+    procedure Limpar;
   end;
 
   IBaseSql = interface
     ['{3890762A-9CF2-46C3-A75C-62947D3DAD7B}']
-
     // geração do sql padrao
     function GerarSqlInsert(ATabela: TTabela; TipoRtti: TRttiType;
       ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
-
     function GerarSqlUpdate(ATabela: TTabela; TipoRtti: TRttiType;
       ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
-
     function GerarSqlDelete(ATabela: TTabela): string;
-
     function GerarSqlSelect(ATabela: TTabela): string; overload;
-
     function GerarSqlSelect(ATabela: TTabela; ACamposWhere: array of string): string;
        overload;
-
     function GerarSqlSelect(ATabela: TTabela; ACampos: array of string;
       ACamposWhere: array of string): string; overload;
   end;
@@ -112,7 +107,8 @@ type
     function GerarClasse(ATabela, ANomeUnit: string; ANomeClasse: string = ''): string;
 
   // pega campo autoincremento
-    function GetID(ATabela:TTabela; ACampo: string): Integer;
+    function GetID(ATabela:TTabela; ACampo: string): Integer; overload;
+    function GetID(Generator: string): Integer; overload;
 
   // comandos crud
     function Inserir(ATabela: TTabela): Integer; overload;
@@ -137,9 +133,6 @@ type
     function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): TDataSet; overload;
     function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): TDataSet; overload;
     function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): TDataSet; overload;
-
-    // limpar campos da tabela
-    procedure Limpar(ATabela: TTabela);
 
     // comandos transação
     procedure StartTransaction;
@@ -372,6 +365,13 @@ begin
   finally
     ASql.Free;
   end;
+end;
+
+{ TTabela }
+
+procedure TTabela.Limpar;
+begin
+  TAtributos.Get.LimparCampos(Self);
 end;
 
 end.

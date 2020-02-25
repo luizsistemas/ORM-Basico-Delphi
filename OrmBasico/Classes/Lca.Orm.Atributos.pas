@@ -90,6 +90,7 @@ type
 
   // Comandos de atributos
   IAtributos = interface
+    ['{26CCA2DF-174A-48BE-A48D-7758294159A6}']
     function PropExiste(ACampo: string; Prop: TRttiProperty;
       RttiType: TRttiType): Boolean;
 

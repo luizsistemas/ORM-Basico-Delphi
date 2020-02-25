@@ -26,7 +26,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    Dao: TDaoIbx;
+    Dao: TDaoFiredac;
   end;
 
 var
@@ -40,17 +40,13 @@ implementation
 
 procedure TdmPrin.DataModuleCreate(Sender: TObject);
 begin
-//   configuração da conexão - utilizando FireDac
-//  with FDConnection1 do
-//  begin
-//    Connected := False;
-//    Params.Database := BancoDados;
-//    Params.UserName := Usuario;
-//    Params.Password := senha;
-//    TFDPhysFBConnectionDefParams(FDConnection1.Params).Server := Server;
-//    dbSeguros.Connected := True;
-//  end;
-  Dao := TDaoIBX.Create(ibdatabase1, texec);
+  FDConnection1.Connected := False;
+  FDConnection1.Params.Database := 'F:\Delphi10\Projetos\Persistencia\Teste\Bd\BANCOTESTE.FDB';
+  FDConnection1.Params.UserName := 'SYSDBA';
+  FDConnection1.Params.Password := '02025626';
+  TFDPhysFBConnectionDefParams(FDConnection1.Params).Server := 'localhost';
+  FDConnection1.Connected := True;
+  Dao := TDaoFiredac.Create(FDConnection1, ttt);
 end;
 
 procedure TdmPrin.DataModuleDestroy(Sender: TObject);

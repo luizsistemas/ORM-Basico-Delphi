@@ -38,8 +38,8 @@ unit Lca.Orm.Comp.IBX;
 
 interface
 
-uses Db, Lca.Orm.Base, Rtti, Lca.Orm.Atributos, system.SysUtils, system.Classes,
-  ibx.IB, ibx.IBQuery, ibx.IBDatabase, system.Generics.Collections;
+uses Db, Lca.Orm.Base, Rtti, Lca.Orm.Atributos, System.SysUtils, System.Classes,
+  IBX.IB, IBX.IBQuery, IBX.IBDatabase, System.Generics.Collections;
 
 type
   TQueryIBX = class(TInterfacedObject, IQueryParams)
@@ -68,15 +68,13 @@ type
     FDataSet: TDataSet;
     FParams: IQueryParams;
 
-    Function DbToTabela<T: TTabela>(ATabela: TTabela; ADataSet: TDataSet)
-      : TObjectList<T>;
+    Function DbToTabela<T: TTabela>(ATabela: TTabela; ADataSet: TDataSet): TObjectList<T>;
 
     procedure SetDataSet(const Value: TDataSet);
   protected
     function ExecutaQuery: Integer;
   public
     constructor Create(Conexao: TIBDatabase; Transacao: TIBTransaction);
-    destructor Destroy; override;
 
     function GerarClasse(ATabela, ANomeUnit, ANomeClasse: string): string;
 
@@ -90,11 +88,10 @@ type
     function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): TDataSet; overload;
     function ConsultaGen<T: TTabela>(ATabela: TTabela; ACamposWhere: array of string): TObjectList<T>;
 
-    // limpar campos da tabela
-    procedure Limpar(ATabela: TTabela);
-
     // pega campo autoincremento
-    function GetID(ATabela: TTabela; ACampo: string): Integer;
+    function GetID(ATabela: TTabela; ACampo: string): Integer; overload;
+    function GetID(Generator: string): Integer; overload;
+
     function GetMax(ATabela: TTabela; ACampo: string;
       ACamposChave: array of string): Integer;
 
@@ -129,7 +126,7 @@ type
 
 implementation
 
-uses Vcl.forms, dialogs, system.TypInfo, System.Variants,
+uses Vcl.forms, Dialogs, System.TypInfo, System.Variants,
   Lca.Orm.GerarClasseIBX, Lca.Orm.GerarClasse.BancoFirebird;
 
 { TQueryIBX }
@@ -198,18 +195,12 @@ constructor TDaoIBX.Create(Conexao: TIBDatabase;
   Transacao: TIBTransaction);
 begin
   inherited Create;
-  FSql := TPadraoSql.create;
-  FParams := TQueryIBX.create;
+  FSql := TPadraoSql.Create;
+  FParams := TQueryIBX.Create;
   FConexao := Conexao;
   FTransacao := Transacao;
-
   FQuery := TIBQuery.Create(Application);
   FQuery.Database := FConexao;
-end;
-
-destructor TDaoIBX.Destroy;
-begin
-  inherited;
 end;
 
 function TDaoIbx.GerarClasse(ATabela, ANomeUnit, ANomeClasse: string): string;
@@ -247,11 +238,6 @@ end;
 function TDaoIBX.InTransaction: Boolean;
 begin
   Result := FTransacao.InTransaction;
-end;
-
-procedure TDaoIBX.Limpar(ATabela: TTabela);
-begin
-  TAtributos.Get.LimparCampos(ATabela);
 end;
 
 function TDaoIBX.DbToTabela<T>(ATabela: TTabela; ADataSet: TDataSet)
@@ -321,28 +307,22 @@ begin
     Contexto := TRttiContext.Create;
     try
       TipoRtti := Contexto.GetType(ATabela.ClassType);
-      with Dados do
+      Dados.Database := FConexao;
+      Dados.SQL.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
+      for Campo in ACamposWhere do
       begin
-        Database := FConexao;
-        sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
+        if not TAtributos.Get.PropExiste(Campo, PropRtti, TipoRtti) then
+          raise Exception.Create('Campo ' + Campo + ' não existe no objeto!');
 
-        for Campo in ACamposWhere do
+        // setando os parâmetros
+        for PropRtti in TipoRtti.GetProperties do
         begin
-          if not TAtributos.Get.PropExiste(Campo, PropRtti, TipoRtti) then
-            raise Exception.Create('Campo ' + Campo + ' não existe no objeto!');
-
-          // setando os parâmetros
-          for PropRtti in TipoRtti.GetProperties do
-          begin
-            if CompareText(PropRtti.Name, Campo) = 0 then
-              TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
-          end;
+          if CompareText(PropRtti.Name, Campo) = 0 then
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
         end;
-
-        Open;
-
-        Result := DbToTabela<T>(ATabela, Dados);
       end;
+      Dados.Open;
+      Result := DbToTabela<T>(ATabela, Dados);
     finally
       Contexto.Free;
     end;
@@ -356,13 +336,10 @@ var
   AQry: TIBQuery;
 begin
   AQry := TIBQuery.Create(Application);
-  with AQry do
-  begin
-    Database := FConexao;
-    sql.Clear;
-    sql.Add('Select * from ' + TAtributos.Get.PegaNomeTab(ATabela));
-    Open;
-  end;
+  AQry.Database := FConexao;
+  AQry.SQL.Clear;
+  AQry.SQL.Add('Select * from ' + TAtributos.Get.PegaNomeTab(ATabela));
+  AQry.Open;
   Result := AQry;
 end;
 
@@ -371,37 +348,30 @@ var
   AQry: TIBQuery;
 begin
   AQry := TIBQuery.Create(Application);
-  with AQry do
-  begin
-    Database := FConexao;
-    sql.Clear;
-    sql.Add(ASql);
-    Open;
-  end;
+  AQry.Database := FConexao;
+  AQry.SQL.Clear;
+  AQry.SQL.Add(ASql);
+  AQry.Open;
   Result := AQry;
 end;
 
 function TDaoIBX.ConsultaSql(ASql: string; const ParamList: array of Variant): TDataSet;
 var
   AQry: TIBQuery;
-  i: integer;
+  I: Integer;
 begin
   AQry := TIBQuery.Create(Application);
-  with AQry do
-  begin
-    Database := FConexao;
-    sql.Clear;
-    sql.Add(ASql);
-
-    if (Length(ParamList) > 0) and (Params.Count > 0) then
-     for i := 0 to Params.Count -1 do
-       if (i < Length(ParamList)) then
-         if VarIsType(ParamList[i], varDate) then
-           Params[i].AsDateTime := VarToDateTime(ParamList[i])
-         else
-           Params[i].Value := ParamList[i];
-    Open;
-  end;
+  AQry.Database := FConexao;
+  AQry.SQL.Clear;
+  AQry.SQL.Add(ASql);
+  if (Length(ParamList) > 0) and (AQry.Params.Count > 0) then
+   for I := 0 to AQry.Params.Count -1 do
+     if (I < Length(ParamList)) then
+       if VarIsType(ParamList[I], varDate) then
+         AQry.Params[I].AsDateTime := VarToDateTime(ParamList[I])
+       else
+         AQry.Params[I].Value := ParamList[I];
+  AQry.Open;
   Result := AQry;
 end;
 
@@ -410,15 +380,12 @@ var
   AQry: TIBQuery;
 begin
   AQry := TIBQuery.Create(Application);
-  with AQry do
-  begin
-    Database := FConexao;
-    sql.Clear;
-    sql.Add('select * from ' + ATabela);
-    if AWhere <> '' then
-      sql.Add('where ' + AWhere);
-    Open;
-  end;
+  AQry.Database := FConexao;
+  AQry.SQL.Clear;
+  AQry.SQL.Add('select * from ' + ATabela);
+  if AWhere <> '' then
+    AQry.SQL.Add('where ' + AWhere);
+  AQry.Open;
   Result := AQry;
 end;
 
@@ -436,39 +403,33 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-
-    with Dados do
+    Dados.Database := FConexao;
+    Dados.SQL.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
+    if Length(AOrdem)>0 then
     begin
-      Database := FConexao;
-      sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
-
-      if Length(AOrdem)>0 then
+      Separador := '';
+      Dados.SQL.Add('order by');
+      for Campo in AOrdem do
       begin
-        Separador := '';
-        SQL.Add('order by');
-        for Campo in AOrdem do
-        begin
-          if TipoOrdem = 1 then
-            sql.Add(Separador + Campo + ' Desc')
-          else
-            sql.Add(Separador + Campo);
-          Separador := ',';
-        end;
+        if TipoOrdem = 1 then
+          Dados.SQL.Add(Separador + Campo + ' Desc')
+        else
+          Dados.SQL.Add(Separador + Campo);
+        Separador := ',';
       end;
-
-      if Length(ACamposWhere)>0 then
-      begin
-        for Campo in ACamposWhere do
-        begin
-          // setando os parâmetros
-          for PropRtti in TipoRtti.GetProperties do
-            if CompareText(PropRtti.Name, Campo) = 0 then
-              TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
-        end;
-      end;
-      Open;
-      Result := Dados;
     end;
+    if Length(ACamposWhere)>0 then
+    begin
+      for Campo in ACamposWhere do
+      begin
+        // setando os parâmetros
+        for PropRtti in TipoRtti.GetProperties do
+          if CompareText(PropRtti.Name, Campo) = 0 then
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
+      end;
+    end;
+    Dados.Open;
+    Result := Dados;
   finally
     Contexto.Free;
   end;
@@ -486,27 +447,20 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-
-    with Dados do
+    Dados.Database := FConexao;
+    Dados.SQL.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
+    if Length(ACamposWhere)>0 then
     begin
-      Database := FConexao;
-      sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
-
-      if Length(ACamposWhere)>0 then
+      for Campo in ACamposWhere do
       begin
-        for Campo in ACamposWhere do
-        begin
-          // setando os parâmetros
-          for PropRtti in TipoRtti.GetProperties do
-            if CompareText(PropRtti.Name, Campo) = 0 then
-              TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
-        end;
+        // setando os parâmetros
+        for PropRtti in TipoRtti.GetProperties do
+          if CompareText(PropRtti.Name, Campo) = 0 then
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
       end;
-
-      Open;
-
-      Result := Dados;
     end;
+    Dados.Open;
+    Result := Dados;
   finally
     Contexto.Free;
   end;
@@ -525,30 +479,23 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-
-    with Dados do
+    Dados.Database := FConexao;
+    Dados.SQL.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
+    if Length(ACamposWhere)>0 then
     begin
-      Database := FConexao;
-      sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
-
-      if Length(ACamposWhere)>0 then
+      for Campo in ACamposWhere do
       begin
-        for Campo in ACamposWhere do
-        begin
-          // setando os parâmetros
-          for PropRtti in TipoRtti.GetProperties do
-            if CompareText(PropRtti.Name, Campo) = 0 then
-            begin
-              TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
-              Break;
-            end;
-        end;
+        // setando os parâmetros
+        for PropRtti in TipoRtti.GetProperties do
+          if CompareText(PropRtti.Name, Campo) = 0 then
+          begin
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
+            Break;
+          end;
       end;
-
-      Open;
-
-      Result := Dados;
     end;
+    Dados.Open;
+    Result := Dados;
   finally
     Contexto.Free;
   end;
@@ -559,14 +506,23 @@ var
   AQry: TIBQuery;
 begin
   AQry := TIBQuery.Create(Application);
-  with AQry do
-  begin
-    Database := FConexao;
-    sql.Clear;
-    sql.Add('select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela));
-    Open;
-    Result := fields[0].AsInteger + 1;
-  end;
+  AQry.Database := FConexao;
+  AQry.SQL.Clear;
+  AQry.SQL.Add('select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela));
+  AQry.Open;
+  Result := AQry.Fields[0].AsInteger + 1;
+end;
+
+function TDaoIBX.GetID(Generator: string): Integer;
+var
+  AQry: TIBQuery;
+begin
+  AQry := TIBQuery.Create(Application);
+  AQry.Database := FConexao;
+  AQry.SQL.Clear;
+  AQry.SQL.Add('SELECT * FROM SP_GERADOR(' + quotedstr(Generator) + ')');
+  AQry.Open;
+  Result := AQry.Fields[0].AsInteger;
 end;
 
 function TDaoIBX.GetMax(ATabela: TTabela; ACampo: string;
@@ -578,43 +534,33 @@ var
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   Separador: string;
-  NumMax: Integer;
 begin
   AQry := TIBQuery.Create(Application);
   try
-    with AQry do
+    AQry.Database := FConexao;
+    AQry.SQL.Clear;
+    AQry.SQL.Add('select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela));
+    AQry.SQL.Add('Where');
+    Separador := '';
+    for Campo in ACamposChave do
     begin
-      Database := FConexao;
-      sql.Clear;
-      sql.Add('select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela));
-      sql.Add('Where');
-      Separador := '';
+      AQry.SQL.Add(Separador + Campo + '= :' + Campo);
+      Separador := ' and ';
+    end;
+    Contexto := TRttiContext.Create;
+    try
+      TipoRtti := Contexto.GetType(ATabela.ClassType);
       for Campo in ACamposChave do
       begin
-        sql.Add(Separador + Campo + '= :' + Campo);
-        Separador := ' and ';
+        // setando os parâmetros
+        for PropRtti in TipoRtti.GetProperties do
+          if CompareText(PropRtti.Name, Campo) = 0 then
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, AQry, FParams);
       end;
-
-      Contexto := TRttiContext.Create;
-      try
-        TipoRtti := Contexto.GetType(ATabela.ClassType);
-
-        for Campo in ACamposChave do
-        begin
-          // setando os parâmetros
-          for PropRtti in TipoRtti.GetProperties do
-            if CompareText(PropRtti.Name, Campo) = 0 then
-              TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, AQry, FParams);
-        end;
-
-        Open;
-
-        NumMax := Fields[0].AsInteger;
-
-        Result := NumMax;
-      finally
-        Contexto.Free;
-      end;
+      AQry.Open;
+      Result := AQry.Fields[0].AsInteger;
+    finally
+      Contexto.Free;
     end;
   finally
     AQry.Free;
@@ -627,16 +573,12 @@ var
 begin
   AQry := TIBQuery.Create(nil);
   try
-    with AQry do
-    begin
-      Database := FConexao;
-      sql.Clear;
-      sql.Add('select count(*) from ' + ATabela);
-      if AWhere <> '' then
-        sql.Add('where ' + AWhere);
-      Open;
-    end;
-
+    AQry.Database := FConexao;
+    AQry.SQL.Clear;
+    AQry.SQL.Add('select count(*) from ' + ATabela);
+    if AWhere <> '' then
+      AQry.SQL.Add('where ' + AWhere);
+    AQry.Open;
     Result := AQry.Fields[0].AsInteger;
   finally
     AQry.Free;
@@ -654,36 +596,26 @@ var
 begin
   AQry := TIBQuery.Create(nil);
   try
-    with AQry do
-    begin
-      Contexto := TRttiContext.Create;
-      try
-        TipoRtti := Contexto.GetType(ATabela.ClassType);
-        Database := FConexao;
-
-        sql.Clear;
-
-        sql.Add('select count(*) from ' + TAtributos.Get.PegaNomeTab(ATabela));
-
-        if High(ACamposWhere) >= 0 then
-          sql.Add('where 1=1');
-
-        for Campo in ACamposWhere do
-          sql.Add('and ' + Campo + '=:' + Campo);
-
-        for Campo in ACamposWhere do
-        begin
-          for PropRtti in TipoRtti.GetProperties do
-            if CompareText(PropRtti.Name, Campo) = 0 then
-              TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, AQry, FParams);
-        end;
-
-        Open;
-
-        Result := fields[0].AsInteger;
-      finally
-        Contexto.Free;
+    Contexto := TRttiContext.Create;
+    try
+      TipoRtti := Contexto.GetType(ATabela.ClassType);
+      AQry.Database := FConexao;
+      AQry.SQL.Clear;
+      AQry.SQL.Add('select count(*) from ' + TAtributos.Get.PegaNomeTab(ATabela));
+      if High(ACamposWhere) >= 0 then
+        AQry.SQL.Add('where 1=1');
+      for Campo in ACamposWhere do
+        AQry.SQL.Add('and ' + Campo + '=:' + Campo);
+      for Campo in ACamposWhere do
+      begin
+        for PropRtti in TipoRtti.GetProperties do
+          if CompareText(PropRtti.Name, Campo) = 0 then
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, AQry, FParams);
       end;
+      AQry.Open;
+      Result := AQry.Fields[0].AsInteger;
+    finally
+      Contexto.Free;
     end;
   finally
     AQry.Free;
@@ -692,12 +624,9 @@ end;
 
 function TDaoIBX.ExecutaQuery: Integer;
 begin
-  with FQuery do
-  begin
-    Prepare();
-    ExecSQL;
-    Result := RowsAffected;
-  end;
+  FQuery.Prepare();
+  FQuery.ExecSQL;
+  Result := FQuery.RowsAffected;
 end;
 
 function TDaoIBX.Excluir(ATabela: TTabela): Integer;
@@ -707,11 +636,9 @@ var
   RttiType: TRttiType;
 begin
   FQuery.close;
-  FQuery.sql.Clear;
-  FQuery.sql.Text := FSql.GerarSqlDelete(ATabela);
-
+  FQuery.SQL.Clear;
+  FQuery.SQL.Text := FSql.GerarSqlDelete(ATabela);
   RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
-
   // percorrer todos os campos da chave primária
   for Campo in TAtributos.Get.PegaPks(ATabela) do
   begin
@@ -720,7 +647,6 @@ begin
       if CompareText(PropRtti.Name, Campo) = 0 then
         TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
   end;
-
   Result := ExecutaQuery;
 end;
 
@@ -733,22 +659,17 @@ var
 begin
   if Length(AWhere) = 0 then
     raise Exception.Create('Campos AWhere não selecionados!');
-
   RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
-
   FQuery.close;
-  FQuery.sql.Clear;
-  FQuery.sql.Add('Delete from ' + TAtributos.Get.PegaNomeTab(ATabela));
+  FQuery.SQL.Clear;
+  FQuery.SQL.Add('Delete from ' + TAtributos.Get.PegaNomeTab(ATabela));
   FQuery.SQL.Add('Where');
-
   Sep := '';
-
   for Campo in AWhere do
   begin
     FQuery.SQL.Add(Sep + Campo + '= :' + Campo);
     Sep := ' and ';
   end;
-
   // percorrer todos os campos da chave primária
   for Campo in AWhere do
   begin
@@ -757,7 +678,6 @@ begin
       if CompareText(PropRtti.Name, Campo) = 0 then
         TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
   end;
-
   Result := ExecutaQuery;
 end;
 
@@ -765,20 +685,18 @@ function TDaoIBX.Excluir(ATabela: string; AWhereValue: string): Integer;
 begin
   if Trim(AWhereValue) = '' then
     raise Exception.Create('Campo/Valor para a exclusão não informado');
-
-  FQuery.close;
-  FQuery.sql.Clear;
-  FQuery.sql.Add('Delete from ' + ATabela);
+  FQuery.Close;
+  FQuery.SQL.Clear;
+  FQuery.SQL.Add('Delete from ' + ATabela);
   FQuery.SQL.Add('Where ' + AwhereValue);
-
   Result := ExecutaQuery;
 end;
 
 function TDaoIBX.ExcluirTodos(ATabela: TTabela): Integer;
 begin
-  FQuery.close;
-  FQuery.sql.Clear;
-  FQuery.sql.Text := 'Delete from ' + TAtributos.Get.PegaNomeTab(ATabela);
+  FQuery.Close;
+  FQuery.SQL.Clear;
+  FQuery.SQL.Text := 'Delete from ' + TAtributos.Get.PegaNomeTab(ATabela);
   Result := ExecutaQuery;
 end;
 
@@ -799,26 +717,20 @@ begin
   try
     Atributos.ValidaTabela(ATabela, ACampos, AFlag);
     RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
-
-    with FQuery do
+    FQuery.Close;
+    FQuery.SQL.Clear;
+    FQuery.SQL.Text := FSql.GerarSqlInsert(ATabela, RttiType, ACampos, AFlag);
+    for PropRtti in RttiType.GetProperties do
     begin
-      close;
-      sql.Clear;
-      sql.Text := FSql.GerarSqlInsert(ATabela, RttiType, ACampos, AFlag);
-      // valor dos parâmetros
-      for PropRtti in RttiType.GetProperties do
-      begin
-        if (Length(ACampos) > 0) then
-          if not (Atributos.LocalizaCampo(PropRtti.Name, Atributos.PegaPks(ATabela))) then
-          begin
-            if ((AFlag=fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
-              ((AFlag=fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-              Continue;
-          end;
-
-        Campo := PropRtti.Name;
-        TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
-      end;
+      if (Length(ACampos) > 0) then
+        if not (Atributos.LocalizaCampo(PropRtti.Name, Atributos.PegaPks(ATabela))) then
+        begin
+          if ((AFlag=fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
+            ((AFlag=fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
+            Continue;
+        end;
+      Campo := PropRtti.Name;
+      TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, FQuery, FParams);
     end;
     Result := ExecutaQuery;
   except
@@ -842,24 +754,20 @@ begin
   try
     Atributos.ValidaTabela(ATabela, ACampos, AFlag);
     RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
-
-    with FQuery do
+    FQuery.Close;
+    FQuery.SQL.Clear;
+    FQuery.SQL.Text := FSql.GerarSqlUpdate(ATabela, RttiType, ACampos, AFlag);
+    // valor dos parâmetros
+    for PropRtti in RttiType.GetProperties do
     begin
-      close;
-      sql.Clear;
-      sql.Text := FSql.GerarSqlUpdate(ATabela, RttiType, ACampos, AFlag);
-      // valor dos parâmetros
-      for PropRtti in RttiType.GetProperties do
+      if (Length(ACampos) > 0) and not (Atributos.LocalizaCampo(
+        PropRtti.Name, Atributos.PegaPks(ATabela))) then
       begin
-        if (Length(ACampos) > 0) and not (Atributos.LocalizaCampo(
-          PropRtti.Name, Atributos.PegaPks(ATabela))) then
-        begin
-          if ((AFlag=fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
-            ((AFlag=fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
-            Continue;
-        end;
-        TAtributos.Get.ConfiguraParametro(PropRtti, PropRtti.Name, ATabela, FQuery, FParams);
+        if ((AFlag=fcAdd) and (not Atributos.LocalizaCampo(PropRtti.Name, ACampos))) or
+          ((AFlag=fcIgnore) and (Atributos.LocalizaCampo(PropRtti.Name, ACampos))) then
+          Continue;
       end;
+      TAtributos.Get.ConfiguraParametro(PropRtti, PropRtti.Name, ATabela, FQuery, FParams);
     end;
     Result := ExecutaQuery;
   except
@@ -877,29 +785,25 @@ begin
   Dados := TIBQuery.Create(nil);
   try
     RttiType := TRttiContext.Create.GetType(ATabela.ClassType);
-    with Dados do
+    FQuery.Database := FConexao;
+    FQuery.SQL.Text := FSql.GerarSqlSelect(ATabela);
+    for Campo in TAtributos.Get.PegaPks(ATabela) do
     begin
-      Database := FConexao;
-      sql.Text := FSql.GerarSqlSelect(ATabela);
-
-      for Campo in TAtributos.Get.PegaPks(ATabela) do
-      begin
-        // setando os parâmetros
-        for PropRtti in RttiType.GetProperties do
-          if CompareText(PropRtti.Name, Campo) = 0 then
-          begin
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
-          end;
-      end;
-      Open;
-      Result := RecordCount;
-      if Result > 0 then
-      begin
-        for PropRtti in RttiType.GetProperties do
+      // setando os parâmetros
+      for PropRtti in RttiType.GetProperties do
+        if CompareText(PropRtti.Name, Campo) = 0 then
         begin
-          Campo := PropRtti.Name;
-          TAtributos.Get.SetarDadosTabela(PropRtti, Campo, ATabela, Dados, FParams);
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Dados, FParams);
         end;
+    end;
+    FQuery.Open;
+    Result := FQuery.RecordCount;
+    if Result > 0 then
+    begin
+      for PropRtti in RttiType.GetProperties do
+      begin
+        Campo := PropRtti.Name;
+        TAtributos.Get.SetarDadosTabela(PropRtti, Campo, ATabela, Dados, FParams);
       end;
     end;
   finally

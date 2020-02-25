@@ -4,5 +4,8 @@
     <property name="$defaultDiagram" value="true" />
     <property name="$metaclass" value="Package Diagram" />
     <property name="$name" value="default" />
+    <reference referencedUin="delphi:e_class:src:TesteOrmBasico:TesteOrmBasico.@unitclass">
+      <property name="$shortcutReference" value="true" />
+    </reference>
   </view>
 </nodeSet>

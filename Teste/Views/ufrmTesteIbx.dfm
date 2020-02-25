@@ -1,7 +1,7 @@
-object Form1: TForm1
+object frmTesteIbx: TfrmTesteIbx
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'frmTesteIbx'
   ClientHeight = 243
   ClientWidth = 527
   Color = clBtnFace

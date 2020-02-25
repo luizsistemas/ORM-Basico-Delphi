@@ -302,7 +302,8 @@ begin
     ATab.ID := 1;
     dmPrin.Dao.Buscar(ATab);
 
-    dmPrin.Dao.Limpar(ATab);
+    ATab.Limpar;
+
     CarregaMemo(ATab);
   finally
     ATab.Free;

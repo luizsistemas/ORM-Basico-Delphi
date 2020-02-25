@@ -4,7 +4,7 @@
     <property name="$defaultDiagram" value="true" />
     <property name="$metaclass" value="Package Diagram" />
     <property name="$name" value="default" />
-    <reference referencedUin="design:view:::paiwa8x8hts_v">
+    <reference referencedUin="uml:package:TesteOrmBasico:src:PrsDaoFireDac">
       <property name="$shortcutReference" value="true" />
       <property name="bounds" value="900,160,140,166" />
       <property name="location_set_by_user" value="True" />
@@ -34,6 +34,7 @@
       <property name="bounds" value="308,1,127,151" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteIbx.@unitclass" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteIbx.TForm1" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteIbx.TfrmTesteIbx" />
     </reference>
     <reference referencedUin="design:view:::i59vcqu1bki_v">
       <property name="$shortcutReference" value="true" />
@@ -43,7 +44,7 @@
     </reference>
     <reference referencedUin="design:view:::g4z82r42ryq_v">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="660,200,122,258" />
+      <property name="bounds" value="660,200,100,102" />
       <property name="location_set_by_user" value="True" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.AttPK" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsAtributos.@unitclass" />
@@ -57,7 +58,7 @@
     </reference>
     <reference referencedUin="design:view:::q0g610dc1no_v">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="460,280,108,275" />
+      <property name="bounds" value="460,280,100,102" />
       <property name="location_set_by_user" value="True" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TTabela" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:PrsBase.TFlagCampos" />
@@ -75,6 +76,21 @@
       <property name="bounds" value="473,1,160,151" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteAtributos.@unitclass" />
       <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmTesteAtributos.TfrmTesteAtributos" />
+    </reference>
+    <reference referencedUin="design:view:::3dar1p04pvb7i09me_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,100,119" />
+      <reference referencedUin="design:view:::80jl406w1ybghsaio_v" />
+    </reference>
+    <reference referencedUin="design:view:::71k67zst5yl_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="308,341,100,102" />
+    </reference>
+    <reference referencedUin="design:view:::jamh7zqfhwbgddqyf_v">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="169,360,130,151" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmCadFunc.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:TesteOrmBasico:ufrmCadFunc.TfrmCadFunc" />
     </reference>
   </view>
 </nodeSet>
