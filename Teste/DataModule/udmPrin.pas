@@ -9,12 +9,12 @@ uses
   FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
   FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.Comp.Client, Data.DB,
   FireDAC.Phys.IBBase, FireDAC.VCLUI.Wait, IBX.IBDatabase, IBX.IBSQL,
-  Lca.Orm.Comp.IBX;
+  Lca.Orm.Comp.IBX, FireDAC.ConsoleUI.Wait;
 
 type
   TdmPrin = class(TDataModule)
     FDConnection1: TFDConnection;
-    ttt: TFDTransaction;
+    Comandos: TFDTransaction;
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
     IBDatabase1: TIBDatabase;
     tnormal: TIBTransaction;
@@ -34,19 +34,25 @@ var
 
 implementation
 
+uses
+  Vcl.Forms;
+
 {%CLASSGROUP 'System.Classes.TPersistent'}
 
 {$R *.dfm}
 
 procedure TdmPrin.DataModuleCreate(Sender: TObject);
+var
+  Path: string;
 begin
+  Path := ExpandFileName(ExtractFileDir(Application.ExeName) + '\..\..\');
   FDConnection1.Connected := False;
-  FDConnection1.Params.Database := 'F:\Delphi10\Projetos\Persistencia\Teste\Bd\BANCOTESTE.FDB';
+  FDConnection1.Params.Database := Path + '\Bd\BANCOTESTE.FDB';
   FDConnection1.Params.UserName := 'SYSDBA';
   FDConnection1.Params.Password := '02025626';
   TFDPhysFBConnectionDefParams(FDConnection1.Params).Server := 'localhost';
   FDConnection1.Connected := True;
-  Dao := TDaoFiredac.Create(FDConnection1, ttt);
+  Dao := TDaoFiredac.Create(FDConnection1, Comandos);
 end;
 
 procedure TdmPrin.DataModuleDestroy(Sender: TObject);

@@ -38,7 +38,7 @@ unit Lca.Orm.Atributos;
 interface
 
 uses
-  Lca.Orm.Base, Rtti, System.Classes;
+  Lca.Orm.Base, Rtti, System.Classes, Data.DB;
 
 type
   AttTabela = class(TCustomAttribute)
@@ -49,11 +49,22 @@ type
     property Nome: string read FNome write FNome;
   end;
 
-  // Atributos de Chave Primaria e Relacionamentos
   AttPK = class(TCustomAttribute)
   end;
 
-  // Atributos de Validação
+  AttFk = class(TCustomAttribute)
+  private
+    FCampoFk,
+    FTabela,
+    FPk: string;
+    FTipo: TTypeKind;
+  public
+    constructor Create(CampoFk, Tabela, Pk: string; Tipo: TTypeKind = tkInteger);
+    property CampoFk: string read FCampoFk;
+    property Tabela: string read FTabela;
+    property Pk: string read FPk;
+  end;
+
   AttBaseValidacao = class(TCustomAttribute)
   private
     FMensagemErro: string;
@@ -64,7 +75,6 @@ type
 
   AttNotNull = class(AttBaseValidacao)
   public
-    Field1: Integer;
     constructor Create(const ANomeCampo: string);
     function ValidarString(Value: string): Boolean;
     function ValidarInteger(Value: Integer): Boolean;
@@ -88,12 +98,13 @@ type
     function Validar(Value: Double): Boolean;
   end;
 
-  // Comandos de atributos
   IAtributos = interface
     ['{26CCA2DF-174A-48BE-A48D-7758294159A6}']
     function PropExiste(ACampo: string; Prop: TRttiProperty;
       RttiType: TRttiType): Boolean;
 
+    function GetAtribFK(PropRtti: TRttiProperty): AttFk;
+
     function PegaNomeTab(ATabela: TTabela): string;
     function PegaPks(ATabela: TTabela): TCamposArray;
     function LocalizaCampo(ACampo: string; ACampos: array of string): Boolean;
@@ -101,19 +112,22 @@ type
     procedure ValidaTabela(ATabela: TTabela; ACampos: array of string;
       AFlag: TFlagCampos = fcAdd);
 
-    procedure SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+    procedure SetarPropriedade(AObj: TDataSet; AProp: string; AValor: Variant);
     procedure SetarDadosTabela(AProp: TRttiProperty; ACampo: string;
-      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+      ATabela: TTabela; AQry: TDataSet; AParams: IQueryParams);
 
     procedure ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
-      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+      ATabela: TTabela; AQry: TDataSet; AParams: IQueryParams);
 
     procedure LimparCampos(ATabela: TTabela);
   end;
 
   TAtributos = class(TInterfacedObject, IAtributos)
+  private
   public
     class function Get: IAtributos;
+
+    function GetAtribFK(PropRtti: TRttiProperty): AttFk;
 
     function PropExiste(ACampo: string; Prop: TRttiProperty;
       RttiType: TRttiType): Boolean;
@@ -125,16 +139,15 @@ type
     procedure ValidaTabela(ATabela: TTabela; ACampos: array of string;
       AFlag: TFlagCampos = fcAdd);
 
-    procedure SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+    procedure SetarPropriedade(AObj: TDataSet; AProp: string; AValor: Variant);
     procedure SetarDadosTabela(AProp: TRttiProperty; ACampo: string;
-      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+      ATabela: TTabela; AQry: TDataSet; AParams: IQueryParams);
 
     procedure ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
-      ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+      ATabela: TTabela; AQry: TDataSet; AParams: IQueryParams);
 
     procedure LimparCampos(ATabela: TTabela);
   end;
-
 
 implementation
 
@@ -144,7 +157,7 @@ uses
 { DaoBase }
 
 procedure TAtributos.ConfiguraParametro(AProp: TRttiProperty; ACampo: string;
-  ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+  ATabela: TTabela; AQry: TDataSet; AParams: IQueryParams);
 begin
   case AProp.PropertyType.TypeKind of
     tkInt64, tkInteger:  AParams.SetParamInteger(AProp, ACampo, ATabela, AQry);
@@ -191,17 +204,23 @@ begin
        case PropRtti.PropertyType.TypeKind of
          tkFloat,
          tkInteger: PropRtti.SetValue(ATabela, 0);
+         tkClass:
+           begin
+             if not (PropRtti.GetValue(ATabela).AsObject is TTabela)  then
+               Continue;
+             LimparCampos((PropRtti.GetValue(ATabela).AsObject as TTabela));
+           end
        else
          PropRtti.SetValue(ATabela, '');
        end;
     end;
   finally
-    Contexto.free;
+    Contexto.Free;
   end;
 end;
 
 procedure TAtributos.SetarDadosTabela(AProp: TRttiProperty; ACampo: string;
-  ATabela: TTabela; AQry: TObject; AParams: IQueryParams);
+  ATabela: TTabela; AQry: TDataSet; AParams: IQueryParams);
 begin
   case AProp.PropertyType.TypeKind of
     tkInt64, tkInteger:
@@ -225,8 +244,7 @@ begin
   end;
 end;
 
-
-procedure TAtributos.SetarPropriedade(AObj: TObject; AProp: string; AValor: Variant);
+procedure TAtributos.SetarPropriedade(AObj: TDataSet; AProp: string; AValor: Variant);
 var
   Contexto: TRttiContext;
   TipoRtti: TRttiType;
@@ -243,7 +261,7 @@ begin
       end;
     end;
   finally
-    Contexto.free;
+    Contexto.Free;
   end;
 end;
 
@@ -263,8 +281,21 @@ begin
         Break;
       end;
   finally
-    Contexto.free;
+    Contexto.Free;
   end;
+end;
+
+function TAtributos.GetAtribFK(PropRtti: TRttiProperty): AttFk;
+var
+  AtribRtti: TCustomAttribute;
+begin
+  Result := nil;
+  for AtribRtti in PropRtti.GetAttributes do
+    if AtribRtti Is AttFk then
+    begin
+      Result := AtribRtti as AttFk;
+      Break;
+    end;
 end;
 
 function TAtributos.LocalizaCampo(ACampo: string; ACampos: array of string): Boolean;
@@ -329,34 +360,37 @@ begin
             end;
             if AtribRtti is AttNotNull then
             begin
-              case PropRtti.PropertyType.TypeKind of
-                tkFloat:
-                  begin
-                    if CompareText(PropRtti.PropertyType.Name, 'TDateTime') = 0
-                    then
+              if not (PropRtti.PropertyType.TypeKind = tkClass) then
+              begin
+                case PropRtti.PropertyType.TypeKind of
+                  tkFloat:
+                    begin
+                      if CompareText(PropRtti.PropertyType.Name, 'TDateTime') = 0
+                      then
+                      begin
+                        if not AttNotNull(AtribRtti)
+                          .ValidarData(PropRtti.GetValue(ATabela).AsExtended) then
+                          ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
+                      end
+                      else
+                      begin
+                        if not AttNotNull(AtribRtti)
+                          .ValidarFloat(PropRtti.GetValue(ATabela).AsExtended) then
+                          ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
+                      end;
+                    end;
+                  tkInteger:
                     begin
                       if not AttNotNull(AtribRtti)
-                        .ValidarData(PropRtti.GetValue(ATabela).AsExtended) then
-                        ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
-                    end
-                    else
-                    begin
-                      if not AttNotNull(AtribRtti)
-                        .ValidarFloat(PropRtti.GetValue(ATabela).AsExtended) then
+                        .ValidarInteger(PropRtti.GetValue(ATabela).AsInteger) then
                         ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
                     end;
-                  end;
-                tkInteger:
+                else
                   begin
                     if not AttNotNull(AtribRtti)
-                      .ValidarInteger(PropRtti.GetValue(ATabela).AsInteger) then
+                      .ValidarString(PropRtti.GetValue(ATabela).AsString) then
                       ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
                   end;
-              else
-                begin
-                  if not AttNotNull(AtribRtti)
-                    .ValidarString(PropRtti.GetValue(ATabela).AsString) then
-                    ListaErros.Add(AttBaseValidacao(AtribRtti).MessagemErro);
                 end;
               end;
             end;
@@ -365,7 +399,6 @@ begin
       finally
         Contexto.Free;
       end;
-
       if ListaErros.Count > 0 then
         raise Exception.Create(PChar(ListaErros.Text));
     finally
@@ -464,6 +497,16 @@ end;
 function AttNotNull.ValidarData(Value: Double): Boolean;
 begin
   Result := not(Value = 0);
+end;
+
+{ AttFk }
+
+constructor AttFk.Create(CampoFk, Tabela, Pk: string; Tipo: TTypeKind);
+begin
+  FCampoFk := CampoFk;
+  FTabela := Tabela;
+  FPk := Pk;
+  FTipo := Tipo;
 end;
 
 end.

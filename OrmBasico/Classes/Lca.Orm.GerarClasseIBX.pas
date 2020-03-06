@@ -11,9 +11,7 @@ type
     FDao: TDaoIBX;
   protected
     function GetCamposPK: string; override;
-
     procedure GerarFieldsProperties; override;
-
   public
     constructor Create(AClasseBanco: IBaseGerarClasseBanco; ADao: TDaoIBX);
   end;
@@ -26,7 +24,6 @@ constructor TGerarClasseIBX.Create(AClasseBanco: IBaseGerarClasseBanco;
   ADao: TDaoIBX);
 begin
   inherited Create(AClasseBanco);
-
   FDao := ADao;
 end;
 
@@ -35,11 +32,8 @@ var
   Ds: TDataSet;
 begin
   inherited;
-
   Ds :=  FDao.ConsultaSql(GerarClasseBanco.GetSQLCamposTabela(FTabela));
-
   GerarClasseBanco.GerarFields(Ds, Resultado);
-
   GerarClasseBanco.GerarProperties(Ds, Resultado, GetCamposPK);
 end;
 
@@ -48,15 +42,12 @@ var
   Sep: string;
 begin
   Sep := '';
-
   with FDao.ConsultaSql(GerarClasseBanco.GetSQLCamposPK(FTabela)) do
     while not Eof do
     begin
       if Result <> '' then
         Sep := ',';
-
       Result := Result + Sep + Trim(FieldByName('CAMPO').AsString);
-
       Next;
     end;
 end;

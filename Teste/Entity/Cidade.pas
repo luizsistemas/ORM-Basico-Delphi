@@ -8,56 +8,24 @@ type
   [AttTabela('Cidade')]
   TCidade = class (TTabela)
   private
-    FIBGE: integer;
-    FUF: string;
-    FID: Integer;
+    FIbge: Integer;
+    FUf: string;
+    FId: Integer;
     FNome: string;
     FDataCad: TDateTime;
-    procedure SetIBGE(const Value: integer);
-    procedure SetID(const Value: Integer);
-    procedure SetNome(const Value: string);
-    procedure SetUF(const Value: string);
-    procedure SetDataCad(const Value: TDateTime);
   public
     [AttPK]
     [AttNotNull('Código da cidade')]
-    property ID: Integer read FID write SetID;
+    property Id: Integer read FId write FId;
     [AttNotNull('Nome da cidade')]
-    property Nome: string read FNome write SetNome;
+    property Nome: string read FNome write FNome;
     [AttNotNull('UF')]
-    property UF: string read FUF write SetUF;
+    property Uf: string read FUf write FUf;
     [AttNotNull('Código IBGE')]
-    property IBGE: integer read FIBGE write SetIBGE;
-    property DataCad: TDateTime read FDataCad write SetDataCad;
+    property Ibge: Integer read FIbge write FIbge;
+    property DataCad: TDateTime read FDataCad write FDataCad;
   end;
 
 implementation
-
-{ TCidade }
-
-procedure TCidade.SetDataCad(const Value: TDateTime);
-begin
-  FDataCad := Value;
-end;
-
-procedure TCidade.SetIBGE(const Value: integer);
-begin
-  FIBGE := Value;
-end;
-
-procedure TCidade.SetID(const Value: Integer);
-begin
-  FID := Value;
-end;
-
-procedure TCidade.SetNome(const Value: string);
-begin
-  FNome := Value;
-end;
-
-procedure TCidade.SetUF(const Value: string);
-begin
-  FUF := Value;
-end;
 
 end.

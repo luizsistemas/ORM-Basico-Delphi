@@ -2,45 +2,25 @@ unit Cliente;
 
 interface
 
-uses Lca.Orm.Base, Lca.Orm.Atributos, Cidade;
+uses Lca.Orm.Base, Lca.Orm.Atributos;
 
 type
   [AttTabela('Cliente')]
   TCliente = class(TTabela)
   private
-    FID: Integer;
-    FNOME: string;
-    FCIDADEID: Integer;
-    procedure SetID(const Value: Integer);
-    procedure SetNOME(const Value: string);
-    procedure SetCIDADEID(const Value: Integer);
+    FId: Integer;
+    FNome: string;
+    FCidadeid: Integer;
   public
     [AttPk]
     [AttNotNull('Código do cliente')]
-    property ID : Integer read FID write SetID;
-    [AttNotNull('Nome do Cliente')]
-    property NOME : string read FNOME write SetNOME;
-    [AttNotNull('Código da Cidade')]
-    property CIDADEID: Integer read FCIDADEID write SetCIDADEID;
+    property Id : Integer read FId write FId;
+    [AttNotNull('Nome do cliente')]
+    property Nome : string read FNome write FNome;
+    [AttNotNull('Código da cidade')]
+    property CidadeId: Integer read FCidadeid write FCidadeid;
   end;
 
 implementation
-
-{ TCliente }
-
-procedure TCliente.SetCIDADEID(const Value: Integer);
-begin
-  FCIDADEID := Value;
-end;
-
-procedure TCliente.SetID(const Value: Integer);
-begin
-  FID := Value;
-end;
-
-procedure TCliente.SetNOME(const Value: string);
-begin
-  FNOME := Value;
-end;
 
 end.

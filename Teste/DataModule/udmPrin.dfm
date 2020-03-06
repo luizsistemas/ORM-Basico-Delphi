@@ -7,8 +7,8 @@ object dmPrin: TdmPrin
   object FDConnection1: TFDConnection
     Params.Strings = (
       
-        'Database=F:\Delphi10\Projetos\Persistencia\Teste\Bd\BANCOTESTE.F' +
-        'DB'
+        'Database=D:\Projetos10\BlogProjetos\Persistencia\Teste\Bd\BANCOT' +
+        'ESTE.FDB'
       'User_Name=sysdba'
       'Password=02025626'
       'DriverID=FB')
@@ -16,12 +16,13 @@ object dmPrin: TdmPrin
     Left = 40
     Top = 56
   end
-  object ttt: TFDTransaction
+  object Comandos: TFDTransaction
     Connection = FDConnection1
     Left = 48
     Top = 120
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    VendorLib = 'C:\Program Files (x86)\Firebird\Firebird_2_5\bin\fbclient.dll'
     Left = 184
     Top = 88
   end

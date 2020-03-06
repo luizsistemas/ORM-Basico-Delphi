@@ -2,7 +2,7 @@ object frmTesteAtributos: TfrmTesteAtributos
   Left = 0
   Top = 0
   Caption = 'Teste Atributos'
-  ClientHeight = 386
+  ClientHeight = 307
   ClientWidth = 746
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object frmTesteAtributos: TfrmTesteAtributos
     Left = 0
     Top = 0
     Width = 353
-    Height = 386
+    Height = 307
     Align = alLeft
     ScrollBars = ssVertical
     TabOrder = 0
@@ -27,7 +27,7 @@ object frmTesteAtributos: TfrmTesteAtributos
     Left = 353
     Top = 0
     Width = 393
-    Height = 386
+    Height = 307
     Align = alClient
     TabOrder = 1
     object btnExcluir: TButton
@@ -35,7 +35,7 @@ object frmTesteAtributos: TfrmTesteAtributos
       Top = 93
       Width = 183
       Height = 25
-      Caption = 'D - Excluir cod. 1'
+      Caption = 'D - Excluir c'#243'digo 1'
       TabOrder = 4
       TabStop = False
       OnClick = btnExcluirClick
@@ -45,7 +45,7 @@ object frmTesteAtributos: TfrmTesteAtributos
       Top = 6
       Width = 183
       Height = 25
-      Caption = 'C - Inserir cod. 1'
+      Caption = 'C - Inserir c'#243'digo 1'
       TabOrder = 0
       TabStop = False
       OnClick = btnInserirClick
@@ -55,7 +55,7 @@ object frmTesteAtributos: TfrmTesteAtributos
       Top = 64
       Width = 183
       Height = 25
-      Caption = 'U - Salvar cod. 1'
+      Caption = 'U - Salvar c'#243'digo 1'
       TabOrder = 2
       TabStop = False
       OnClick = btnSalvarClick
@@ -65,7 +65,7 @@ object frmTesteAtributos: TfrmTesteAtributos
       Top = 35
       Width = 183
       Height = 25
-      Caption = 'R - Buscar cod. 1'
+      Caption = 'R - Buscar c'#243'digo 1'
       TabOrder = 1
       TabStop = False
       OnClick = btnBuscarClick
@@ -165,7 +165,7 @@ object frmTesteAtributos: TfrmTesteAtributos
       Top = 6
       Width = 183
       Height = 25
-      Caption = 'Limpar Tabela'
+      Caption = 'Limpar Objeto Tabela'
       TabOrder = 13
       TabStop = False
       OnClick = btnLimparClick
