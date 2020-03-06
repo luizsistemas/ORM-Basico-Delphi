@@ -1,6 +1,6 @@
-#Que tal um ORM Básico?
+# Que tal um ORM Básico?
 
-Fontes do projeto criado na série "*Que tal um ORM Básico?*" no blog www.luizsistemas.com.br
+Fontes do projeto criado na série "_Que tal um ORM Básico?_" no blog www.luizsistemas.com.br
 
 Autor: Luiz Carlos
 
