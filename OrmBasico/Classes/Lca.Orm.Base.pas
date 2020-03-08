@@ -52,7 +52,7 @@ type
   IQuery = interface
     ['{52E7E2A0-C3E7-41FC-86B1-50A50220C474}']
     function Sql: TStrings;
-    function Dataset: TDataset;
+    function DataSet: TDataSet;
     function RowsAffected: Integer;
     function RecordCount: Integer;
     procedure Executar;
