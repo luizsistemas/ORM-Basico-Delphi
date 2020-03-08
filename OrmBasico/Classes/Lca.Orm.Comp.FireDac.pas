@@ -241,13 +241,13 @@ begin
       begin
         if CompareText(PropRtti.Name, Campo) = 0 then
         begin
-          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.Dataset, FParams);
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.DataSet, FParams);
           Break;
         end;
       end;
     end;
     Query.Abrir;
-    while not Query.Dataset.Eof do
+    while not Query.DataSet.Eof do
     begin
       Objeto := TObjectFactory<T>.Get.CriarInstancia;
       TipoRtti := Contexto.GetType(ATabela.ClassType);
@@ -255,12 +255,12 @@ begin
       begin
         AtribFk := TAtributos.Get.GetAtribFk(PropRtti);
         if Assigned(AtribFk) then
-          BuscarRelacionamento(Objeto.AsType<T>, PropRtti, AtribFk, Query.Dataset)
+          BuscarRelacionamento(Objeto.AsType<T>, PropRtti, AtribFk, Query.DataSet)
         else
-          SetarDadosFromDataset(Query.Dataset, PropRtti, Objeto.AsType<T>, PropRtti.Name);
+          SetarDadosFromDataSet(Query.DataSet, PropRtti, Objeto.AsType<T>, PropRtti.Name);
       end;
       Result.Add(Objeto.AsType<T>);
-      Query.Dataset.Next;
+      Query.DataSet.Next;
     end;
   finally
     Contexto.Free;
@@ -287,13 +287,13 @@ var
 begin
   Result := TQueryFD.Create(FConexao, nil);
   Result.Sql.Text := ASql;
-  if (Length(ParamList) > 0) and (TFDQuery(Result.Dataset).Params.Count > 0) then
-    for I := 0 to TFDQuery(Result.Dataset).Params.Count - 1 do
+  if (Length(ParamList) > 0) and (TFDQuery(Result.DataSet).Params.Count > 0) then
+    for I := 0 to TFDQuery(Result.DataSet).Params.Count - 1 do
       if (I < Length(ParamList)) then
         if VarIsType(ParamList[I], varDate) then
-          TFDQuery(Result.Dataset).Params[I].AsDateTime := VarToDateTime(ParamList[I])
+          TFDQuery(Result.DataSet).Params[I].AsDateTime := VarToDateTime(ParamList[I])
         else
-          TFDQuery(Result.Dataset).Params[I].Value := ParamList[I];
+          TFDQuery(Result.DataSet).Params[I].Value := ParamList[I];
   Result.Abrir;
 end;
 
@@ -339,7 +339,7 @@ begin
       begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.DataSet, FParams);
       end;
     end;
     Result.Abrir;
@@ -366,7 +366,7 @@ begin
       begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.DataSet, FParams);
       end;
     end;
     Result.Abrir;
@@ -394,7 +394,7 @@ begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
           begin
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.DataSet, FParams);
             Break;
           end;
       end;
@@ -412,7 +412,7 @@ begin
   Query := TQueryFD.Create(FConexao, nil);
   Query.Sql.Text := 'select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela);
   Query.Abrir;
-  Result := Query.Dataset.Fields[0].AsInteger + 1;
+  Result := Query.DataSet.Fields[0].AsInteger + 1;
 end;
 
 function TDaoFireDac.GetID(NomeTabela: string; ACampo: string): Integer;
@@ -422,7 +422,7 @@ begin
   Query := TQueryFD.Create(FConexao, nil);
   Query.Sql.Add('select max(' + ACampo + ') from ' + NomeTabela);
   Query.Abrir;
-  Result := Query.Dataset.Fields[0].AsInteger + 1;
+  Result := Query.DataSet.Fields[0].AsInteger + 1;
 end;
 
 function TDaoFireDac.GetID(Generator: string): Integer;
@@ -432,7 +432,7 @@ begin
   Query := TQueryFD.Create(FConexao, nil);
   Query.Sql.Text := 'SELECT * FROM SP_GERADOR(' + quotedstr(Generator) + ')';
   Query.Abrir;
-  Result := Query.Dataset.Fields[0].AsInteger;
+  Result := Query.DataSet.Fields[0].AsInteger;
 end;
 
 function TDaoFireDac.GetMax(ATabela: TTabela; ACampo: string; ACamposChave: array of string): Integer;
@@ -460,10 +460,10 @@ begin
     begin
       for PropRtti in TipoRtti.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
-          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.Dataset, FParams);
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.DataSet, FParams);
     end;
     Query.Abrir;
-    Result := Query.Dataset.Fields[0].AsInteger;
+    Result := Query.DataSet.Fields[0].AsInteger;
   finally
     Contexto.Free;
   end;
@@ -478,7 +478,7 @@ begin
   if AWhere <> '' then
     Query.Sql.Add('where ' + AWhere);
   Query.Abrir;
-  Result := Query.Dataset.Fields[0].AsInteger;
+  Result := Query.DataSet.Fields[0].AsInteger;
 end;
 
 function TDaoFireDac.GetRecordCount(ATabela: TTabela; ACamposWhere: array of string): Integer;
@@ -502,10 +502,10 @@ begin
     begin
       for PropRtti in TipoRtti.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
-          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.Dataset, FParams);
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.DataSet, FParams);
     end;
     Query.Abrir;
-    Result := Query.Dataset.Fields[0].AsInteger;
+    Result := Query.DataSet.Fields[0].AsInteger;
   finally
     Contexto.Free;
   end;
@@ -528,7 +528,7 @@ begin
     begin
       for PropRtti in RttiType.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
-          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Comando.Dataset, FParams);
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Comando.DataSet, FParams);
     end;
     Comando.Executar;
     Result := Comando.RowsAffected;
@@ -564,7 +564,7 @@ begin
     begin
       for PropRtti in RttiType.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
-          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Comando.Dataset, FParams);
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Comando.DataSet, FParams);
     end;
     Comando.Executar;
     Result := Comando.RowsAffected;
@@ -609,9 +609,9 @@ var
     begin
       for I := 0 to Length(ParamList) - 1 do
         if VarIsType(ParamList[I], varDate) then
-          TFDQuery(Comando.Dataset).Params[I].AsDateTime := VarToDateTime(ParamList[I])
+          TFDQuery(Comando.DataSet).Params[I].AsDateTime := VarToDateTime(ParamList[I])
         else
-          TFDQuery(Comando.Dataset).Params[I].Value := ParamList[I];
+          TFDQuery(Comando.DataSet).Params[I].Value := ParamList[I];
     end;
   end;
 begin
@@ -671,7 +671,7 @@ begin
     begin
       if CompareText(PropRtti.Name, Campo) = 0 then
       begin
-        TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.Dataset, FParams);
+        TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.DataSet, FParams);
         Break;
       end;
     end;
@@ -685,9 +685,9 @@ begin
     begin
       AtribFk := TAtributos.Get.GetAtribFk(PropRtti);
       if Assigned(AtribFk) then
-        BuscarRelacionamento(ATabela, PropRtti, AtribFk, TFDQuery(Query.Dataset))
+        BuscarRelacionamento(ATabela, PropRtti, AtribFk, TFDQuery(Query.DataSet))
       else
-        TAtributos.Get.SetarDadosTabela(PropRtti, PropRtti.Name, ATabela, Query.Dataset, FParams);
+        TAtributos.Get.SetarDadosTabela(PropRtti, PropRtti.Name, ATabela, Query.DataSet, FParams);
     end;
   end;
 end;
@@ -750,9 +750,9 @@ begin
       end;
       AtribFk := TAtributos.Get.GetAtribFk(PropRtti);
       if Assigned(AtribFk) then
-        AtualizarRelacionamento(ATabela, PropRtti, AtribFk, Comando.Dataset)
+        AtualizarRelacionamento(ATabela, PropRtti, AtribFk, Comando.DataSet)
       else
-        TAtributos.Get.ConfiguraParametro(PropRtti, PropRtti.Name, ATabela, Comando.Dataset, FParams);
+        TAtributos.Get.ConfiguraParametro(PropRtti, PropRtti.Name, ATabela, Comando.DataSet, FParams);
     end;
     Comando.Executar;
     Result := Comando.RowsAffected;
@@ -787,9 +787,9 @@ begin
       end;
       AtribFk := TAtributos.Get.GetAtribFk(PropRtti);
       if Assigned(AtribFk) then
-        AtualizarRelacionamento(ATabela, PropRtti, AtribFk, Comando.Dataset)
+        AtualizarRelacionamento(ATabela, PropRtti, AtribFk, Comando.DataSet)
       else
-        TAtributos.Get.ConfiguraParametro(PropRtti, PropRtti.Name, ATabela, Comando.Dataset, FParams);
+        TAtributos.Get.ConfiguraParametro(PropRtti, PropRtti.Name, ATabela, Comando.DataSet, FParams);
     end;
     Comando.Executar;
     Result := Comando.RowsAffected;

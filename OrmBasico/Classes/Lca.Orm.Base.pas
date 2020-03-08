@@ -143,7 +143,7 @@ type
       Relacionamento: TCustomAttribute; AQuery: TDataSet); virtual; abstract;
     procedure AtualizarRelacionamento(ATabela: TTabela; APropRtti: TRttiProperty;
       Relacionamento: TCustomAttribute; AQuery: TDataSet); virtual; abstract;
-    procedure SetarDadosFromDataSet(ADataset: TDataset; PropRtti: TRttiProperty;
+    procedure SetarDadosFromDataSet(ADataSet: TDataSet; PropRtti: TRttiProperty;
       Objeto: TValue; Campo: string);
     function GetOwner(AOwner: TComponent): TComponent;
   public
@@ -416,7 +416,7 @@ begin
     Result := Application;
 end;
 
-procedure TDaoBase.SetarDadosFromDataSet(ADataset: TDataset; PropRtti: TRttiProperty; Objeto: TValue; Campo: string);
+procedure TDaoBase.SetarDadosFromDataSet(ADataSet: TDataSet; PropRtti: TRttiProperty; Objeto: TValue; Campo: string);
 var
   DataType: TFieldType;
 begin
