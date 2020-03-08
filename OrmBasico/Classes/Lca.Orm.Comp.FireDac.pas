@@ -71,7 +71,7 @@ type
     constructor Create(Conexao: TFDConnection; Transacao: TFDTransaction);
     destructor Destroy; override;
     function Sql: TStrings;
-    function Dataset: TDataset;
+    function DataSet: TDataSet;
     function RowsAffected: Integer;
     procedure Executar;
   end;
@@ -825,7 +825,7 @@ begin
   FQuery.Open;
 end;
 
-function TQueryFD.Dataset: TDataset;
+function TQueryFD.DataSet: TDataSet;
 begin
   Result := FQuery;
 end;
