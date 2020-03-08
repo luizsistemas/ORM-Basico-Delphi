@@ -83,27 +83,21 @@ type
   protected
     procedure AtualizarRelacionamento(ATabela: TTabela; APropRtti: TRttiProperty;
       Relacionamento: TCustomAttribute; AQuery: TDataSet); override;
-
     procedure BuscarRelacionamento(ATabela: TTabela; APropRtti: TRttiProperty;
       Relacionamento: TCustomAttribute; AQuery: TDataSet); override;
   public
     constructor Create(Conexao: TFDConnection; Transacao: TFDTransaction);
     function GerarClasse(ATabela, ANomeUnit, ANomeClasse: string): string;
-    function ConsultaAll(ATabela: TTabela; AOwner: TComponent = nil): TDataSet;
-    function ConsultaSql(ASql: string; AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaSql(ASql: string; const ParamList: array of Variant;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaSql(ATabela: string; AWhere: string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
-      AOrdem: array of string; TipoOrdem: Integer = 0;
-      AOwner: TComponent = nil): TDataSet; overload;
+    function ConsultaAll(ATabela: TTabela): IQuery;
+    function ConsultaSql(ASql: string): IQuery; overload;
+    function ConsultaSql(ASql: string; const ParamList: array of Variant): IQuery; overload;
+    function ConsultaSql(ATabela: string; AWhere: string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): IQuery; overload;
     function ConsultaGen<T: TTabela>(ATabela: TTabela; ACamposWhere: array of string): TObjectList<T>;
     function GetID(ATabela: TTabela; ACampo: string): Integer; overload;
+    function GetID(NomeTabela: string; ACampo: string): Integer; overload;
     function GetID(Generator: string): Integer; overload;
     function GetMax(ATabela: TTabela; ACampo: string; ACamposChave: array of string): Integer;
     function GetRecordCount(ATabela: TTabela; ACamposWhere: array of string): Integer; overload;
@@ -273,87 +267,69 @@ begin
   end;
 end;
 
-function TDaoFireDac.ConsultaAll(ATabela: TTabela; AOwner: TComponent): TDataSet;
-var
-  Query: TFDQuery;
+function TDaoFireDac.ConsultaAll(ATabela: TTabela): IQuery;
 begin
-  Query := TFDQuery.Create(GetOwner(AOwner));
-  Query.Connection := FConexao;
-  Query.Sql.Text := 'Select * from ' + TAtributos.Get.PegaNomeTab(ATabela);
-  Query.Open;
-  Result := Query;
+  Result := TQueryFD.Create(FConexao, nil);
+  Result.Sql.Text := 'Select * from ' + TAtributos.Get.PegaNomeTab(ATabela);
+  Result.Abrir;
 end;
 
-function TDaoFireDac.ConsultaSql(ASql: string; AOwner: TComponent): TDataSet;
-var
-  Query: TFDQuery;
+function TDaoFireDac.ConsultaSql(ASql: string): IQuery;
 begin
-  Query := TFDQuery.Create(GetOwner(AOwner));
-  Query.Connection := FConexao;
-  Query.Sql.Text := ASql;
-  Query.Open;
-  Result := Query;
+  Result := TQueryFD.Create(FConexao, nil);
+  Result.Sql.Text := ASql;
+  Result.Abrir
 end;
 
-function TDaoFireDac.ConsultaSql(ASql: string; const ParamList: array of Variant;
-  AOwner: TComponent): TDataSet;
+function TDaoFireDac.ConsultaSql(ASql: string; const ParamList: array of Variant): IQuery;
 var
   I: Integer;
-  Query: TFDQuery;
 begin
-  Query := TFDQuery.Create(GetOwner(AOwner));
-  Query.Connection := FConexao;
-  Query.Sql.Text := ASql;
-  if (Length(ParamList) > 0) and (Query.Params.Count > 0) then
-    for I := 0 to Query.Params.Count - 1 do
+  Result := TQueryFD.Create(FConexao, nil);
+  Result.Sql.Text := ASql;
+  if (Length(ParamList) > 0) and (TFDQuery(Result.Dataset).Params.Count > 0) then
+    for I := 0 to TFDQuery(Result.Dataset).Params.Count - 1 do
       if (I < Length(ParamList)) then
         if VarIsType(ParamList[I], varDate) then
-          TFDQuery(Query).Params[I].AsDateTime := VarToDateTime(ParamList[I])
+          TFDQuery(Result.Dataset).Params[I].AsDateTime := VarToDateTime(ParamList[I])
         else
-          TFDQuery(Query).Params[I].Value := ParamList[I];
-  Query.Open;
-  Result := Query;
+          TFDQuery(Result.Dataset).Params[I].Value := ParamList[I];
+  Result.Abrir;
 end;
 
-function TDaoFireDac.ConsultaSql(ATabela, AWhere: string; AOwner: TComponent): TDataSet;
-var
-  Query: TFDQuery;
+function TDaoFireDac.ConsultaSql(ATabela, AWhere: string): IQuery;
 begin
-  Query := TFDQuery.Create(GetOwner(AOwner));
-  Query.Connection := FConexao;
-  Query.Sql.Text := 'select * from ' + ATabela;
+  Result := TQueryFD.Create(FConexao, nil);
+  Result.Sql.Text := 'select * from ' + ATabela;
   if AWhere <> '' then
-    Query.SQL.Add('where ' + AWhere);
-  Query.Open;
-  Result := Query;
+    Result.SQL.Add('where ' + AWhere);
+  Result.Abrir
 end;
 
 function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
-  AOrdem: array of string; TipoOrdem: Integer; AOwner: TComponent): TDataSet;
+  AOrdem: array of string; TipoOrdem: Integer): IQuery;
 var
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   Separador: string;
-  Query: TFDQuery;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Query := TFDQuery.Create(GetOwner(AOwner));
-    Query.Connection := FConexao;
-    Query.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
+    Result := TQueryFD.Create(FConexao, nil);
+    Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
     if Length(AOrdem) > 0 then
     begin
       Separador := '';
-      Query.Sql.Add('order by');
+      Result.Sql.Add('order by');
       for Campo in AOrdem do
       begin
         if TipoOrdem = 1 then
-          Query.Sql.Add(Separador + Campo + ' Desc')
+          Result.Sql.Add(Separador + Campo + ' Desc')
         else
-          Query.Sql.Add(Separador + Campo);
+          Result.Sql.Add(Separador + Campo);
         Separador := ',';
       end;
     end;
@@ -363,62 +339,54 @@ begin
       begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
       end;
     end;
-    Query.Open;
-    Result := Query;
+    Result.Abrir;
   finally
     Contexto.Free;
   end;
 end;
 
-function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string;
-  AOwner: TComponent): TDataSet;
+function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): IQuery;
 var
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
-  Query: TFDQuery;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Query := TFDQuery.Create(GetOwner(AOwner));
-    Query.Connection := FConexao;
-    Query.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
+    Result := TQueryFD.Create(FConexao, nil);
+    Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
     if Length(ACamposWhere) > 0 then
     begin
       for Campo in ACamposWhere do
       begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
       end;
     end;
-    Query.Open;
-    Result := Query;
+    Result.Abrir;
   finally
     Contexto.Free;
   end;
 end;
 
-function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACamposWhere: array of string;
-  AOwner: TComponent): TDataSet;
+function TDaoFireDac.ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): IQuery;
 var
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
-  Query: TFDQuery;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Query := TFDQuery.Create(GetOwner(AOwner));
-    Query.Connection := FConexao;
-    Query.SQL.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
+    Result := TQueryFD.Create(FConexao, nil);
+    Result.SQL.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
     if Length(ACamposWhere) > 0 then
     begin
       for Campo in ACamposWhere do
@@ -426,13 +394,12 @@ begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
           begin
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
             Break;
           end;
       end;
     end;
-    Query.Open;
-    Result := Query;
+    Result.Abrir;
   finally
     Contexto.Free;
   end;
@@ -444,6 +411,16 @@ var
 begin
   Query := TQueryFD.Create(FConexao, nil);
   Query.Sql.Text := 'select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela);
+  Query.Abrir;
+  Result := Query.Dataset.Fields[0].AsInteger + 1;
+end;
+
+function TDaoFireDac.GetID(NomeTabela: string; ACampo: string): Integer;
+var
+  Query: IQuery;
+begin
+  Query := TQueryFD.Create(FConexao, nil);
+  Query.Sql.Add('select max(' + ACampo + ') from ' + NomeTabela);
   Query.Abrir;
   Result := Query.Dataset.Fields[0].AsInteger + 1;
 end;

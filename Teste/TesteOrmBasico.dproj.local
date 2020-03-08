@@ -89,11 +89,11 @@
     <Transaction>2020/03/01 07:44:11.000.287,D:\Projetos10\BlogProjetos\Persistencia\Teste\Entity\Depto.pas=D:\Projetos10\BlogProjetos\Persistencia\Teste\Unit1.pas</Transaction>
     <Transaction>2020/03/01 07:48:27.000.011,=D:\Projetos10\BlogProjetos\Persistencia\Teste\Unit1.pas</Transaction>
     <Transaction>2020/03/01 07:48:38.000.057,D:\Projetos10\BlogProjetos\Persistencia\Teste\Entity\Funcionario.pas=D:\Projetos10\BlogProjetos\Persistencia\Teste\Unit1.pas</Transaction>
-    <Transaction>2020/03/06 16:42:51.431,D:\Projetos10\BlogProjetos\Persistencia\Teste\Entity\Cliente.pas=D:\Projetos10\BlogProjetos\Persistencia\Teste\Entity\Clientes.pas</Transaction>
-    <Transaction>2020/03/06 18:36:22.813,=D:\Projetos10\BlogProjetos\Persistencia\Teste\Unit1.pas</Transaction>
+    <Transaction>2020/03/06 16:42:51.000.431,D:\Projetos10\BlogProjetos\Persistencia\Teste\Entity\Cliente.pas=D:\Projetos10\BlogProjetos\Persistencia\Teste\Entity\Clientes.pas</Transaction>
+    <Transaction>2020/03/06 18:36:22.000.813,=D:\Projetos10\BlogProjetos\Persistencia\Teste\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
-    <File Path="..\..\Persistencia"/>
+    <File Path="..\..\PersistenciaV2"/>
     <File Path="..\OrmBasico"/>
     <File Path="..\OrmBasico\Classes"/>
     <File Path="..\OrmBasico\Classes\Lca.Orm.Atributos.pas"/>

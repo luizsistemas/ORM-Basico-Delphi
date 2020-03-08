@@ -103,6 +103,7 @@ type
     ['{6E2AFB66-465B-4924-9221-88E283E81EA7}']
     function GerarClasse(ATabela, ANomeUnit: string; ANomeClasse: string = ''): string;
     function GetID(ATabela:TTabela; ACampo: string): Integer; overload;
+    function GetID(NomeTabela: string; ACampo: string): Integer; overload;
     function GetID(Generator: string): Integer; overload;
     function Inserir(ATabela: TTabela): Integer; overload;
     function Inserir(ATabela: TTabela; ACampos: array of string;
@@ -115,19 +116,15 @@ type
     function Excluir(ATabela: string; AWhereValue: string): Integer; overload;
     function ExcluirTodos(ATabela: TTabela): Integer; overload;
     function Buscar(ATabela: TTabela): Integer;
-    function ConsultaAll(ATabela: TTabela; AOwner: TComponent = nil): TDataSet;
-    function ConsultaSql(ASql: string; AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaSql(ASql: string; const ParamList: Array of Variant;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaSql(ATabela: string; AWhere: string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos,
-      ACamposWhere: array of string; AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
-      AOrdem: array of string; TipoOrdem: Integer = 0;
-      AOwner: TComponent = nil): TDataSet; overload;
+
+    function ConsultaAll(ATabela: TTabela): IQuery;
+    function ConsultaSql(ASql: string): IQuery; overload;
+    function ConsultaSql(ASql: string; const ParamList: Array of Variant): IQuery; overload;
+    function ConsultaSql(ATabela: string; AWhere: string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): IQuery; overload;
+
     procedure ExecSQL(ASQL: string; const ParamList: Array of Variant);
     procedure StartTransaction;
     procedure Commit;

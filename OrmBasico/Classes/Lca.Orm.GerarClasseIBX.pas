@@ -32,24 +32,33 @@ var
   Ds: TDataSet;
 begin
   inherited;
-  Ds :=  FDao.ConsultaSql(GerarClasseBanco.GetSQLCamposTabela(FTabela));
-  GerarClasseBanco.GerarFields(Ds, Resultado);
-  GerarClasseBanco.GerarProperties(Ds, Resultado, GetCamposPK);
+  Ds := FDao.ConsultaSql(GerarClasseBanco.GetSQLCamposTabela(FTabela)).Dataset;
+  try
+    GerarClasseBanco.GerarFields(Ds, Resultado);
+    GerarClasseBanco.GerarProperties(Ds, Resultado, GetCamposPK);
+  finally
+    Ds.Free;
+  end;
 end;
 
 function TGerarClasseIBX.GetCamposPK: string;
 var
   Sep: string;
+  Ds: TDataSet;
 begin
   Sep := '';
-  with FDao.ConsultaSql(GerarClasseBanco.GetSQLCamposPK(FTabela)) do
-    while not Eof do
+  Ds := FDao.ConsultaSql(GerarClasseBanco.GetSQLCamposPK(FTabela)).Dataset;
+  try
+    while not Ds.Eof do
     begin
       if Result <> '' then
         Sep := ',';
-      Result := Result + Sep + Trim(FieldByName('CAMPO').AsString);
-      Next;
+      Result := Result + Sep + Trim(Ds.FieldByName('CAMPO').AsString);
+      Ds.Next;
     end;
+  finally
+    Ds.Free;
+  end;
 end;
 
 end.

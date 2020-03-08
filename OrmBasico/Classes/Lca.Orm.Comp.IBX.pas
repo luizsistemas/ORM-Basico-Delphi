@@ -84,20 +84,16 @@ type
   public
     constructor Create(Conexao: TIBDatabase; Transacao: TIBTransaction);
     function GerarClasse(ATabela, ANomeUnit, ANomeClasse: string): string;
-    function ConsultaAll(ATabela: TTabela; AOwner: TComponent = nil): TDataSet;
-    function ConsultaSql(ASql: string; AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaSql(ASql: string; const ParamList: Array of Variant;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaSql(ATabela: string; AWhere: string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string;
-      AOwner: TComponent = nil): TDataSet; overload;
-    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
-      AOrdem: array of string; TipoOrdem: Integer = 0; AOwner: TComponent = nil): TDataSet; overload;
+    function ConsultaAll(ATabela: TTabela): IQuery;
+    function ConsultaSql(ASql: string): IQuery; overload;
+    function ConsultaSql(ASql: string; const ParamList: Array of Variant): IQuery; overload;
+    function ConsultaSql(ATabela: string; AWhere: string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): IQuery; overload;
+    function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): IQuery; overload;
     function ConsultaGen<T: TTabela>(ATabela: TTabela; ACamposWhere: array of string): TObjectList<T>;
     function GetID(ATabela: TTabela; ACampo: string): Integer; overload;
+    function GetID(NomeTabela: string; ACampo: string): Integer; overload;
     function GetID(Generator: string): Integer; overload;
     function GetMax(ATabela: TTabela; ACampo: string;
       ACamposChave: array of string): Integer;
@@ -312,88 +308,69 @@ begin
   end;
 end;
 
-function TDaoIBX.ConsultaAll(ATabela: TTabela; AOwner: TComponent): TDataSet;
-var
-  Query: TIBQuery;
+function TDaoIBX.ConsultaAll(ATabela: TTabela): IQuery;
 begin
-  Query := TIBQuery.Create(GetOwner(AOwner));
-  Query.Database := FConexao;
-  Query.Sql.Text := 'Select * from ' + TAtributos.Get.PegaNomeTab(ATabela);
-  Query.Open;
-  Result := Query;
+  Result := TQueryIBX.Create(FConexao, nil);
+  Result.Sql.Text := 'Select * from ' + TAtributos.Get.PegaNomeTab(ATabela);
+  Result.Abrir;
 end;
 
-function TDaoIBX.ConsultaSql(ASql: string; AOwner: TComponent): TDataSet;
-var
-  Query: TIBQuery;
+function TDaoIBX.ConsultaSql(ASql: string): IQuery;
 begin
-  Query := TIBQuery.Create(GetOwner(AOwner));
-  Query.Database := FConexao;
-  Query.Sql.Text := ASql;
-  Query.Open;
-  Result := Query;
+  Result := TQueryIBX.Create(FConexao, nil);
+  Result.Sql.Text := ASql;
+  Result.Abrir;
 end;
 
-function TDaoIBX.ConsultaSql(ASql: string; const ParamList: array of Variant;
-  AOwner: TComponent): TDataSet;
+function TDaoIBX.ConsultaSql(ASql: string; const ParamList: array of Variant): IQuery;
 var
   I: Integer;
-var
-  Query: TIBQuery;
 begin
-  Query := TIBQuery.Create(GetOwner(AOwner));
-  Query.Database := FConexao;
-  Query.Sql.Text := ASql;
-  if (Length(ParamList) > 0) and (TIBQuery(Query).Params.Count > 0) then
-   for I := 0 to TIBQuery(Query).Params.Count -1 do
+  Result := TQueryIBX.Create(FConexao, nil);
+  Result.Sql.Text := ASql;
+  if (Length(ParamList) > 0) and (TIBQuery(Result).Params.Count > 0) then
+   for I := 0 to TIBQuery(Result).Params.Count -1 do
      if (I < Length(ParamList)) then
        if VarIsType(ParamList[I], varDate) then
-         TIBQuery(Query).Params[I].AsDateTime := VarToDateTime(ParamList[I])
+         TIBQuery(Result).Params[I].AsDateTime := VarToDateTime(ParamList[I])
        else
-         TIBQuery(Query).Params[I].Value := ParamList[I];
-  Query.Open;
-  Result := Query;
+         TIBQuery(Result).Params[I].Value := ParamList[I];
+  Result.Abrir;
 end;
 
-function TDaoIBX.ConsultaSql(ATabela, AWhere: string; AOwner: TComponent): TDataSet;
-var
-  Query: TIBQuery;
+function TDaoIBX.ConsultaSql(ATabela, AWhere: string): IQuery;
 begin
-  Query := TIBQuery.Create(GetOwner(AOwner));
-  Query.Database := FConexao;
-  Query.Sql.Text := 'select * from ' + ATabela;
+  Result := TQueryIBX.Create(FConexao, nil);
+  Result.Sql.Text := 'select * from ' + ATabela;
   if AWhere <> '' then
-    Query.Sql.Add('where ' + AWhere);
-  Query.Open;
-  Result := Query;
+    Result.Sql.Add('where ' + AWhere);
+  Result.Abrir;
 end;
 
 function TDaoIBX.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere,
-  AOrdem: array of string; TipoOrdem: Integer; AOwner: TComponent): TDataSet;
+  AOrdem: array of string; TipoOrdem: Integer): IQuery;
 var
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   Separador: string;
-  Query: TIBQuery;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Query := TIBQuery.Create(GetOwner(AOwner));
-    Query.Database := FConexao;
-    Query.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
+    Result := TQueryIBX.Create(FConexao, nil);
+    Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
     if Length(AOrdem)>0 then
     begin
       Separador := '';
-      Query.Sql.Add('order by');
+      Result.Sql.Add('order by');
       for Campo in AOrdem do
       begin
         if TipoOrdem = 1 then
-          Query.Sql.Add(Separador + Campo + ' Desc')
+          Result.Sql.Add(Separador + Campo + ' Desc')
         else
-          Query.Sql.Add(Separador + Campo);
+          Result.Sql.Add(Separador + Campo);
         Separador := ',';
       end;
     end;
@@ -403,62 +380,55 @@ begin
       begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
       end;
     end;
-    Query.Open;
-    Result := Query;
+    Result.Abrir;
   finally
     Contexto.Free;
   end;
 end;
 
-function TDaoIBX.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string;
-  AOwner: TComponent): TDataSet;
+function TDaoIBX.ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): IQuery;
 var
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
-  Query: TIBQuery;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Query := TIBQuery.Create(GetOwner(AOwner));
-    Query.Database := FConexao;
-    Query.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
+    Result := TQueryIBX.Create(FConexao, nil);
+    Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
     if Length(ACamposWhere)>0 then
     begin
       for Campo in ACamposWhere do
       begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
       end;
     end;
-    Query.Open;
-    Result := Query;
+    Result.Abrir;
+    Result := Result;
   finally
     Contexto.Free;
   end;
 end;
 
-function TDaoIBX.ConsultaTab(ATabela: TTabela;
-  ACamposWhere: array of string; AOwner: TComponent): TDataSet;
+function TDaoIBX.ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): IQuery;
 var
   Contexto: TRttiContext;
   Campo: string;
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
-  Query: TIBQuery;
 begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Query := TIBQuery.Create(GetOwner(AOwner));
-    Query.Database := FConexao;
-    Query.Sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
+    Result := TQueryIBX.Create(FConexao, nil);
+    Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
     if Length(ACamposWhere)>0 then
     begin
       for Campo in ACamposWhere do
@@ -466,13 +436,12 @@ begin
         for PropRtti in TipoRtti.GetProperties do
           if CompareText(PropRtti.Name, Campo) = 0 then
           begin
-            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query, FParams);
+            TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Result.Dataset, FParams);
             Break;
           end;
       end;
     end;
-    Query.Open;
-    Result := Query;
+    Result.Abrir;
   finally
     Contexto.Free;
   end;
@@ -484,6 +453,16 @@ var
 begin
   Query := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Query.Sql.Text := 'select max(' + ACampo + ') from ' + TAtributos.Get.PegaNomeTab(ATabela);
+  Query.Abrir;
+  Result := Query.Dataset.Fields[0].AsInteger + 1;
+end;
+
+function TDaoIBX.GetID(NomeTabela: string; ACampo: string): Integer;
+var
+  Query: IQuery;
+begin
+  Query := TQueryIBX.Create(FConexao, nil);
+  Query.Sql.Add('select max(' + ACampo + ') from ' + NomeTabela);
   Query.Abrir;
   Result := Query.Dataset.Fields[0].AsInteger + 1;
 end;

@@ -28,6 +28,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmPrin, dmPrin);
-  Application.CreateForm(TfrmTesteRelacionamento, frmTesteRelacionamento);
+  Application.CreateForm(TfrmTesteAtributos, frmTesteAtributos);
   Application.Run;
 end.

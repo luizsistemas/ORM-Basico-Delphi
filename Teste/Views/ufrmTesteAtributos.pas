@@ -222,7 +222,7 @@ end;
 procedure TfrmTesteAtributos.Button3Click(Sender: TObject);
 var
   ATab: TCidade;
-  Registros: TDataset;
+  Registros: TDataSet;
 begin
   Memo1.Clear;
   Memo1.Lines.Add('Teste do método ConsultaTab, todos os campos da tabela, filtro pelo campo UF=MA e sem ordenação.');
@@ -230,7 +230,7 @@ begin
   ATab := TCidade.Create;
   try
     ATab.Id := 1;
-    Registros := dmPrin.Dao.ConsultaTab(ATab, ['id'], Self);
+    Registros := dmPrin.Dao.ConsultaTab(ATab, ['id']).DataSet;
     while not Registros.Eof do
     begin
       ATab.Nome := Registros.FieldByName('nome').AsString;
@@ -249,7 +249,7 @@ end;
 procedure TfrmTesteAtributos.Button4Click(Sender: TObject);
 var
   ATab: TCidade;
-  Registros: TDataset;
+  Registros: TDataSet;
   Lista: TStringList;
 begin
   Memo1.Clear;
@@ -259,14 +259,10 @@ begin
   ATab := TCidade.Create;
   try
     ATab.UF := 'MA';
-    Registros := dmPrin.Dao.ConsultaTab(ATab, ['nome'], ['uf'], Self);
+    Registros := dmPrin.Dao.ConsultaTab(ATab, ['nome'], ['uf']).Dataset;
     while not Registros.Eof do
     begin
       ATab.Nome := Registros.FieldByName('nome').AsString;
-//      O dataset não retorna os campos abaixo...
-//      ATab.ID   := Registros.FieldByName('id').AsInteger;
-//      ATab.UF   := Registros.FieldByName('Uf').AsString;
-//      ATab.IBGE := Registros.FieldByName('ibge').AsInteger;
       Memo1.Lines.Add('Registro no DataSet: ' + IntToStr(ATab.ID));
       CarregaMemo(ATab);
       Memo1.Lines.Add('');
@@ -313,14 +309,14 @@ end;
 procedure TfrmTesteAtributos.btnDataSetClick(Sender: TObject);
 var
   ATab: TCidade;
-  Registros: TDataset;
+  Registros: TDataSet;
 begin
   Memo1.Clear;
   Memo1.Lines.Add('Teste do método ConsultaSQL, todos os campos da tabela, sem filtro e ordenado por id.');
   Memo1.Lines.Add('');
   ATab := TCidade.Create;
   try
-    Registros := dmPrin.Dao.ConsultaSql('Select * from Cidade order by id', Self);
+    Registros := dmPrin.Dao.ConsultaSql('Select * from Cidade order by id').Dataset;
     while not Registros.Eof do
     begin
       ATab.Id   := Registros.FieldByName('id').AsInteger;
@@ -354,7 +350,7 @@ begin
   Memo1.Lines.Add('');
   ATab := TCidade.Create;
   try
-    Registros := dmPrin.Dao.ConsultaTab(ATab, [],[],['UF','Nome'], 0, Self);
+    Registros := dmPrin.Dao.ConsultaTab(ATab, [],[],['UF','Nome'], 0).DataSet;
     while not Registros.Eof do
     begin
       ATab.Id   := Registros.FieldByName('id').AsInteger;
@@ -382,7 +378,7 @@ begin
   ATab := TCidade.Create;
   try
     ATab.UF := 'MA';
-    Registros := dmPrin.Dao.ConsultaTab(ATab, [], ['UF'], ['Nome'], 1, Self);
+    Registros := dmPrin.Dao.ConsultaTab(ATab, [], ['UF'], ['Nome'], 1).DataSet;
     while not Registros.Eof do
     begin
       ATab.ID   := Registros.FieldByName('id').AsInteger;
