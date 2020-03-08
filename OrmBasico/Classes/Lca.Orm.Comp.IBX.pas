@@ -66,7 +66,7 @@ type
     constructor Create(Conexao: TIBDatabase; Transacao: TIBTransaction);
     destructor Destroy; override;
     function Sql: TStrings;
-    function Dataset: TDataset;
+    function DataSet: TDataSet;
     function RowsAffected: Integer;
     procedure Executar;
   end;
@@ -825,7 +825,7 @@ begin
   FQuery.Open;
 end;
 
-function TQueryIBX.Dataset: TDataset;
+function TQueryIBX.DataSet: TDataSet;
 begin
   Result := FQuery;
 end;
