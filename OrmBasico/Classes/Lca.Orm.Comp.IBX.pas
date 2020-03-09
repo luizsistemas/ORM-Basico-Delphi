@@ -224,7 +224,7 @@ var
   Contexto: TRttiContext;
 begin
   Result := False;
-  Query := TQueryIBX.Create(FConexao, nil);
+  Query := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Contexto := TRttiContext.Create;
   try
     Query.Sql.Text := 'select * from ' + TAtributos.Get.PegaNomeTab(ATabela) + ' Where 1=1';
@@ -364,14 +364,14 @@ end;
 
 function TDaoIBX.ConsultaAll(ATabela: TTabela): IQuery;
 begin
-  Result := TQueryIBX.Create(FConexao, nil);
+  Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Result.Sql.Text := 'Select * from ' + TAtributos.Get.PegaNomeTab(ATabela);
   Result.Abrir;
 end;
 
 function TDaoIBX.ConsultaSql(ASql: string): IQuery;
 begin
-  Result := TQueryIBX.Create(FConexao, nil);
+  Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Result.Sql.Text := ASql;
   Result.Abrir;
 end;
@@ -380,7 +380,7 @@ function TDaoIBX.ConsultaSql(ASql: string; const ParamList: array of Variant): I
 var
   I: Integer;
 begin
-  Result := TQueryIBX.Create(FConexao, nil);
+  Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Result.Sql.Text := ASql;
   if (Length(ParamList) > 0) and (TIBQuery(Result).Params.Count > 0) then
    for I := 0 to TIBQuery(Result).Params.Count -1 do
@@ -394,7 +394,7 @@ end;
 
 function TDaoIBX.ConsultaSql(ATabela, AWhere: string): IQuery;
 begin
-  Result := TQueryIBX.Create(FConexao, nil);
+  Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Result.Sql.Text := 'select * from ' + ATabela;
   if AWhere <> '' then
     Result.Sql.Add('where ' + AWhere);
@@ -413,7 +413,7 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Result := TQueryIBX.Create(FConexao, nil);
+    Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
     Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
     if Length(AOrdem)>0 then
     begin
@@ -453,7 +453,7 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Result := TQueryIBX.Create(FConexao, nil);
+    Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
     Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACampos, ACamposWhere);
     if Length(ACamposWhere)>0 then
     begin
@@ -481,7 +481,7 @@ begin
   Contexto := TRttiContext.Create;
   try
     TipoRtti := Contexto.GetType(ATabela.ClassType);
-    Result := TQueryIBX.Create(FConexao, nil);
+    Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
     Result.Sql.Text := FSql.GerarSqlSelect(ATabela, ACamposWhere);
     if Length(ACamposWhere)>0 then
     begin
@@ -515,7 +515,7 @@ function TDaoIBX.GetID(NomeTabela: string; ACampo: string): Integer;
 var
   Query: IQuery;
 begin
-  Query := TQueryIBX.Create(FConexao, nil);
+  Query := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Query.Sql.Add('select max(' + ACampo + ') from ' + NomeTabela);
   Query.Abrir;
   Result := Query.DataSet.Fields[0].AsInteger + 1;
