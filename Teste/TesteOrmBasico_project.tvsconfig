@@ -7,4 +7,6 @@
   <Option Name="namespaceFolder.PrsDaoFireDac" Type="System.String" Value="PrsDaoFireDac" Category="General" IsBrowsable="False" />
   <Option Name="namespaceFolder.TesteOrmBasico" Type="System.String" Value="TesteOrmBasico" Category="General" IsBrowsable="False" />
   <Option Name="namespaceFolder.PrsDaoIBX" Type="System.String" Value="PrsDaoIBX" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Lca" Type="System.String" Value="Lca" Category="General" IsBrowsable="False" />
+  <Option Name="namespaceFolder.Lca.Orm" Type="System.String" Value="Lca\Orm" Category="General" IsBrowsable="False" />
 </TgConfig>

@@ -102,6 +102,8 @@ type
     function GetMax(ATabela: TTabela; ACampo: string; ACamposChave: array of string): Integer;
     function GetRecordCount(ATabela: TTabela; ACamposWhere: array of string): Integer; overload;
     function GetRecordCount(ATabela: string; AWhere: string): Integer; overload;
+    function GetRecordCount(ATabela, AWhere: string; Params: Array of Variant): Integer; overload;
+
     function Inserir(ATabela: TTabela): Integer; overload;
     function Inserir(ATabela: TTabela; ACampos: array of string; AFlag: TFlagCampos = fcIgnore): Integer; overload;
     function Salvar(ATabela: TTabela): Integer; overload;
@@ -111,6 +113,9 @@ type
     function Excluir(ATabela: string; AWhereValue: string): Integer; overload;
     function ExcluirTodos(ATabela: TTabela): Integer; overload;
     function Buscar(ATabela: TTabela): Integer;
+
+    function TabelaDifDB(ATabela: TTabela): Boolean;
+
     procedure ExecSQL(ASQL: string; const ParamList: array of Variant);
     procedure StartTransaction;
     procedure Commit;
@@ -200,6 +205,56 @@ end;
 procedure TDaoFireDac.StartTransaction;
 begin
   FTransacao.StartTransaction;
+end;
+
+function TDaoFireDac.TabelaDifDB(ATabela: TTabela): Boolean;
+var
+  Campo: string;
+  ValueTab,
+  ValueDB: Variant;
+  Query: IQuery;
+  TipoRtti: TRttiType;
+  PropRtti: TRttiProperty;
+  Contexto: TRttiContext;
+begin
+  Result := False;
+  Query := TQueryFD.Create(FConexao, nil);
+  Contexto := TRttiContext.Create;
+  try
+    Query.Sql.Text := 'select * from ' + TAtributos.Get.PegaNomeTab(ATabela) + ' Where 1=1';
+    for Campo in TAtributos.Get.PegaPks(ATabela) do
+      Query.Sql.Add(' and ' + Campo +' = :' + Campo);
+
+    TipoRtti := Contexto.GetType(ATabela.ClassType);
+    for Campo in TAtributos.Get.PegaPks(ATabela) do
+    begin
+      for PropRtti in TipoRtti.GetProperties do
+        if CompareText(PropRtti.Name, Campo) = 0 then
+          TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.DataSet, FParams);
+    end;
+    Query.Abrir;
+    for PropRtti in TipoRtti.GetProperties do
+    begin
+      ValueTab := PropRtti.GetValue(Atabela).AsVariant;
+      ValueDB := Query.DataSet.FieldbyName(PropRtti.Name).asVariant;
+      if ValueDB = null then
+      begin
+        case Query.DataSet.FieldByName(PropRtti.Name).DataType of
+          ftString, ftWideString, ftWideMemo: ValueDB := '';
+          ftBCD, ftFMTBcd, ftFloat,
+          ftInteger, ftTime,
+          ftDate, ftDateTime: ValueDB := 0;
+        end;
+      end;
+      if ValueTab <> ValueDB then
+      begin
+        Result := True;
+        Break;
+      end;
+    end;
+  finally
+    Contexto.Free;
+  end;
 end;
 
 procedure TDaoFireDac.Commit;
@@ -467,6 +522,32 @@ begin
   finally
     Contexto.Free;
   end;
+end;
+
+function TDaoFireDac.GetRecordCount(ATabela, AWhere: string; Params: array of Variant): Integer;
+var
+  Query: IQuery;
+  procedure ConfigParams;
+  var
+    I: Integer;
+  begin
+    if Length(Params)>0 then
+     for I := 0 to Length(Params) - 1 do
+         if VarIsType(Params[I], varDate) then
+           TFDQuery(Query.DataSet).Params[I].AsDateTime := VarToDateTime(Params[I])
+         else
+           TFDQuery(Query.DataSet).Params[I].Value := Params[I];
+  end;
+begin
+  Query := TQueryFD.Create(FConexao, nil);
+  Query.Sql.Text := 'SELECT COUNT(*) FROM ' + ATabela;
+  if not Trim(AWhere).IsEmpty then
+  begin
+    Query.Sql.Add('WHERE ' + AWhere);
+    ConfigParams;
+  end;
+  Query.Abrir;
+  Result := Query.DataSet.Fields[0].AsInteger;
 end;
 
 function TDaoFireDac.GetRecordCount(ATabela, AWhere: string): Integer;

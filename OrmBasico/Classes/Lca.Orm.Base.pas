@@ -117,6 +117,11 @@ type
     function ExcluirTodos(ATabela: TTabela): Integer; overload;
     function Buscar(ATabela: TTabela): Integer;
 
+    function GetMax(ATabela: TTabela; ACampo: string; ACamposChave: array of string): Integer;
+    function GetRecordCount(ATabela: TTabela; ACamposWhere: array of string): Integer; overload;
+    function GetRecordCount(ATabela: string; AWhere: string): Integer; overload;
+    function GetRecordCount(ATabela, AWhere: string; Params: Array of Variant): Integer; overload;
+
     function ConsultaAll(ATabela: TTabela): IQuery;
     function ConsultaSql(ASql: string): IQuery; overload;
     function ConsultaSql(ASql: string; const ParamList: Array of Variant): IQuery; overload;
@@ -124,6 +129,11 @@ type
     function ConsultaTab(ATabela: TTabela; ACamposWhere: array of string): IQuery; overload;
     function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere: array of string): IQuery; overload;
     function ConsultaTab(ATabela: TTabela; ACampos, ACamposWhere, AOrdem: array of string; TipoOrdem: Integer = 0): IQuery; overload;
+
+    /// Méotodo TabelaDifDB verifica se os campos da tabela
+    ///  passada no parâmetro possui os mesmos valores dos
+    ///  campos da tabela no banco de dados
+    function TabelaDifDB(ATabela: TTabela): Boolean;
 
     procedure ExecSQL(ASQL: string; const ParamList: Array of Variant);
     procedure StartTransaction;
