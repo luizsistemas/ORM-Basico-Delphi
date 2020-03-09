@@ -382,13 +382,13 @@ var
 begin
   Result := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
   Result.Sql.Text := ASql;
-  if (Length(ParamList) > 0) and (TIBQuery(Result).Params.Count > 0) then
-   for I := 0 to TIBQuery(Result).Params.Count -1 do
+  if (Length(ParamList) > 0) and (TIBQuery(Result.DataSet).Params.Count > 0) then
+   for I := 0 to TIBQuery(Result.DataSet).Params.Count -1 do
      if (I < Length(ParamList)) then
        if VarIsType(ParamList[I], varDate) then
-         TIBQuery(Result).Params[I].AsDateTime := VarToDateTime(ParamList[I])
+         TIBQuery(Result.DataSet).Params[I].AsDateTime := VarToDateTime(ParamList[I])
        else
-         TIBQuery(Result).Params[I].Value := ParamList[I];
+         TIBQuery(Result.DataSet).Params[I].Value := ParamList[I];
   Result.Abrir;
 end;
 
@@ -465,7 +465,6 @@ begin
       end;
     end;
     Result.Abrir;
-    Result := Result;
   finally
     Contexto.Free;
   end;
@@ -727,6 +726,7 @@ var
     end;
   end;
 begin
+  Comando := TQueryIBX.Create(FConexao, FTransacao);
   Comando.Sql.Text := ASql;
   ConfigParams;
   Comando.Executar;
