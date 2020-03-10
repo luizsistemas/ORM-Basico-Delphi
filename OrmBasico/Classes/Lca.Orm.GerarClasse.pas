@@ -61,8 +61,7 @@ type
     constructor Create(AClasseBanco: IBaseGerarClasseBanco);
     destructor Destroy; override;
 
-    function Gerar(ATabela, ANomeUnit: string;
-      ANomeClasse: string = ''): string;
+    function Gerar(ATabela, ANomeUnit: string; ANomeClasse: string = ''): string;
   end;
 
 implementation

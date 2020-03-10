@@ -44,7 +44,7 @@ uses
 type
   TGerarClasseBancoFirebird = class(TInterfacedObject, IBaseGerarClasseBanco)
   private
-    function GetTypeField(Tipo, SubTipo, Precisao: Integer): string;
+    function GetTypeField(Tipo, SubTipo, Precisao, Escala: Integer): string;
   public
      //obtem sql com nome, tamanho e tipo dos campos
     function GetSQLCamposTabela(ATabela: string): string;
@@ -64,7 +64,8 @@ procedure TGerarClasseBancoFirebird.GerarFields(Ads: TDataSet; AResult: TStrings
 var
   Tipo,
   SubTipo,
-  Precisao: Integer;
+  Precisao,
+  Escala: Integer;
   Nome: string;
 begin
   AResult.Add('  private');
@@ -74,9 +75,10 @@ begin
     Tipo := Ads.FieldByName('tipo').AsInteger;
     SubTipo := Ads.FieldByName('subtipo').AsInteger;
     Precisao := Ads.FieldByName('precisao').AsInteger;
+    Escala := Ads.FieldByName('escala').AsInteger;
     Nome := Trim(Ads.FieldByName('nome').AsString);
     Nome := 'F' + UpperCase(Nome[1]) + LowerCase(Copy(Nome, 2, Length(Nome)));
-    AResult.Add('    ' + Nome + ': ' + GetTypeField(Tipo, SubTipo, Precisao) + ';');
+    AResult.Add('    ' + Nome + ': ' + GetTypeField(Tipo, SubTipo, Precisao, Escala) + ';');
     Ads.Next;
   end;
 end;
@@ -85,7 +87,8 @@ procedure TGerarClasseBancoFirebird.GerarProperties(Ads: TDataSet; AResult: TStr
 var
   Tipo,
   SubTipo,
-  Precisao: Integer;
+  Precisao,
+  Escala: Integer;
   Nome: string;
 begin
   AResult.Add('  public');
@@ -95,6 +98,7 @@ begin
     Tipo := Ads.FieldByName('tipo').AsInteger;
     SubTipo := Ads.FieldByName('subtipo').AsInteger;
     Precisao := Ads.FieldByName('precisao').AsInteger;
+    Escala := Ads.FieldByName('escala').AsInteger;
     Nome := Trim(Ads.FieldByName('nome').AsString);
 
     if pos(Nome, ACamposPK) > 0 then
@@ -103,7 +107,7 @@ begin
     Nome := UpperCase(Nome[1]) + LowerCase(Copy(Nome, 2, Length(Nome)));
 
     AResult.Add('    property ' +
-                       Nome +': ' + GetTypeField(Tipo, SubTipo, Precisao) +
+                       Nome +': ' + GetTypeField(Tipo, SubTipo, Precisao, Escala) +
                        ' read F' + Nome +
                        ' write F' + Nome + ';');
     Ads.Next;
@@ -135,14 +139,15 @@ begin
             'f.RDB$FIELD_LENGTH AS tamanho,' +
             'f.RDB$FIELD_TYPE AS tipo,' +
             'f.RDB$FIELD_SUB_TYPE AS subtipo, ' +
-            'f.RDB$FIELD_PRECISION AS precisao ' +
+            'f.RDB$FIELD_PRECISION AS precisao, ' +
+            'f.RDB$FIELD_SCALE AS escala '+
             'FROM RDB$RELATION_FIELDS r ' +
             'LEFT JOIN RDB$FIELDS f ON r.RDB$FIELD_SOURCE = f.RDB$FIELD_NAME ' +
             'WHERE r.RDB$RELATION_NAME='+ QuotedStr(ATabela) + ' ' +
             'ORDER BY r.RDB$FIELD_POSITION;';
 end;
 
-function TGerarClasseBancoFirebird.GetTypeField(Tipo, SubTipo, Precisao: Integer): string;
+function TGerarClasseBancoFirebird.GetTypeField(Tipo, SubTipo, Precisao, Escala: Integer): string;
 begin
   case Tipo of
     7,
@@ -152,10 +157,12 @@ begin
     11,
     16,
     27: begin
-          if Precisao = 0 then
-            Result := 'Integer'
+          case Escala of
+            0: Result := 'Integer';
+           -8: Result := 'Double';
           else
             Result := 'Currency';
+          end
         end;
     14,
     37,

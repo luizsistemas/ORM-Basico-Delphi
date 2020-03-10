@@ -172,34 +172,34 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseFirebird\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsDaoIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\ufrmGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasse\BancoFirebird\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasseIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasse\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasseFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsBase\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Base\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\FireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseBancoFirebird\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseBancoFirebird\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Atributos\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="Win32\Debug\ProjGerarClasse.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\ProjGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\IBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsDaoFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseFirebird\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsBase\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseIBX\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsDaoIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\IBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseBancoFirebird\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Base\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsDaoFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\ProjGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="Win32\Debug\ProjGerarClasse.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasse\BancoFirebird\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasseIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\FireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Atributos\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\ufrmGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasseFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>

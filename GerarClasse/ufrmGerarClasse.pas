@@ -87,7 +87,7 @@ const
 begin
   lbTabelas.Items.Clear;
 
-  with dmPrin.Dao.ConsultaSql(SQL) do
+  with dmPrin.Dao.ConsultaSql(SQL).DataSet do
   begin
     while not EOF do
     begin

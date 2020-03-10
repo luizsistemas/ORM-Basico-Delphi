@@ -1,7 +1,6 @@
 program ProjGerarClasse;
 
 uses
-  FastMM4,
   Vcl.Forms,
   ufrmGerarClasse in 'ufrmGerarClasse.pas' {frmConverte},
   udmPrin in '..\Teste\DataModule\udmPrin.pas' {dmPrin: TDataModule},
