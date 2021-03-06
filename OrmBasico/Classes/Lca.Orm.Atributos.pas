@@ -152,7 +152,7 @@ type
 implementation
 
 uses
-  System.TypInfo, System.SysUtils, Forms, Winapi.Windows, System.Variants;
+  System.TypInfo, System.SysUtils, Vcl.Forms, Winapi.Windows, System.Variants;
 
 { DaoBase }
 
@@ -164,8 +164,10 @@ begin
     tkChar, tkString, tkUString: AParams.SetParamString(AProp, ACampo, ATabela, AQry);
     tkFloat:
       begin
-        if CompareText(AProp.PropertyType.Name, 'TDateTime') = 0 then
+        if (SameText(AProp.PropertyType.Name, 'TDateTime') or SameText(AProp.PropertyType.Name, 'TDate')) then
           AParams.SetParamDate(AProp, ACampo, ATabela, AQry)
+        else if CompareText(AProp.PropertyType.Name, 'TTime') = 0 then
+          AParams.SetParamTime(AProp, ACampo, ATabela, AQry)
         else
           AParams.SetParamCurrency(AProp, ACampo, ATabela, AQry);
       end;
@@ -233,8 +235,11 @@ begin
       end;
     tkFloat:
       begin
-        if CompareText(AProp.PropertyType.Name, 'TDateTime') = 0 then
+        if SameText(AProp.PropertyType.Name, 'TDateTime') then
           AParams.SetCamposDate(AProp, ACampo, ATabela, AQry)
+        else
+        if SameText(AProp.PropertyType.Name, 'TTime') then
+          AParams.SetCamposTime(AProp, ACampo, ATabela, AQry)
         else
           AParams.SetCamposCurrency(AProp, ACampo, ATabela, AQry);
       end;

@@ -53,11 +53,14 @@ type
     procedure SetParamInteger(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamString(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamDate(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+    procedure SetParamTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamCurrency(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamVariant(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+
     procedure SetCamposInteger(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetCamposString(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetCamposDate(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+    procedure SetCamposTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetCamposCurrency(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
   end;
 
@@ -126,7 +129,7 @@ type
 implementation
 
 uses
-  Dialogs, System.TypInfo, System.Variants,
+  System.TypInfo, System.Variants,
   Lca.Orm.GerarClasseFireDac, Lca.Orm.GerarClasse.BancoFirebird, Vcl.Forms;
 
 { TParamsFireDac }
@@ -155,6 +158,14 @@ begin
   TFDQuery(AQry).ParamByName(ACampo).AsString := AProp.GetValue(ATabela).AsString;
 end;
 
+procedure TParamsFireDac.SetParamTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+begin
+  if AProp.GetValue(ATabela).AsType<TTime> = 0 then
+    TFDQuery(AQry).ParamByName(ACampo).Clear
+  else
+    TFDQuery(AQry).ParamByName(ACampo).AsDateTime := AProp.GetValue(ATabela).AsType<TTime>;
+end;
+
 procedure TParamsFireDac.SetParamVariant(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
 begin
   TFDQuery(AQry).ParamByName(ACampo).Value := AProp.GetValue(ATabela).AsVariant;
@@ -178,6 +189,11 @@ end;
 procedure TParamsFireDac.SetCamposString(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
 begin
   AProp.SetValue(ATabela, TFDQuery(AQry).FieldByName(ACampo).AsString);
+end;
+
+procedure TParamsFireDac.SetCamposTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+begin
+  AProp.SetValue(ATabela, TFDQuery(AQry).FieldByName(ACampo).AsDateTime);
 end;
 
 { TDaoFireDac }
@@ -216,6 +232,8 @@ var
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   Contexto: TRttiContext;
+  ValuePropTime,
+  ValueDBTime: TTime;
 begin
   Result := False;
   Query := TQueryFD.Create(FConexao, nil);
@@ -235,21 +253,34 @@ begin
     Query.Abrir;
     for PropRtti in TipoRtti.GetProperties do
     begin
-      ValueTab := PropRtti.GetValue(Atabela).AsVariant;
-      ValueDB := Query.DataSet.FieldbyName(PropRtti.Name).asVariant;
-      if ValueDB = null then
+      if SameText(PropRtti.PropertyType.Name, 'TTime') then
       begin
-        case Query.DataSet.FieldByName(PropRtti.Name).DataType of
-          ftString, ftWideString, ftWideMemo: ValueDB := '';
-          ftBCD, ftFMTBcd, ftFloat,
-          ftInteger, ftTime,
-          ftDate, ftDateTime: ValueDB := 0;
+        ValuePropTime := PropRtti.GetValue(Atabela).AsVariant;
+        ValueDBTime := Query.DataSet.FieldbyName(PropRtti.Name).AsDateTime;
+        if ValuePropTime<>ValueDBTime then
+        begin
+          Result := True;
+          Break;
         end;
-      end;
-      if ValueTab <> ValueDB then
+      end
+      else
       begin
-        Result := True;
-        Break;
+        ValueTab := PropRtti.GetValue(Atabela).AsVariant;
+        ValueDB := Query.DataSet.FieldbyName(PropRtti.Name).asVariant;
+        if ValueDB = null then
+        begin
+          case Query.DataSet.FieldByName(PropRtti.Name).DataType of
+            ftString, ftWideString, ftWideMemo: ValueDB := '';
+            ftBCD, ftFMTBcd, ftFloat,
+            ftInteger, ftTime,
+            ftDate, ftDateTime: ValueDB := 0;
+          end;
+        end;
+        if ValueTab <> ValueDB then
+        begin
+          Result := True;
+          Break;
+        end;
       end;
     end;
   finally

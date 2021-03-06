@@ -47,12 +47,14 @@ type
     procedure SetParamInteger(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamString(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamDate(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+    procedure SetParamTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamCurrency(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetParamVariant(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
 
     procedure SetCamposInteger(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetCamposString(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetCamposDate(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+    procedure SetCamposTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
     procedure SetCamposCurrency(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
   end;
 
@@ -123,7 +125,7 @@ type
 
 implementation
 
-uses Dialogs, System.TypInfo, System.Variants,
+uses System.TypInfo, System.Variants,
   Lca.Orm.GerarClasseIBX, Lca.Orm.GerarClasse.BancoFirebird;
 
 { TParamsIBX }
@@ -156,6 +158,14 @@ begin
   TIBQuery(AQry).ParamByName(ACampo).AsString := AProp.GetValue(ATabela).AsString;
 end;
 
+procedure TParamsIBX.SetParamTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+begin
+  if AProp.GetValue(ATabela).AsType<TTime> = 0 then
+    TIBQuery(AQry).ParamByName(ACampo).Clear
+  else
+    TIBQuery(AQry).ParamByName(ACampo).AsTime := AProp.GetValue(ATabela).AsType<TTime>;
+end;
+
 procedure TParamsIBX.SetParamVariant(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TDataSet);
 begin
@@ -184,6 +194,11 @@ procedure TParamsIBX.SetCamposString(AProp: TRttiProperty;
   ACampo: string; ATabela: TTabela; AQry: TDataSet);
 begin
   AProp.SetValue(ATabela, TIBQuery(AQry).FieldByName(ACampo).AsString);
+end;
+
+procedure TParamsIBX.SetCamposTime(AProp: TRttiProperty; ACampo: string; ATabela: TTabela; AQry: TDataSet);
+begin
+  AProp.SetValue(ATabela, TIBQuery(AQry).FieldByName(ACampo).AsDateTime);
 end;
 
 { TDaoIBX }
@@ -222,6 +237,8 @@ var
   TipoRtti: TRttiType;
   PropRtti: TRttiProperty;
   Contexto: TRttiContext;
+  ValuePropTime,
+  ValueDBTime: TTime;
 begin
   Result := False;
   Query := TQueryIBX.Create(FConexao, FConexao.DefaultTransaction);
@@ -234,7 +251,6 @@ begin
     TipoRtti := Contexto.GetType(ATabela.ClassType);
     for Campo in TAtributos.Get.PegaPks(ATabela) do
     begin
-      // setando os parâmetros
       for PropRtti in TipoRtti.GetProperties do
         if CompareText(PropRtti.Name, Campo) = 0 then
           TAtributos.Get.ConfiguraParametro(PropRtti, Campo, ATabela, Query.DataSet, FParams);
@@ -242,8 +258,21 @@ begin
     Query.Abrir;
     for PropRtti in TipoRtti.GetProperties do
     begin
-      ValueTab := PropRtti.GetValue(Atabela).AsVariant;
-      ValueDB := Query.DataSet.FieldbyName(PropRtti.Name).asVariant;
+      if SameText(PropRtti.PropertyType.Name, 'TTime') then
+      begin
+        ValuePropTime := PropRtti.GetValue(Atabela).AsVariant;
+        ValueDBTime := Query.DataSet.FieldbyName(PropRtti.Name).AsDateTime;
+        if ValuePropTime<>ValueDBTime then
+        begin
+          Result := True;
+          Break;
+        end;
+      end
+      else
+      begin
+        ValueTab := PropRtti.GetValue(Atabela).AsVariant;
+        ValueDB := Query.DataSet.FieldbyName(PropRtti.Name).asVariant;
+      end;
       if ValueDB = null then
       begin
         case Query.DataSet.FieldByName(PropRtti.Name).DataType of
