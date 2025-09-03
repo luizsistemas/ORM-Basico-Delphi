@@ -1,5 +1,8 @@
 # Diretories #
-Teste/Win32/*
+Win32/
+__history/
+__recovery/
+
 
 LibrarySupport/*
 

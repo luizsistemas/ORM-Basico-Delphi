@@ -59,21 +59,21 @@ type
     procedure Abrir;
   end;
 
-  IBaseSql = interface
-    ['{3890762A-9CF2-46C3-A75C-62947D3DAD7B}']
-    function GerarSqlInsert(ATabela: string; TipoRtti: TRttiType;
-      ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
-    function GerarSqlUpdate(ATabela: TTabela; TipoRtti: TRttiType;
-      ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
-    function GerarSqlDelete(ATabela: TTabela): string;
-    function GerarSqlSelect(ATabela: TTabela): string; overload;
-    function GerarSqlSelect(ATabela: TTabela; ACamposWhere: array of string): string;
-       overload;
-    function GerarSqlSelect(ATabela: TTabela; ACampos: array of string;
-      ACamposWhere: array of string): string; overload;
-  end;
+//  IBaseSql = interface
+//    ['{3890762A-9CF2-46C3-A75C-62947D3DAD7B}']
+//    function GerarSqlInsert(ATabela: string; TipoRtti: TRttiType;
+//      ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
+//    function GerarSqlUpdate(ATabela: TTabela; TipoRtti: TRttiType;
+//      ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
+//    function GerarSqlDelete(ATabela: TTabela): string;
+//    function GerarSqlSelect(ATabela: TTabela): string; overload;
+//    function GerarSqlSelect(ATabela: TTabela; ACamposWhere: array of string): string;
+//       overload;
+//    function GerarSqlSelect(ATabela: TTabela; ACampos: array of string;
+//      ACamposWhere: array of string): string; overload;
+//  end;
 
-  TPadraoSql = class(TInterfacedObject, IBaseSql)
+  TPadraoSql = class
   public
     function GerarSqlInsert(ATabela: string; TipoRtti: TRttiType;
       ACampos: array of string; AFlag: TFlagCampos = fcAdd): string;
@@ -143,12 +143,13 @@ type
     procedure Commit;
     procedure RollBack;
     function  InTransaction: Boolean;
+    function Connected: Boolean;
   end;
 
   TDaoBase = class(TInterfacedObject)
   private
   protected
-    FSql: IBaseSql;
+    FSql: TPadraoSql;
     FDataSet: TDataSet;
     FParams: IQueryParams;
     procedure SetDataSet(const Value: TDataSet);
@@ -161,6 +162,9 @@ type
     function GetOwner(AOwner: TComponent): TComponent;
   public
     constructor Create;
+    destructor Destroy; override;
+
+    function Assign(Source, Target: TTabela): Boolean;
     property DataSet: TDataSet read FDataSet write SetDataSet;
   end;
 
@@ -421,12 +425,40 @@ begin
   FSql := TPadraoSql.Create;
 end;
 
+destructor TDaoBase.Destroy;
+begin
+  FSql.Free;
+  inherited;
+end;
+
 function TDaoBase.GetOwner(AOwner: TComponent): TComponent;
 begin
   if Assigned(AOwner) then
     Result := AOwner
   else
     Result := Application;
+end;
+
+function TDaoBase.Assign(Source, Target: TTabela): Boolean;
+var
+  RttiSource, RttiTarget: TRttiType;
+  PropSource, PropTarget: TRttiProperty;
+  Contexto: TRttiContext;
+begin
+  Result := False;
+  Contexto := TRttiContext.Create;
+  try
+    RttiSource := Contexto.GetType(Source.ClassType);
+    RttiTarget := Contexto.GetType(Target.ClassType);
+    for PropSource in RttiSource.GetProperties do
+    begin
+      for PropTarget in RttiTarget.GetProperties do
+        if PropTarget.Name = PropSource.Name then
+          PropTarget.SetValue(Target, PropSource.GetValue(Source));
+    end;
+  finally
+    Contexto.Free;
+  end;
 end;
 
 procedure TDaoBase.SetarDadosFromDataSet(ADataSet: TDataSet; PropRtti: TRttiProperty; Objeto: TValue; Campo: string);
@@ -449,6 +481,11 @@ begin
       begin
         PropRtti.SetValue(Objeto.AsObject,
           TValue.FromVariant(ADataSet.FieldByName(Campo).AsFloat));
+      end;
+    DB.TFieldType.ftExtended:
+      begin
+        PropRtti.SetValue(Objeto.AsObject,
+          TValue.FromVariant(ADataSet.FieldByName(Campo).AsExtended));
       end;
     ftCurrency:
       begin

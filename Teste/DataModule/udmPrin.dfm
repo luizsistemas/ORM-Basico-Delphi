@@ -3,14 +3,14 @@ object dmPrin: TdmPrin
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   Height = 304
-  Width = 431
+  Width = 783
   object FDConnection1: TFDConnection
     Params.Strings = (
-      
-        'Database=D:\Projetos10\BlogProjetos\Persistencia\Teste\Bd\BANCOT' +
-        'ESTE.FDB'
-      'User_Name=sysdba'
-      'Password=02025626'
+      'Database=D:\ProjetosDelphi\OrmBasico\Teste\Bd\BANCOTESTE.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Port=3050'
+      'Server=Luiz'
       'DriverID=FB')
     LoginPrompt = False
     Left = 40
@@ -22,9 +22,9 @@ object dmPrin: TdmPrin
     Top = 120
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    VendorLib = 'C:\Program Files (x86)\Firebird\Firebird_2_5\bin\fbclient.dll'
+    VendorLib = 'C:\Program Files (x86)\Firebird\Firebird_4_0\fbclient.dll'
     Left = 184
-    Top = 88
+    Top = 87
   end
   object IBDatabase1: TIBDatabase
     DatabaseName = 'F:\Delphi10\Projetos\Persistencia\Teste\Bd\BANCOTESTE.FDB'

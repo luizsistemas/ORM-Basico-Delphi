@@ -56,6 +56,9 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
+        <DCC_UnitSearchPath>D:\ProjetosDelphi\OrmBasico\Fontes;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <VerInfo_Locale>1046</VerInfo_Locale>
+        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -83,9 +86,9 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <DCC_UnitSearchPath>..\FastMM;$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_Define>EnableMemoryLeakReporting;_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
+        <DCC_Define>_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
         <BT_BuildType>Debug</BT_BuildType>
@@ -99,6 +102,8 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -167,8 +172,8 @@
                     <Source Name="MainSource">ProjGerarClasse.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k230.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp230.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
@@ -180,10 +185,10 @@
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsBase\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseIBX\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseFireDac\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsDaoIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
-                <DeployFile LocalName="ModelSupport_ProjGerarClasse\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\GerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Comp\IBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsDaoIBX\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
+                <DeployFile LocalName="ModelSupport_ProjGerarClasse\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasseBancoFirebird\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\Lca\Orm\Base\default.txvpck" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="ModelSupport_ProjGerarClasse\PrsGerarClasse\default.txvpck" Configuration="Debug" Class="ProjectFile"/>

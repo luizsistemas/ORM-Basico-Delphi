@@ -41,6 +41,14 @@ uses
   Lca.Orm.Base, Rtti, System.Classes, Data.DB;
 
 type
+  DescricaoCampo = class(TCustomAttribute)
+  private
+    FDescricao: string;
+  public
+    constructor Create(ADescricao: string);
+    property Descricao: string read FDescricao write FDescricao;
+  end;
+
   AttTabela = class(TCustomAttribute)
   private
     FNome: string;
@@ -512,6 +520,13 @@ begin
   FTabela := Tabela;
   FPk := Pk;
   FTipo := Tipo;
+end;
+
+{ DescricaoCampo }
+
+constructor DescricaoCampo.Create(ADescricao: string);
+begin
+  Descricao := ADescricao;
 end;
 
 end.

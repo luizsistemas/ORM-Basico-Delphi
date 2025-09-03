@@ -49,7 +49,7 @@ begin
   FDConnection1.Connected := False;
   FDConnection1.Params.Database := Path + '\Bd\BANCOTESTE.FDB';
   FDConnection1.Params.UserName := 'SYSDBA';
-  FDConnection1.Params.Password := '02025626';
+  FDConnection1.Params.Password := 'masterkey';
   TFDPhysFBConnectionDefParams(FDConnection1.Params).Server := 'localhost';
   FDConnection1.Connected := True;
   Dao := TDaoFiredac.Create(FDConnection1, Comandos);

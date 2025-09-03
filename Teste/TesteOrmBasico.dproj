@@ -58,6 +58,7 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
+        <DCC_UnitSearchPath>D:\ProjetosDelphi\OrmBasico\Fontes;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -115,29 +116,21 @@
         <DCCReference Include="Views\ufrmTesteIbx.pas">
             <Form>frmTesteIbx</Form>
         </DCCReference>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Atributos.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Base.pas"/>
         <DCCReference Include="DataModule\udmPrin.pas">
             <Form>dmPrin</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Comp.FireDac.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.Comp.IBX.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasse.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasse.BancoFirebird.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasseFireDac.pas"/>
-        <DCCReference Include="..\OrmBasico\Classes\Lca.Orm.GerarClasseIBX.pas"/>
         <DCCReference Include="Views\ufrmCadFunc.pas">
             <Form>frmCadFunc</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Entity\Depto.pas"/>
+        <DCCReference Include="Entity\Funcionario.pas"/>
         <DCCReference Include="Views\ufrmTesteAtributos.pas">
             <Form>frmTesteAtributos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Entity\Depto.pas"/>
-        <DCCReference Include="Entity\Funcionario.pas"/>
         <None Include="ModelSupport_TesteOrmBasico\default.txaPackage"/>
         <None Include="ModelSupport_TesteOrmBasico\default.txvpck"/>
         <None Include="ModelSupport_TesteOrmBasico\PrsAtributos\default.txvpck"/>
@@ -187,11 +180,8 @@
                     <Source Name="MainSource">TesteOrmBasico.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Componentes10\Acbr\Lib\Delphi\LibD26\ACBr_Integrador.bpl">ACBr - Integrador - (http://www.projetoacbr.com.br/)</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Standard\LibD26\dclfrxIntIO26.bpl">FastReport 6.0 Internet transports</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport 6 VCL Standard\LibD26\dclfrxIntIOIndy26.bpl">FastReport 6.0 Internet transports</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
